@@ -1,0 +1,13 @@
+# Roblox files
+*.rbxl
+*.rbxlx
+*.rbxl.lock
+*.rbxlx.lock
+*.rbxm
+*.rbxmx
+
+# Wally Packages
+Packages/
+
+# vscode settings
+.vscode/settings.json

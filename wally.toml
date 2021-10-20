@@ -1,0 +1,9 @@
+[package]
+name = "rstk/BitBuffer"
+description = "Blazing-fast BitBuffer for Roblox"
+version = "1.0.0"
+license = "MIT"
+registry = "https://github.com/UpliftGames/wally-index"
+realm = "shared"
+
+[dependencies]

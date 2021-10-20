@@ -1,0 +1,31 @@
+{
+	"name": "BitBuffer: Testing",
+
+	"tree": {
+		"$className": "DataModel",
+
+		"ReplicatedStorage": {
+			"$className": "ReplicatedStorage",
+
+			"Packages": {
+				"$path": "Packages",
+				
+				"BitBuffer": {
+					"$path": "src"
+				}
+			},
+
+			"Tests": {
+				"$path": "tests"
+			}
+		},
+
+		"ServerScriptService": {
+			"$className": "ServerScriptService",
+
+			"Benchmarks": {
+				"$path": "benchmarks"
+			}
+		}
+	}
+}

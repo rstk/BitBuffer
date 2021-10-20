@@ -1,0 +1,6 @@
+[package]
+name = "rstk/BitBuffer"
+author = "rstk"
+version = "1.0.0"
+license = "MIT"
+content_root = "./src"

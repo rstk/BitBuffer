@@ -1,0 +1,8 @@
+{
+	"Name": "TestN",
+	"ClassName": "IntValue",
+
+	"Properties": {
+		"Value": 64
+	}
+}
