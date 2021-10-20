@@ -57,9 +57,7 @@ local function WriteToBuffer(this: BitBuffer, size: number, value: number): ()
 	local bit = index % 32
 	local n = bit32.rshift(index, 5) + 1
 
-	if bit == 0 then
-		buffer[n] = bit32.extract(value, 0, size)
-	elseif bit + size <= 32 then
+	if bit + size <= 32 then
 		buffer[n] = bit32.replace(buffer[n] or 0, value, bit, size)
 	else
 		local rem = 32 - bit
