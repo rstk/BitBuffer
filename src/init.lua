@@ -4,7 +4,8 @@
 -- Distributed under the MIT license.
 -- https://github.com/rstk/BitBuffer
 
-local Character = table.create(256) do
+local Character = table.create(256)
+do
 	for i = 0, 255 do
 		Character[i + 1] = string.char(i)
 	end
@@ -21,7 +22,7 @@ do
 	for i = 1, 64 do
 		local char = string.sub(alphabet, i, i)
 		to[i] = char
-		from[string.byte(char)+1] = i-1
+		from[string.byte(char) + 1] = i - 1
 	end
 
 	Base64.To = to
@@ -37,7 +38,7 @@ do
 	for i = 1, 91 do
 		local char = string.sub(alphabet, i, i)
 		to[i] = char
-		from[string.byte(char)+1] = i-1
+		from[string.byte(char) + 1] = i - 1
 	end
 
 	Base91.To = to
@@ -47,7 +48,6 @@ end
 local function Error(msg: string, ...: any?): ()
 	error("[BitBuffer] " .. string.format(msg, ...), 2)
 end
-
 
 local function WriteToBuffer(this: BitBuffer, size: number, value: number): ()
 	local buffer = this._buffer
@@ -82,7 +82,7 @@ local function ReadFromBuffer(this: BitBuffer, size: number): number
 		return bit32.extract(value, bit, size)
 	else
 		local rem = 32 - bit
-		local nextValue = buffer[n+1] or 0
+		local nextValue = buffer[n + 1] or 0
 		return bit32.replace(bit32.extract(value, bit, rem), nextValue, rem, size - rem)
 	end
 end
@@ -91,14 +91,14 @@ local function WriteBytesAligned(this: BitBuffer, bytes: string): ()
 	local length = #bytes
 
 	if length < 4 then
-		WriteToBuffer(this, length*8, (string.unpack("<I" .. length, bytes)))
+		WriteToBuffer(this, length * 8, (string.unpack("<I" .. length, bytes)))
 	elseif length == 4 then
 		local a, b, c, d = string.byte(bytes, 1, 4)
-		WriteToBuffer(this, 32, a + b*256 + c*65536 + d*16777216)
+		WriteToBuffer(this, 32, a + b * 256 + c * 65536 + d * 16777216)
 	elseif length < 8 then
 		local a, b, c, d = string.byte(bytes, 1, 4)
-		WriteToBuffer(this, 32, a + b*256 + c*65536 + d*16777216)
-		WriteToBuffer(this, length*8 - 32, (string.unpack("<I" .. length - 4, bytes, 5)))
+		WriteToBuffer(this, 32, a + b * 256 + c * 65536 + d * 16777216)
+		WriteToBuffer(this, length * 8 - 32, (string.unpack("<I" .. length - 4, bytes, 5)))
 	else
 		local buffer = this._buffer
 		local index = this._index
@@ -107,14 +107,14 @@ local function WriteBytesAligned(this: BitBuffer, bytes: string): ()
 		local offset = 0
 
 		if bit ~= 0 then
-			offset = 4 - bit/8
+			offset = 4 - bit / 8
 			WriteToBuffer(this, 32 - bit, (string.unpack("<I" .. offset, bytes)))
 			n += 1
 		end
 
 		for i = offset + 4, length, 4 do
-			local a, b, c, d = string.byte(bytes, i-3, i)
-			buffer[n] = a + b*256 + c*65536 + d*16777216
+			local a, b, c, d = string.byte(bytes, i - 3, i)
+			buffer[n] = a + b * 256 + c * 65536 + d * 16777216
 			n += 1
 		end
 
@@ -124,24 +124,19 @@ local function WriteBytesAligned(this: BitBuffer, bytes: string): ()
 			buffer[n] = bit32.replace(buffer[n] or 0, v, 0, rem * 8)
 		end
 
-		this._index = (n-1)*32 + rem*8
+		this._index = (n - 1) * 32 + rem * 8
 	end
 end
 
 local function ReadBytesAligned(this: BitBuffer, length: number): string
 	if length < 4 then
-		return string.pack("<I" .. length, ReadFromBuffer(this, length*8))
+		return string.pack("<I" .. length, ReadFromBuffer(this, length * 8))
 	elseif length == 4 then
 		local value = ReadFromBuffer(this, 32)
-		return string.char(
-			value % 256,
-			bit32.rshift(value, 8) % 256,
-			bit32.rshift(value, 16) % 256,
-			bit32.rshift(value, 24)
-		)
+		return string.char(value % 256, bit32.rshift(value, 8) % 256, bit32.rshift(value, 16) % 256, bit32.rshift(value, 24))
 	end
 
-	local prefix = 3 - (this._index/8 - 1) % 4
+	local prefix = 3 - (this._index / 8 - 1) % 4
 	local suffix = (length - prefix) % 4
 	local t = (length - prefix - suffix) / 4
 	local o = 0
@@ -155,20 +150,15 @@ local function ReadBytesAligned(this: BitBuffer, length: number): string
 	local buffer = this._buffer
 	local n = bit32.rshift(this._index, 5) + 1
 	for i = 1, t do
-		local value = buffer[n+i-1] or 0
-		str[o+i] = string.char(
-			value % 256,
-			bit32.rshift(value, 8) % 256,
-			bit32.rshift(value, 16) % 256,
-			bit32.rshift(value, 24)
-		)
+		local value = buffer[n + i - 1] or 0
+		str[o + i] = string.char(value % 256, bit32.rshift(value, 8) % 256, bit32.rshift(value, 16) % 256, bit32.rshift(value, 24))
 	end
 
 	if suffix > 0 then
 		str[o + t + 1] = string.pack("<I" .. suffix, bit32.extract(buffer[n + t] or 0, 0, suffix * 8))
 	end
 
-	this._index += t*32 + suffix*8
+	this._index += t * 32 + suffix * 8
 	return table.concat(str)
 end
 
@@ -201,10 +191,10 @@ function BitBuffer.FromString(str: string): BitBuffer
 	end
 
 	local length = #str
-	local buffer = table.create(math.ceil(length/4))
+	local buffer = table.create(math.ceil(length / 4))
 	for i = 1, length / 4 do
-		local a, b, c, d = string.byte(str, i*4-3, i*4)
-		buffer[i] = a + b*256 + c*65536 + d*16777216
+		local a, b, c, d = string.byte(str, i * 4 - 3, i * 4)
+		buffer[i] = a + b * 256 + c * 65536 + d * 16777216
 	end
 
 	local rem = length % 4
@@ -231,12 +221,12 @@ function BitBuffer.FromBase64(stream: string): BitBuffer
 	local accIndex = 0
 
 	local chunks = math.floor(length / 4)
-	local buffer = table.create(math.ceil((chunks*24 + length%4*6) / 32))
+	local buffer = table.create(math.ceil((chunks * 24 + length % 4 * 6) / 32))
 	local bufIndex = 1
 
 	for i = 1, chunks do
-		local c0, c1, c2, c3 = string.byte(stream, i*4-3, i*4)
-		local v0, v1, v2, v3 = fromBase64[c0+1], fromBase64[c1+1], fromBase64[c2+1], fromBase64[c3+1]
+		local c0, c1, c2, c3 = string.byte(stream, i * 4 - 3, i * 4)
+		local v0, v1, v2, v3 = fromBase64[c0 + 1], fromBase64[c1 + 1], fromBase64[c2 + 1], fromBase64[c3 + 1]
 
 		-- pardon me for this horror
 		if v0 == nil then
@@ -249,7 +239,7 @@ function BitBuffer.FromBase64(stream: string): BitBuffer
 			Error("invalid argument #1 to 'FromBase64' (invalid Base64 character at position %d)", i + 3)
 		end
 
-		local value = v0 + v1*64 + v2*4096 + v3*262144
+		local value = v0 + v1 * 64 + v2 * 4096 + v3 * 262144
 
 		if accIndex + 24 <= 32 then
 			accumulator = bit32.replace(accumulator, value, accIndex, 24)
@@ -262,8 +252,8 @@ function BitBuffer.FromBase64(stream: string): BitBuffer
 		end
 	end
 
-	for i = chunks*4+1, length do
-		local value = fromBase64[string.byte(stream, i, i)+1]
+	for i = chunks * 4 + 1, length do
+		local value = fromBase64[string.byte(stream, i, i) + 1]
 
 		if accIndex + 6 <= 32 then
 			accumulator = bit32.replace(accumulator, value, accIndex, 6)
@@ -295,14 +285,14 @@ function BitBuffer.FromBase91(stream: string): BitBuffer
 
 	local accumulator = 0
 	local accIndex = 0
-	local buffer = table.create(#stream/2*13/32 + 1)
+	local buffer = table.create(#stream / 2 * 13 / 32 + 1)
 	local bufIndex = 1
 
 	local fromBase91 = Base91.From
 
 	for i = 1, #stream, 2 do
 		local i0, i1 = string.byte(stream, i, i + 1)
-		local v0, v1 = fromBase91[i0+1], fromBase91[i1 + 1]
+		local v0, v1 = fromBase91[i0 + 1], fromBase91[i1 + 1]
 
 		if v0 == nil then
 			Error("invalid argument #1 to 'FromBase91' (invalid Base91 character at position %d)", i)
@@ -402,7 +392,6 @@ function BitBuffer:ResetBuffer(): ()
 	self._index = 0
 end
 
-
 function BitBuffer:ToString(): string
 	local bufSize = #self._buffer
 	if bufSize == 0 then
@@ -441,11 +430,10 @@ function BitBuffer:ToBase64(): string
 			v = bit32.replace(v, accumulator, b, accIndex)
 		end
 
-		output[i] =
-			toBase64[v % 64 + 1] ..
-			toBase64[bit32.rshift(v, 6)  % 64 + 1] ..
-			toBase64[bit32.rshift(v, 12) % 64 + 1] ..
-			toBase64[bit32.rshift(v, 18) + 1]
+		output[i] = toBase64[v % 64 + 1]
+			.. toBase64[bit32.rshift(v, 6) % 64 + 1]
+			.. toBase64[bit32.rshift(v, 12) % 64 + 1]
+			.. toBase64[bit32.rshift(v, 18) + 1]
 	end
 
 	return table.concat(output)
@@ -492,7 +480,7 @@ function BitBuffer:ToBase91(): string
 		local i0 = v % 91
 		local i1 = (v - i0) / 91
 
-		output[outputIndex] = toBase91Char[i0+1] .. toBase91Char[i1+1]
+		output[outputIndex] = toBase91Char[i0 + 1] .. toBase91Char[i1 + 1]
 		outputIndex += 1
 	end
 
@@ -513,7 +501,7 @@ function BitBuffer:ToBase128(): string
 
 		if bit < 32 then
 			local rem = 32 - bit
-			str ..= Character[bit32.replace(bit32.extract(value, bit, rem), buffer[i+1] or 0, rem, 7 - rem) + 1]
+			str ..= Character[bit32.replace(bit32.extract(value, bit, rem), buffer[i + 1] or 0, rem, 7 - rem) + 1]
 			bit -= 25 -- += 7 - 32
 		else
 			bit = 0
@@ -524,7 +512,6 @@ function BitBuffer:ToBase128(): string
 
 	return table.concat(b128)
 end
-
 
 function BitBuffer:WriteUInt(bitWidth: number, uint: number): ()
 	if type(bitWidth) ~= "number" then
@@ -548,7 +535,6 @@ function BitBuffer:ReadUInt(bitWidth: number): number
 	return ReadFromBuffer(self, bitWidth)
 end
 
-
 function BitBuffer:WriteInt(bitWidth: number, int: number): ()
 	if type(bitWidth) ~= "number" then
 		Error("invalid argument #1 to 'WriteInt' (number expected, got %s)", typeof(bitWidth))
@@ -570,9 +556,8 @@ function BitBuffer:ReadInt(bitWidth: number): number
 
 	local value = ReadFromBuffer(self, bitWidth)
 	local max = bitWidth == 32 and 4294967296 or bit32.lshift(1, bitWidth)
-	return value >= max/2 and value - max or value
+	return value >= max / 2 and value - max or value
 end
-
 
 function BitBuffer:WriteBool(value: any): ()
 	if value then
@@ -585,7 +570,6 @@ end
 function BitBuffer:ReadBool(): boolean
 	return ReadFromBuffer(self, 1) == 1
 end
-
 
 function BitBuffer:WriteChar(char: string): ()
 	if type(char) ~= "string" then
@@ -601,7 +585,6 @@ function BitBuffer:ReadChar(): string
 	return Character[ReadFromBuffer(self, 8) + 1]
 end
 
-
 function BitBuffer:WriteBytes(bytes: string): ()
 	if type(bytes) ~= "string" then
 		Error("invalid argument #1 to 'WriteBytes' (string expected, got %s)", typeof(bytes))
@@ -614,9 +597,9 @@ function BitBuffer:WriteBytes(bytes: string): ()
 	else
 		local length = #bytes
 		for chunk = 1, length / 4 do
-			local index = chunk*4
-			local a, b, c, d = string.byte(bytes, index-3, index)
-			WriteToBuffer(self, 32, a + b*256 + c*65536 + d*16777216)
+			local index = chunk * 4
+			local a, b, c, d = string.byte(bytes, index - 3, index)
+			WriteToBuffer(self, 32, a + b * 256 + c * 65536 + d * 16777216)
 		end
 
 		local rem = length % 4
@@ -641,12 +624,7 @@ function BitBuffer:ReadBytes(length: number): string
 		for i = 1, size do
 			local value = ReadFromBuffer(self, 32)
 
-			str[i] = string.char(
-				value % 256,
-				bit32.rshift(value, 8) % 256,
-				bit32.rshift(value, 16) % 256,
-				bit32.rshift(value, 24)
-			)
+			str[i] = string.char(value % 256, bit32.rshift(value, 8) % 256, bit32.rshift(value, 16) % 256, bit32.rshift(value, 24))
 		end
 
 		for i = 1, length % 4 do
@@ -656,7 +634,6 @@ function BitBuffer:ReadBytes(length: number): string
 		return table.concat(str)
 	end
 end
-
 
 function BitBuffer:WriteString(str: string): ()
 	if type(str) ~= "string" then
@@ -675,7 +652,6 @@ end
 function BitBuffer:ReadString(): string
 	return self:ReadBytes(ReadFromBuffer(self, 24))
 end
-
 
 local POS_INF = math.huge
 local NEG_INF = -POS_INF
@@ -715,15 +691,14 @@ function BitBuffer:ReadFloat32(): number
 	elseif value == BINARY_NEG_INF then
 		return NEG_INF
 	elseif value == BINARY_NAN then
-		return 0/0
+		return 0 / 0
 	end
 
 	local sign = bit32.band(value, 2147483648) == 0 and 1 or -1
 	local exponent = bit32.extract(value, 23, 8) - 127
 	local mantissa = value % 8388608
-	return sign * (mantissa / 8388608 * 0.5 + 0.5) * 2^exponent
+	return sign * (mantissa / 8388608 * 0.5 + 0.5) * math.pow(2, exponent)
 end
-
 
 function BitBuffer:WriteFloat64(double: number): ()
 	if type(double) ~= "number" then
@@ -731,24 +706,29 @@ function BitBuffer:WriteFloat64(double: number): ()
 	end
 
 	local a, b, c, d, e, f, g, h = string.byte(string.pack("<d", double), 1, 8)
-	WriteToBuffer(self, 32, a + b*256 + c*65536 + d*16777216)
-	WriteToBuffer(self, 32, e + f*256 + g*65536 + h*16777216)
+	WriteToBuffer(self, 32, a + b * 256 + c * 65536 + d * 16777216)
+	WriteToBuffer(self, 32, e + f * 256 + g * 65536 + h * 16777216)
 end
 
 function BitBuffer:ReadFloat64(): number
 	local a = ReadFromBuffer(self, 32)
 	local b = ReadFromBuffer(self, 32)
 
-	return (string.unpack("<d", string.char(
-		bit32.band(a, 255),
-		bit32.extract(a, 8, 8),
-		bit32.extract(a, 16, 8),
-		bit32.extract(a, 24, 8),
-		bit32.band(b, 255),
-		bit32.extract(b, 8, 8),
-		bit32.extract(b, 16, 8),
-		bit32.extract(b, 24, 8)
-	)))
+	return (
+			string.unpack(
+				"<d",
+				string.char(
+					bit32.band(a, 255),
+					bit32.extract(a, 8, 8),
+					bit32.extract(a, 16, 8),
+					bit32.extract(a, 24, 8),
+					bit32.band(b, 255),
+					bit32.extract(b, 8, 8),
+					bit32.extract(b, 16, 8),
+					bit32.extract(b, 24, 8)
+				)
+			)
+		)
 end
 
 export type BitBuffer = typeof(BitBuffer.new())
