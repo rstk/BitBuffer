@@ -62,7 +62,7 @@ local function WriteToBuffer(this: BitBuffer, size: number, value: number): ()
 	else
 		local rem = 32 - bit
 		buffer[n] = bit32.replace(buffer[n] or 0, value, bit, rem)
-		buffer[n + 1] = bit32.extract(value, rem, size - rem)
+		buffer[n + 1] = bit32.replace(buffer[n + 1] or 0, bit32.extract(value, rem, size - rem), 0, size - rem)
 	end
 end
 
@@ -104,27 +104,24 @@ local function WriteBytesAligned(this: BitBuffer, bytes: string): ()
 		local index = this._index
 		local bit = index % 32
 		local n = bit32.rshift(index, 5) + 1
-		local offset
+		local offset = 0
 
-		if bit == 0 then
-			offset = 0
-		else
+		if bit ~= 0 then
 			offset = 4 - bit/8
 			WriteToBuffer(this, 32 - bit, (string.unpack("<I" .. offset, bytes)))
 			n += 1
 		end
 
-		local last
 		for i = offset + 4, length, 4 do
 			local a, b, c, d = string.byte(bytes, i-3, i)
 			buffer[n] = a + b*256 + c*65536 + d*16777216
 			n += 1
-			last = i
 		end
 
-		local rem = length - last
+		local rem = (length - offset - 4) % 4
 		if rem > 0 then
-			buffer[n] = string.unpack("<I" .. rem, bytes, length-rem+1)
+			local v = string.unpack("<I" .. rem, bytes, length - rem + 1)
+			buffer[n] = bit32.replace(buffer[n] or 0, v, 0, rem * 8)
 		end
 
 		this._index = (n-1)*32 + rem*8
