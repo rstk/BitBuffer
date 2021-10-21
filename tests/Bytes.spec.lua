@@ -7,7 +7,7 @@ return function()
 	describe("General tests", function()
 		it("Should not throw when reading", function()
 			local buffer = BitBuffer.new()
-			buffer._buffer = {65 + 2^8*66 + 2^16*67 + 2^24*68}
+			buffer._buffer = {Random.new():NextInteger(0, math.pow(2, 32) - 1)}
 
 			expect(function()
 				buffer:ReadBytes(4)
@@ -22,8 +22,8 @@ return function()
 
 		it("Should read zeroes when going past the buffer", function()
 			local buffer = BitBuffer.new()
-			buffer._buffer = {2^32 - 1}
-			buffer._index = 32
+			buffer._buffer = {math.pow(2, 32) - 1}
+			buffer:SetCursor(32)
 
 			expect(buffer:ReadBytes(4)).to.be.equal("\0\0\0\0")
 		end)
@@ -55,7 +55,7 @@ return function()
 					return string.char(rand:NextInteger(0, 255))
 				end)
 				buffer:WriteBytes(str)
-				buffer._index = 0
+				buffer:ResetCursor()
 
 				expect(buffer:ReadBytes(length)).to.be.equal(str)
 			end
@@ -71,13 +71,12 @@ return function()
 				local str = string.gsub(string.rep("\0", length), "%z", function()
 					return string.char(rand:NextInteger(0, 255))
 				end)
-				values[i] = str
 				buffer:WriteBytes(str)
+				values[i] = str
 			end
 
-			buffer._index = 0
-			for i = 1, N do
-				local str = values[i]
+			buffer:ResetCursor()
+			for _, str in ipairs(values) do
 				expect(buffer:ReadBytes(#str)).to.be.equal(str)
 			end
 		end)

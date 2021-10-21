@@ -24,8 +24,8 @@ return function()
 
 		it("Should read zeroes when going past the buffer", function()
 			local buffer = BitBuffer.new()
-			buffer._buffer = {2^32 - 1}
-			buffer._index = 32
+			buffer._buffer = {math.pow(2, 32) - 1}
+			buffer:SetCursor(32)
 
 			expect(buffer:ReadBool()).to.be.equal(false)
 		end)
@@ -43,9 +43,9 @@ return function()
 				buffer:WriteBool(boolean)
 			end
 
-			buffer._index = 0
-			for i = 1, 31 do
-				expect(buffer:ReadBool()).to.be.equal(values[i])
+			buffer:ResetCursor()
+			for _, v in ipairs(values) do
+				expect(buffer:ReadBool()).to.be.equal(v)
 			end
 		end)
 
@@ -60,9 +60,9 @@ return function()
 				buffer:WriteBool(boolean)
 			end
 
-			buffer._index = 0
-			for i = 1, N do
-				expect(buffer:ReadBool()).to.be.equal(values[i])
+			buffer:ResetCursor()
+			for _, v in ipairs(values) do
+				expect(buffer:ReadBool()).to.be.equal(v)
 			end
 		end)
 	end)

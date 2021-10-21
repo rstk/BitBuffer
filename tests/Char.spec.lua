@@ -25,7 +25,7 @@ return function()
 			buffer:WriteChar("A")
 			buffer:WriteChar("\7")
 
-			buffer._index = 16
+			buffer:SetCursor(16)
 			expect(buffer:ReadChar()).to.be.equal("\0")
 		end)
 
@@ -56,9 +56,9 @@ return function()
 					values[i] = char
 				end
 
-				buffer._index = 0
-				for i = 1, n do
-					expect(buffer:ReadChar()).to.be.equal(values[i])
+				buffer:ResetCursor()
+				for _, v in ipairs(values) do
+					expect(buffer:ReadChar()).to.be.equal(v)
 				end
 			end
 		end)
@@ -76,9 +76,9 @@ return function()
 					values[i] = char
 				end
 
-				buffer._index = 0
-				for i = 1, n do
-					expect(buffer:ReadChar()).to.be.equal(values[i])
+				buffer:ResetCursor()
+				for _, v in ipairs(values) do
+					expect(buffer:ReadChar()).to.be.equal(v)
 				end
 			end
 		end)
