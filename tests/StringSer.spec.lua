@@ -75,6 +75,28 @@ return function()
 				expect(buffer:ReadUInt(8)).to.be.equal(255)
 			end
 		end)
+
+		it("Should handle size correctly", function()
+			local rand = Random.new()
+			local buffer = BitBuffer.new(67)
+
+			local expectedSize = 67
+			local expectedCursor = 0
+
+			for _ = 1, N do
+				local addedSize = rand:NextInteger(4, 13)
+				local cursorPosOffset = rand:NextInteger(0, 3)
+
+				buffer:WriteString(string.rep("\255", addedSize))
+				buffer:SetCursor(buffer:GetCursor() - cursorPosOffset)
+
+				expectedCursor += addedSize * 8 + 24
+				expectedSize = math.max(expectedSize, expectedCursor)
+				expectedCursor -= cursorPosOffset
+
+				expect(buffer:GetSize()).to.be.equal(expectedSize)
+			end
+		end)
 	end)
 
 	describe("De/Serializing", function()

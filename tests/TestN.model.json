@@ -3,6 +3,6 @@
 	"ClassName": "IntValue",
 
 	"Properties": {
-		"Value": 256
+		"Value": 32
 	}
 }

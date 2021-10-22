@@ -52,7 +52,6 @@ end
 local function WriteToBuffer(this: BitBuffer, size: number, value: number): ()
 	local buffer = this._buffer
 	local index = this._index
-	this._index += size
 
 	local bit = index % 32
 	local n = bit32.rshift(index, 5) + 1
@@ -64,6 +63,10 @@ local function WriteToBuffer(this: BitBuffer, size: number, value: number): ()
 		buffer[n] = bit32.replace(buffer[n] or 0, value, bit, rem)
 		buffer[n + 1] = bit32.replace(buffer[n + 1] or 0, bit32.extract(value, rem, size - rem), 0, size - rem)
 	end
+
+	index += size
+	this._size = math.max(this._size, index)
+	this._index = index
 end
 
 local function ReadFromBuffer(this: BitBuffer, size: number): number
@@ -124,7 +127,9 @@ local function WriteBytesAligned(this: BitBuffer, bytes: string): ()
 			buffer[n] = bit32.replace(buffer[n] or 0, v, 0, rem * 8)
 		end
 
-		this._index = (n - 1) * 32 + rem * 8
+		index = (n - 1) * 32 + rem * 8
+		this._size = math.max(this._size, index)
+		this._index = index
 	end
 end
 
@@ -175,13 +180,16 @@ function BitBuffer:__tostring()
 end
 
 function BitBuffer.is(obj: any?): boolean
-	return getmetatable(obj) == BitBuffer
+	return getmetatable(obj :: {}) == BitBuffer
 end
 
 function BitBuffer.new(sizeInBits: number?)
+	sizeInBits = sizeInBits or 0
+
 	return setmetatable({
-		_buffer = table.create(math.ceil((sizeInBits or 0) / 32));
+		_buffer = table.create(math.ceil(sizeInBits :: number / 32));
 		_index = 0;
+		_size = sizeInBits :: number;
 	}, BitBuffer)
 end
 
@@ -390,6 +398,14 @@ end
 function BitBuffer:ResetBuffer(): ()
 	table.clear(self._buffer)
 	self._index = 0
+end
+
+function BitBuffer:GetSize(): number
+	return self._size
+end
+
+function BitBuffer:Fits(length: number): boolean
+	return self._size - self._index >= length
 end
 
 function BitBuffer:ToString(): string

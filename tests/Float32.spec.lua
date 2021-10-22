@@ -48,7 +48,7 @@ return function()
 			end
 		end
 
-		local function Test(bound: number, expect: (any) -> {})
+		local function Test(bound: number, expect: (any) -> Keys)
 			local rand = Random.new()
 			local tests = table.create(N * 64)
 			local buffer = BitBuffer.new()

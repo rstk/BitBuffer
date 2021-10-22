@@ -43,4 +43,26 @@ return function()
 
 		expect(buffer:ReadUInt(32)).to.be.equal(0)
 	end)
+
+	it("Should handle size correctly", function()
+		local rand = Random.new()
+		local buffer = BitBuffer.new(12)
+
+		local expectedSize = 12
+		local expectedCursor = 0
+
+		for _ = 1, N do
+			local addedSize = rand:NextInteger(6, 18)
+			local cursorPosOffset = rand:NextInteger(0, 5)
+
+			buffer:WriteUInt(addedSize, math.pow(2, addedSize) - 1)
+			buffer:SetCursor(buffer:GetCursor() - cursorPosOffset)
+
+			expectedCursor += addedSize
+			expectedSize = math.max(expectedSize, expectedCursor)
+			expectedCursor -= cursorPosOffset
+
+			expect(expectedSize).to.be.equal(buffer:GetSize())
+		end
+	end)
 end

@@ -128,7 +128,7 @@ return function()
 			return buffer
 		end
 
-		local function Test(size: number, expect: (any) -> {})
+		local function Test(size: number, expect: (any) -> Keys)
 			local buffer = RandomBuffer(size)
 
 			local newBuffer = BitBuffer.FromBase91(buffer:ToBase91())
