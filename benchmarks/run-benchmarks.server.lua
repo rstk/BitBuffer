@@ -1,4 +1,4 @@
--- TODO: refactor this garbage lmao
+--TODO: Refactor this garbage
 local b = {}
 
 type bSettings = {
@@ -14,18 +14,23 @@ type bObject = {
 }
 
 function b._getLoader(): (ModuleScript) -> any
+	local function getDebugLoadModule()
+		-- spell-checker: ignore oludomdaol
+		return debug[string.reverse("oludomdaol")]
+	end
+
 	local success, useLoadModule = pcall(function()
 		return settings():GetFFlag("EnableLoadModule")
 	end)
 
 	if not useLoadModule or not success and pcall(function()
-		debug["loadmodule"](Instance.new("ModuleScript"))
+		getDebugLoadModule()(Instance.new("ModuleScript"))
 	end) then
 		useLoadModule = true
 	end
 
 	return useLoadModule and function(module: ModuleScript): any
-		return debug["loadmodule"](module)()
+		return getDebugLoadModule()(module)()
 	end or require
 end
 
@@ -57,6 +62,7 @@ function b.runBenchmark(settings: bSettings): string
 
 	local formattedResults = b._formatResults(benchmarkResults)
 	if settings.stdout then
+		-- spell-checker: ignore sresults
 		settings.stdout(string.format("\nBenchmark %sresults:\n%s",
 			settings.name and settings.name .. " " or "",
 			formattedResults
@@ -66,7 +72,7 @@ function b.runBenchmark(settings: bSettings): string
 	return formattedResults
 end
 
-function b._runRunner(runner: (bObject) -> (), settings: bSettings): number
+function b._runRunner(runner: (bObject) -> (), settings: bSettings): (number, number)
 	local TIME_PER_RUNNER = settings.timePerModule
 
 	local totalRuns = 0
