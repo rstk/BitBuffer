@@ -1,0 +1,9 @@
+{
+	"robloxLsp.workspace.rojoProjectFile": "test",
+
+	"robloxLsp.workspace.ignoreDir": [
+		"Packages",
+		"tests",
+		"benchmarks",
+	]
+}
