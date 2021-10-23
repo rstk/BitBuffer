@@ -1,5 +1,5 @@
 [package]
-name = "rstk/BitBuffer"
+name = "rstk/bitbuffer"
 description = "Blazing-fast BitBuffer for Roblox"
 version = "1.0.0"
 license = "MIT"
