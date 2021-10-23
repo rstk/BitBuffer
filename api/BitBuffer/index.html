@@ -1,0 +1,977 @@
+<!doctype html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="generator" content="Docusaurus v2.0.0-beta.6">
+<title data-react-helmet="true">BitBuffer | BitBuffer</title><meta data-react-helmet="true" property="og:title" content="BitBuffer | BitBuffer"><meta data-react-helmet="true" name="twitter:card" content="summary_large_image"><meta data-react-helmet="true" name="description" content="BitBuffer object."><meta data-react-helmet="true" property="og:description" content="BitBuffer object."><meta data-react-helmet="true" property="og:url" content="https://rstk.github.io/api/BitBuffer"><meta data-react-helmet="true" name="docusaurus_locale" content="en"><meta data-react-helmet="true" name="docusaurus_tag" content="default"><link data-react-helmet="true" rel="canonical" href="https://rstk.github.io/api/BitBuffer"><link data-react-helmet="true" rel="alternate" href="https://rstk.github.io/api/BitBuffer" hreflang="en"><link data-react-helmet="true" rel="alternate" href="https://rstk.github.io/api/BitBuffer" hreflang="x-default"><link rel="stylesheet" href="/assets/css/styles.09cc9487.css">
+<link rel="preload" href="/assets/js/runtime~main.4f7abdf0.js" as="script">
+<link rel="preload" href="/assets/js/main.90c27988.js" as="script">
+</head>
+<body>
+<script>!function(){function t(t){document.documentElement.setAttribute("data-theme",t)}var e=function(){var t=null;try{t=localStorage.getItem("theme")}catch(t){}return t}();t(null!==e?e:"light")}()</script><div id="__docusaurus">
+<div><a href="#" class="skipToContent_1oUP">Skip to main content</a></div><nav class="navbar navbar--fixed-top"><div class="navbar__inner"><div class="navbar__items"><button aria-label="Navigation bar toggle" class="navbar__toggle clean-btn" type="button" tabindex="0"><svg width="30" height="30" viewBox="0 0 30 30" aria-hidden="true"><path stroke="currentColor" stroke-linecap="round" stroke-miterlimit="10" stroke-width="2" d="M4 7h22M4 15h22M4 23h22"></path></svg></button><a class="navbar__brand" href="/"><b class="navbar__title">BitBuffer</b></a><a aria-current="page" class="navbar__item navbar__link navbar__link--active" href="/api/">API</a></div><div class="navbar__items navbar__items--right"><a href="https://github.com/rstk/BitBuffer/" target="_blank" rel="noopener noreferrer" class="navbar__item navbar__link"><span>GitHub<svg width="13.5" height="13.5" aria-hidden="true" viewBox="0 0 24 24" class="iconExternalLink_3J9K"><path fill="currentColor" d="M21 13v10h-21v-19h12v2h-10v15h17v-8h2zm3-12h-10.988l4.035 4-6.977 7.07 2.828 2.828 6.977-7.07 4.125 4.172v-11z"></path></svg></span></a><div class="react-toggle toggle_3Zt9 react-toggle--disabled"><div class="react-toggle-track" role="button" tabindex="-1"><div class="react-toggle-track-check"><span class="toggle_71bT">🌜</span></div><div class="react-toggle-track-x"><span class="toggle_71bT">🌞</span></div><div class="react-toggle-thumb"></div></div><input type="checkbox" class="react-toggle-screenreader-only" aria-label="Switch between dark and light mode"></div><div class="navbar__search"><span aria-label="expand searchbar" role="button" class="search-icon" tabindex="0"></span><input type="search" id="search_input_react" placeholder="Press S to Search..." aria-label="Search" class="navbar__search-input search-bar"></div></div></div><div role="presentation" class="navbar-sidebar__backdrop"></div></nav><div class="main-wrapper docPageContainer_2Kz0"><div class="docPage_1bdk"><div class="docSidebarContainer_1ykS"><div class="sidebar_15mo"><nav class="menu thin-scrollbar menu_Bmed menuWithAnnouncementBar_2WvA"><ul class="theme-doc-sidebar-menu menu__list"><li class="theme-doc-sidebar-item-link menu__list-item"><a class="menu__link menu__link--active" aria-current="page" href="/api/BitBuffer">​Bit​Buffer</a></li></ul></nav><button type="button" title="Collapse sidebar" aria-label="Collapse sidebar" class="button button--secondary button--outline collapseSidebarButton_1CGd"><svg width="20" height="20" aria-hidden="true" class="collapseSidebarButtonIcon_3E-R"><g fill="#7a7a7a"><path d="M9.992 10.023c0 .2-.062.399-.172.547l-4.996 7.492a.982.982 0 01-.828.454H1c-.55 0-1-.453-1-1 0-.2.059-.403.168-.551l4.629-6.942L.168 3.078A.939.939 0 010 2.528c0-.548.45-.997 1-.997h2.996c.352 0 .649.18.828.45L9.82 9.472c.11.148.172.347.172.55zm0 0"></path><path d="M19.98 10.023c0 .2-.058.399-.168.547l-4.996 7.492a.987.987 0 01-.828.454h-3c-.547 0-.996-.453-.996-1 0-.2.059-.403.168-.551l4.625-6.942-4.625-6.945a.939.939 0 01-.168-.55 1 1 0 01.996-.997h3c.348 0 .649.18.828.45l4.996 7.492c.11.148.168.347.168.55zm0 0"></path></g></svg></button></div></div><main class="docMainContainer_28N5"><div class="container padding-vert--lg"><div class="row"><div class="col docItemCol_3WPG"><div class="docItemContainer_3XDu"><article><div class="member_qHIL markdown"><div class="tocCollapsible_1PrD theme-doc-toc-mobile tocMobile_3ryM"><button type="button" class="clean-btn tocCollapsibleButton_2O1e">On this page</button></div><header><h1 class="docTitle_1ddc" style="text-decoration:none"><span style="display:inline-block">Bit</span><span style="display:inline-block">Buffer</span></h1><div class="luaClassTags_2Zrs"></div><div>
+<p>BitBuffer object.</p>
+</div></header><h2><a aria-hidden="true" tabindex="-1" class="anchor anchor__h2 anchorWithStickyNavbar_31ik" id="functions"></a>Functions<a class="hash-link" href="#functions" title="Direct link to heading">#</a></h2><div class="divider_3z1R"></div><h3><a aria-hidden="true" tabindex="-1" class="anchor anchor__h3 anchorWithStickyNavbar_31ik" id="FromBase128"></a><code style="text-decoration:none">FromBase128</code><a class="hash-link" href="#FromBase128" title="Direct link to heading">#</a></h3><span class="docTag_3qMS" style="border-color:#ff793f;color:#ff793f">Constructor</span><div class="repositoryDetailsContainer_1UH0"><a class="sourceButton_2aE5" href="https://github.com/rstk/BitBuffer//blob/master/src/init.lua#L434"><div class="sourceButtonText_monK">&lt;/&gt;</div></a></div><div class="memberString_P8-X"><code>BitBuffer.</code><code class="green_3LnD">FromBase128</code><code>(</code><code>inputStr: </code><code class="blue_2Afy">string</code><code>) → </code><code class="blue_2Afy">BitBuffer</code></div><div>
+<p>Creates a new BitBuffer from a Base128 string, starting with a size corresponding to the number of bits stored in the input string (7 bits per character), and it's cursor positioned at 0.</p>
+<pre class="language-lua"><code class="language-lua"><span class="token keyword">local</span> str <span class="token operator">=</span> <span class="token function">base128</span><span class="token punctuation">(</span><span class="token string">"\255\12"</span><span class="token punctuation">)</span>
+<span class="token keyword">local</span> buffer <span class="token operator">=</span> BitBuffer<span class="token punctuation">.</span><span class="token function">FromBase128</span><span class="token punctuation">(</span>str<span class="token punctuation">)</span>
+<span class="token function">print</span><span class="token punctuation">(</span>buffer<span class="token punctuation">:</span><span class="token function">ReadUInt</span><span class="token punctuation">(</span><span class="token number">8</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token comment">--> 255</span>
+<span class="token function">print</span><span class="token punctuation">(</span>buffer<span class="token punctuation">:</span><span class="token function">ReadUInt</span><span class="token punctuation">(</span><span class="token number">8</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token comment">--> 12</span>
+</code></pre>
+<p>See <a href="#ToBase128">BitBuffer::ToBase128</a></p>
+</div><div class="divider_3z1R"></div><h3><a aria-hidden="true" tabindex="-1" class="anchor anchor__h3 anchorWithStickyNavbar_31ik" id="FromBase64"></a><code style="text-decoration:none">FromBase64</code><a class="hash-link" href="#FromBase64" title="Direct link to heading">#</a></h3><span class="docTag_3qMS" style="border-color:#ff793f;color:#ff793f">Constructor</span><div class="repositoryDetailsContainer_1UH0"><a class="sourceButton_2aE5" href="https://github.com/rstk/BitBuffer//blob/master/src/init.lua#L274"><div class="sourceButtonText_monK">&lt;/&gt;</div></a></div><div class="memberString_P8-X"><code>BitBuffer.</code><code class="green_3LnD">FromBase64</code><code>(</code><code>inputStr: </code><code class="blue_2Afy">string</code><code>) → </code><code class="blue_2Afy">BitBuffer</code></div><div>
+<p>Creates a new BitBuffer from a Base64 string, starting with a size corresponding to the number of bits stored in the input string (6 bits per character), and it's cursor positioned at 0.</p>
+<pre class="language-lua"><code class="language-lua"><span class="token keyword">local</span> str <span class="token operator">=</span> <span class="token function">base64</span><span class="token punctuation">(</span><span class="token string">"\45\180"</span><span class="token punctuation">)</span>
+<span class="token keyword">local</span> buffer <span class="token operator">=</span> BitBuffer<span class="token punctuation">.</span><span class="token function">FromBase64</span><span class="token punctuation">(</span>str<span class="token punctuation">)</span>
+
+<span class="token function">print</span><span class="token punctuation">(</span>buffer<span class="token punctuation">:</span><span class="token function">ReadUInt</span><span class="token punctuation">(</span><span class="token number">8</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token comment">--> 45</span>
+<span class="token function">print</span><span class="token punctuation">(</span>buffer<span class="token punctuation">:</span><span class="token function">ReadUInt</span><span class="token punctuation">(</span><span class="token number">8</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token comment">--> 180</span>
+</code></pre>
+<p>See <a href="#ToBase64">BitBuffer::ToBase64</a></p>
+</div><div class="divider_3z1R"></div><h3><a aria-hidden="true" tabindex="-1" class="anchor anchor__h3 anchorWithStickyNavbar_31ik" id="FromBase91"></a><code style="text-decoration:none">FromBase91</code><a class="hash-link" href="#FromBase91" title="Direct link to heading">#</a></h3><span class="docTag_3qMS" style="border-color:#ff793f;color:#ff793f">Constructor</span><div class="repositoryDetailsContainer_1UH0"><a class="sourceButton_2aE5" href="https://github.com/rstk/BitBuffer//blob/master/src/init.lua#L367"><div class="sourceButtonText_monK">&lt;/&gt;</div></a></div><div class="memberString_P8-X"><code>BitBuffer.</code><code class="green_3LnD">FromBase91</code><code>(</code><code>inputStr: </code><code class="blue_2Afy">string</code><code>) → </code><code class="blue_2Afy">BitBuffer</code></div><div>
+<p>
+  Creates a new BitBuffer from a Base91 string, starting with a size corresponding to the number of bits stored in the input string, and it's cursor positioned at 0.
+  <strong>This is the recommended function to use for DataStores.</strong>
+</p>
+<pre class="language-lua"><code class="language-lua"><span class="token keyword">local</span> initialBuffer <span class="token operator">=</span> BitBuffer<span class="token punctuation">.</span><span class="token function">new</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+initialBuffer<span class="token punctuation">:</span><span class="token function">WriteUInt</span><span class="token punctuation">(</span><span class="token number">32</span><span class="token punctuation">,</span> <span class="token number">78</span><span class="token punctuation">)</span>
+initialBuffer<span class="token punctuation">:</span><span class="token function">WriteString</span><span class="token punctuation">(</span><span class="token string">"Hi"</span><span class="token punctuation">)</span>
+
+<span class="token keyword">local</span> b91 <span class="token operator">=</span> initialBuffer<span class="token punctuation">:</span><span class="token function">ToBase91</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token keyword">local</span> newBuffer <span class="token operator">=</span> BitBuffer<span class="token punctuation">.</span><span class="token function">FromBase91</span><span class="token punctuation">(</span>b91<span class="token punctuation">)</span>
+<span class="token function">print</span><span class="token punctuation">(</span>newBuffer<span class="token punctuation">:</span><span class="token function">ReadUInt</span><span class="token punctuation">(</span><span class="token number">32</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token comment">--> 78</span>
+<span class="token function">print</span><span class="token punctuation">(</span>newBuffer<span class="token punctuation">:</span><span class="token function">ReadString</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token comment">--> Hi</span>
+</code></pre>
+<p>See <a href="#ToBase91">BitBuffer::ToBase91</a></p>
+<div class="admonition admonition-info alert alert--info">
+  <div class="admonition-heading">
+    <h5><span class="admonition-icon"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="16" viewBox="0 0 14 16">
+          <path d="M7 2.3c3.14 0 5.7 2.56 5.7 5.7s-2.56 5.7-5.7 5.7A5.71 5.71 0 0 1 1.3 8c0-3.14 2.56-5.7 5.7-5.7zM7 1C3.14 1 0 4.14 0 8s3.14 7 7 7 7-3.14 7-7-3.14-7-7-7zm1 3H6v5h2V4zm0 6H6v2h2v-2z"></path>
+        </svg></span>What is Base91?</h5>
+  </div>
+  <div class="admonition-content">
+    <p>Base91 is a way to pack binary data into text, similar to Base64. It is, on average, about 10% more efficient than Base64. Check <a href="http://base91.sourceforge.net" target="_blank">this page</a> to learn more.</p>
+  </div>
+</div>
+</div><div class="divider_3z1R"></div><h3><a aria-hidden="true" tabindex="-1" class="anchor anchor__h3 anchorWithStickyNavbar_31ik" id="FromString"></a><code style="text-decoration:none">FromString</code><a class="hash-link" href="#FromString" title="Direct link to heading">#</a></h3><span class="docTag_3qMS" style="border-color:#ff793f;color:#ff793f">Constructor</span><div class="repositoryDetailsContainer_1UH0"><a class="sourceButton_2aE5" href="https://github.com/rstk/BitBuffer//blob/master/src/init.lua#L234"><div class="sourceButtonText_monK">&lt;/&gt;</div></a></div><div class="memberString_P8-X"><code>BitBuffer.</code><code class="green_3LnD">FromString</code><code>(</code><code>inputStr: </code><code class="blue_2Afy">string</code><code>) → </code><code class="blue_2Afy">BitBuffer</code></div><div>
+<p>Creates a new BitBuffer from a binary string, starting with a size corresponding to number of bits in the input string (8 bits per character), and it's cursor positioned at 0.</p>
+<pre class="language-lua"><code class="language-lua"><span class="token keyword">local</span> buffer <span class="token operator">=</span> BitBuffer<span class="token punctuation">.</span><span class="token function">FromString</span><span class="token punctuation">(</span><span class="token string">"\89"</span><span class="token punctuation">)</span>
+<span class="token function">print</span><span class="token punctuation">(</span>buffer<span class="token punctuation">:</span><span class="token function">ReadUInt</span><span class="token punctuation">(</span><span class="token number">8</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token comment">--> 89</span>
+<span class="token function">print</span><span class="token punctuation">(</span>buffer<span class="token punctuation">:</span><span class="token function">GetSize</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token comment">--> 8</span>
+</code></pre>
+<p>See <a href="#ToString">BitBuffer::ToString</a></p>
+</div><div class="divider_3z1R"></div><h3><a aria-hidden="true" tabindex="-1" class="anchor anchor__h3 anchorWithStickyNavbar_31ik" id="is"></a><code style="text-decoration:none">is</code><a class="hash-link" href="#is" title="Direct link to heading">#</a></h3><span class="docTag_3qMS" style="border-color:#dc0073;color:#dc0073">General</span><div class="repositoryDetailsContainer_1UH0"><a class="sourceButton_2aE5" href="https://github.com/rstk/BitBuffer//blob/master/src/init.lua#L194"><div class="sourceButtonText_monK">&lt;/&gt;</div></a></div><div class="memberString_P8-X"><code>BitBuffer.</code><code class="green_3LnD">is</code><code>(</code><code>obj: </code><code class="blue_2Afy">any</code><code>) → </code><code class="blue_2Afy">boolean</code></div><div>
+<p>Returns whether the passed object is a BitBuffer.</p>
+<pre class="language-lua"><code class="language-lua"><span class="token function">print</span><span class="token punctuation">(</span>BitBuffer<span class="token punctuation">.</span><span class="token function">is</span><span class="token punctuation">(</span>BitBuffer<span class="token punctuation">.</span><span class="token function">new</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token comment">--> true</span>
+<span class="token function">print</span><span class="token punctuation">(</span>BitBuffer<span class="token punctuation">.</span><span class="token function">is</span><span class="token punctuation">(</span><span class="token keyword">true</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token comment">--> false</span>
+</code></pre>
+</div><div class="divider_3z1R"></div><h3><a aria-hidden="true" tabindex="-1" class="anchor anchor__h3 anchorWithStickyNavbar_31ik" id="new"></a><code style="text-decoration:none">new</code><a class="hash-link" href="#new" title="Direct link to heading">#</a></h3><span class="docTag_3qMS" style="border-color:#ff793f;color:#ff793f">Constructor</span><div class="repositoryDetailsContainer_1UH0"><a class="sourceButton_2aE5" href="https://github.com/rstk/BitBuffer//blob/master/src/init.lua#L210"><div class="sourceButtonText_monK">&lt;/&gt;</div></a></div><div class="memberString_P8-X"><code>BitBuffer.</code><code class="green_3LnD">new</code><code>(</code><div class="inset_2cJr"><div><code>sizeInBits: </code><code class="blue_2Afy">number?</code><span class="inlineDescription_17uy">-- <span>
+<p>Initial size of the buffer in bits (defaults to 0)</p>
+</span></span></div></div><code>) → </code><code class="blue_2Afy">BitBuffer</code></div><div>
+<p>Creates a new BitBuffer with an initial size of <code>sizeInBits</code>.</p>
+<pre class="language-lua"><code class="language-lua"><span class="token keyword">local</span> buffer <span class="token operator">=</span> BitBuffer<span class="token punctuation">.</span><span class="token function">new</span><span class="token punctuation">(</span><span class="token number">128</span><span class="token punctuation">)</span>
+<span class="token function">print</span><span class="token punctuation">(</span>buffer<span class="token punctuation">:</span><span class="token function">GetSize</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token comment">--> 128</span>
+</code></pre>
+</div><div class="divider_3z1R"></div><h3><a aria-hidden="true" tabindex="-1" class="anchor anchor__h3 anchorWithStickyNavbar_31ik" id="GetCursor"></a><code style="text-decoration:none">GetCursor</code><a class="hash-link" href="#GetCursor" title="Direct link to heading">#</a></h3><span class="docTag_3qMS" style="border-color:#dc0073;color:#dc0073">General</span><div class="repositoryDetailsContainer_1UH0"><a class="sourceButton_2aE5" href="https://github.com/rstk/BitBuffer//blob/master/src/init.lua#L533"><div class="sourceButtonText_monK">&lt;/&gt;</div></a></div><div class="memberString_P8-X"><code>BitBuffer:</code><code class="green_3LnD">GetCursor</code><code>(</code><code>) → </code><code class="blue_2Afy">number</code></div><div>
+<p>Returns the position of the cursor.</p>
+<pre class="language-lua"><code class="language-lua"><span class="token keyword">local</span> buffer <span class="token operator">=</span> BitBuffer<span class="token punctuation">.</span><span class="token function">new</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+buffer<span class="token punctuation">:</span><span class="token function">WriteUInt</span><span class="token punctuation">(</span><span class="token number">17</span><span class="token punctuation">,</span> <span class="token number">901</span><span class="token punctuation">)</span>
+buffer<span class="token punctuation">:</span><span class="token function">WriteUInt</span><span class="token punctuation">(</span><span class="token number">4</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">)</span>
+<span class="token function">print</span><span class="token punctuation">(</span>buffer<span class="token punctuation">:</span><span class="token function">GetCursor</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token comment">--> 21</span>
+</code></pre>
+</div><div class="divider_3z1R"></div><h3><a aria-hidden="true" tabindex="-1" class="anchor anchor__h3 anchorWithStickyNavbar_31ik" id="GetSize"></a><code style="text-decoration:none">GetSize</code><a class="hash-link" href="#GetSize" title="Direct link to heading">#</a></h3><span class="docTag_3qMS" style="border-color:#dc0073;color:#dc0073">General</span><div class="repositoryDetailsContainer_1UH0"><a class="sourceButton_2aE5" href="https://github.com/rstk/BitBuffer//blob/master/src/init.lua#L569"><div class="sourceButtonText_monK">&lt;/&gt;</div></a></div><div class="memberString_P8-X"><code>BitBuffer:</code><code class="green_3LnD">GetSize</code><code>(</code><code>) → </code><code class="blue_2Afy">number</code></div><div>
+<p>Returns the size of the buffer.</p>
+<pre class="language-lua"><code class="language-lua"><span class="token keyword">local</span> buffer <span class="token operator">=</span> BitBuffer<span class="token punctuation">.</span><span class="token function">new</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+buffer<span class="token punctuation">:</span><span class="token function">WriteUInt</span><span class="token punctuation">(</span><span class="token number">18</span><span class="token punctuation">,</span> <span class="token number">618</span><span class="token punctuation">)</span>
+
+<span class="token function">print</span><span class="token punctuation">(</span>buffer<span class="token punctuation">:</span><span class="token function">GetSize</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token comment">--> 18</span>
+</code></pre>
+</div><div class="divider_3z1R"></div><h3><a aria-hidden="true" tabindex="-1" class="anchor anchor__h3 anchorWithStickyNavbar_31ik" id="ReadBool"></a><code style="text-decoration:none">ReadBool</code><a class="hash-link" href="#ReadBool" title="Direct link to heading">#</a></h3><span class="docTag_3qMS" style="border-color:#ff793f;color:#ff793f">Read</span><div class="repositoryDetailsContainer_1UH0"><a class="sourceButton_2aE5" href="https://github.com/rstk/BitBuffer//blob/master/src/init.lua#L905"><div class="sourceButtonText_monK">&lt;/&gt;</div></a></div><div class="memberString_P8-X"><code>BitBuffer:</code><code class="green_3LnD">ReadBool</code><code>(</code><code>) → </code><code class="blue_2Afy">boolean</code></div><div>
+<p>Reads one bit from the buffer and returns a boolean: true if the bit is 1, false if the bit is 0.</p>
+<pre class="language-lua"><code class="language-lua"><span class="token keyword">local</span> buffer <span class="token operator">=</span> BitBuffer<span class="token punctuation">.</span><span class="token function">new</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+buffer<span class="token punctuation">:</span><span class="token function">WriteUInt</span><span class="token punctuation">(</span><span class="token number">4</span><span class="token punctuation">,</span> 0b1011<span class="token punctuation">)</span>
+buffer<span class="token punctuation">:</span><span class="token function">ResetCursor</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+
+<span class="token function">print</span><span class="token punctuation">(</span>buffer<span class="token punctuation">:</span><span class="token function">ReadBool</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token comment">--> true</span>
+<span class="token function">print</span><span class="token punctuation">(</span>buffer<span class="token punctuation">:</span><span class="token function">ReadBool</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token comment">--> true</span>
+<span class="token function">print</span><span class="token punctuation">(</span>buffer<span class="token punctuation">:</span><span class="token function">ReadBool</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token comment">--> false</span>
+<span class="token function">print</span><span class="token punctuation">(</span>buffer<span class="token punctuation">:</span><span class="token function">ReadBool</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token comment">--> true</span>
+</code></pre>
+</div><div class="divider_3z1R"></div><h3><a aria-hidden="true" tabindex="-1" class="anchor anchor__h3 anchorWithStickyNavbar_31ik" id="ReadBytes"></a><code style="text-decoration:none">ReadBytes</code><a class="hash-link" href="#ReadBytes" title="Direct link to heading">#</a></h3><span class="docTag_3qMS" style="border-color:#ff793f;color:#ff793f">Read</span><div class="repositoryDetailsContainer_1UH0"><a class="sourceButton_2aE5" href="https://github.com/rstk/BitBuffer//blob/master/src/init.lua#L1005"><div class="sourceButtonText_monK">&lt;/&gt;</div></a></div><div class="memberString_P8-X"><code>BitBuffer:</code><code class="green_3LnD">ReadBytes</code><code>(</code><code>length: </code><code class="blue_2Afy">number</code><code>) → </code><code class="blue_2Afy">string</code></div><div>
+<p>
+  Reads <code>length</code> bytes as a string from the buffer.
+  if <code>length</code> is 0, nothing will be read and an empty string will be returned.
+</p>
+<pre class="language-lua"><code class="language-lua"><span class="token keyword">local</span> buffer <span class="token operator">=</span> BitBuffer<span class="token punctuation">.</span><span class="token function">new</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+buffer<span class="token punctuation">:</span><span class="token function">WriteUInt</span><span class="token punctuation">(</span><span class="token number">8</span><span class="token punctuation">,</span> <span class="token number">65</span><span class="token punctuation">)</span>
+buffer<span class="token punctuation">:</span><span class="token function">WriteUInt</span><span class="token punctuation">(</span><span class="token number">8</span><span class="token punctuation">,</span> <span class="token number">67</span><span class="token punctuation">)</span>
+<span class="token function">print</span><span class="token punctuation">(</span>buffer<span class="token punctuation">:</span><span class="token function">ReadBytes</span><span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token comment">--> AC</span>
+</code></pre>
+<p>See <a href="#ReadString">BitBuffer::ReadString</a></p>
+</div><div class="divider_3z1R"></div><h3><a aria-hidden="true" tabindex="-1" class="anchor anchor__h3 anchorWithStickyNavbar_31ik" id="ReadChar"></a><code style="text-decoration:none">ReadChar</code><a class="hash-link" href="#ReadChar" title="Direct link to heading">#</a></h3><span class="docTag_3qMS" style="border-color:#ff793f;color:#ff793f">Read</span><div class="repositoryDetailsContainer_1UH0"><a class="sourceButton_2aE5" href="https://github.com/rstk/BitBuffer//blob/master/src/init.lua#L946"><div class="sourceButtonText_monK">&lt;/&gt;</div></a></div><div class="memberString_P8-X"><code>BitBuffer:</code><code class="green_3LnD">ReadChar</code><code>(</code><code>) → </code><code class="blue_2Afy">string</code></div><div>
+<p>Reads one byte as an ASCII character from the buffer.</p>
+<pre class="language-lua"><code class="language-lua"><span class="token keyword">local</span> buffer <span class="token operator">=</span> BitBuffer<span class="token punctuation">.</span><span class="token function">new</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+buffer<span class="token punctuation">:</span><span class="token function">WriteUInt</span><span class="token punctuation">(</span><span class="token number">8</span><span class="token punctuation">,</span> <span class="token number">65</span><span class="token punctuation">)</span>
+buffer<span class="token punctuation">:</span><span class="token function">ResetCursor</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token function">print</span><span class="token punctuation">(</span>buffer<span class="token punctuation">:</span><span class="token function">ReadChar</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token comment">--> A</span>
+</code></pre>
+</div><div class="divider_3z1R"></div><h3><a aria-hidden="true" tabindex="-1" class="anchor anchor__h3 anchorWithStickyNavbar_31ik" id="ReadFloat32"></a><code style="text-decoration:none">ReadFloat32</code><a class="hash-link" href="#ReadFloat32" title="Direct link to heading">#</a></h3><span class="docTag_3qMS" style="border-color:#ff793f;color:#ff793f">Read</span><div class="repositoryDetailsContainer_1UH0"><a class="sourceButton_2aE5" href="https://github.com/rstk/BitBuffer//blob/master/src/init.lua#L1134"><div class="sourceButtonText_monK">&lt;/&gt;</div></a></div><div class="memberString_P8-X"><code>BitBuffer:</code><code class="green_3LnD">ReadFloat32</code><code>(</code><code>) → </code><code class="blue_2Afy">number</code></div><div>
+<p>Reads a single-precision floating point number from the buffer.</p>
+<pre class="language-lua"><code class="language-lua"><span class="token keyword">local</span> buffer <span class="token operator">=</span> BitBuffer<span class="token punctuation">.</span><span class="token function">new</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+buffer<span class="token punctuation">:</span><span class="token function">WriteFloat32</span><span class="token punctuation">(</span><span class="token number">892.738</span><span class="token punctuation">)</span>
+buffer<span class="token punctuation">:</span><span class="token function">ResetCursor</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token function">print</span><span class="token punctuation">(</span>buffer<span class="token punctuation">:</span><span class="token function">ReadFloat32</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token comment">--> 892.73797607421875</span>
+</code></pre>
+</div><div class="divider_3z1R"></div><h3><a aria-hidden="true" tabindex="-1" class="anchor anchor__h3 anchorWithStickyNavbar_31ik" id="ReadFloat64"></a><code style="text-decoration:none">ReadFloat64</code><a class="hash-link" href="#ReadFloat64" title="Direct link to heading">#</a></h3><span class="docTag_3qMS" style="border-color:#ff793f;color:#ff793f">Read</span><div class="repositoryDetailsContainer_1UH0"><a class="sourceButton_2aE5" href="https://github.com/rstk/BitBuffer//blob/master/src/init.lua#L1189"><div class="sourceButtonText_monK">&lt;/&gt;</div></a></div><div class="memberString_P8-X"><code>BitBuffer:</code><code class="green_3LnD">ReadFloat64</code><code>(</code><code>) → </code><code class="blue_2Afy">number</code></div><div>
+<p>Reads a double-precision floating point number from the buffer.</p>
+<pre class="language-lua"><code class="language-lua"><span class="token keyword">local</span> buffer <span class="token operator">=</span> BitBuffer<span class="token punctuation">.</span><span class="token function">new</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+buffer<span class="token punctuation">:</span><span class="token function">WriteFloat64</span><span class="token punctuation">(</span><span class="token operator">-</span><span class="token number">76358128.888202341</span><span class="token punctuation">)</span>
+buffer<span class="token punctuation">:</span><span class="token function">ResetCursor</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token function">print</span><span class="token punctuation">(</span>buffer<span class="token punctuation">:</span><span class="token function">ReadFloat64</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token comment">--> -76358128.888202</span>
+</code></pre>
+</div><div class="divider_3z1R"></div><h3><a aria-hidden="true" tabindex="-1" class="anchor anchor__h3 anchorWithStickyNavbar_31ik" id="ReadInt"></a><code style="text-decoration:none">ReadInt</code><a class="hash-link" href="#ReadInt" title="Direct link to heading">#</a></h3><span class="docTag_3qMS" style="border-color:#ff793f;color:#ff793f">Read</span><div class="repositoryDetailsContainer_1UH0"><a class="sourceButton_2aE5" href="https://github.com/rstk/BitBuffer//blob/master/src/init.lua#L855"><div class="sourceButtonText_monK">&lt;/&gt;</div></a></div><div class="memberString_P8-X"><code>BitBuffer:</code><code class="green_3LnD">ReadInt</code><code>(</code><code>bitWidth: </code><code class="blue_2Afy">number</code><code>) → </code><code class="blue_2Afy">number</code></div><div>
+<p>
+  Reads <code>bitWidth</code> bits as a signed integer stored using <a href="https://en.wikipedia.org/wiki/Two%27s_complement" target="_blank">two's complement</a>.
+  <code>bitWidth</code> must be an integer between 1 and 32.
+</p>
+<pre class="language-lua"><code class="language-lua"><span class="token keyword">local</span> buffer <span class="token operator">=</span> BitBuffer<span class="token punctuation">.</span><span class="token function">new</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+buffer<span class="token punctuation">:</span><span class="token function">WriteInt</span><span class="token punctuation">(</span><span class="token number">15</span><span class="token punctuation">,</span> <span class="token operator">-</span><span class="token number">78</span><span class="token punctuation">)</span>
+buffer<span class="token punctuation">:</span><span class="token function">ResetCursor</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token function">print</span><span class="token punctuation">(</span>buffer<span class="token punctuation">:</span><span class="token function">ReadInt</span><span class="token punctuation">(</span><span class="token number">15</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token comment">--> -78</span>
+</code></pre>
+</div><div class="divider_3z1R"></div><h3><a aria-hidden="true" tabindex="-1" class="anchor anchor__h3 anchorWithStickyNavbar_31ik" id="ReadString"></a><code style="text-decoration:none">ReadString</code><a class="hash-link" href="#ReadString" title="Direct link to heading">#</a></h3><span class="docTag_3qMS" style="border-color:#ff793f;color:#ff793f">Read</span><div class="repositoryDetailsContainer_1UH0"><a class="sourceButton_2aE5" href="https://github.com/rstk/BitBuffer//blob/master/src/init.lua#L1076"><div class="sourceButtonText_monK">&lt;/&gt;</div></a></div><div class="memberString_P8-X"><code>BitBuffer:</code><code class="green_3LnD">ReadString</code><code>(</code><code>) → </code><code class="blue_2Afy">string</code></div><div>
+<p>Reads a string from the buffer (see <a href="#WriteString">BitBuffer::WriteString</a>).</p>
+<pre class="language-lua"><code class="language-lua"><span class="token keyword">local</span> buffer <span class="token operator">=</span> BitBuffer<span class="token punctuation">.</span><span class="token function">new</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+buffer<span class="token punctuation">:</span><span class="token function">WriteString</span><span class="token punctuation">(</span><span class="token string">"Hello!"</span><span class="token punctuation">)</span>
+buffer<span class="token punctuation">:</span><span class="token function">ResetCursor</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token function">print</span><span class="token punctuation">(</span>buffer<span class="token punctuation">:</span><span class="token function">ReadString</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token comment">--> Hello!</span>
+</code></pre>
+<p>See <a href="#ReadBytes">BitBuffer:ReadBytes</a></p>
+</div><div class="divider_3z1R"></div><h3><a aria-hidden="true" tabindex="-1" class="anchor anchor__h3 anchorWithStickyNavbar_31ik" id="ReadUInt"></a><code style="text-decoration:none">ReadUInt</code><a class="hash-link" href="#ReadUInt" title="Direct link to heading">#</a></h3><span class="docTag_3qMS" style="border-color:#ff793f;color:#ff793f">Read</span><div class="repositoryDetailsContainer_1UH0"><a class="sourceButton_2aE5" href="https://github.com/rstk/BitBuffer//blob/master/src/init.lua#L804"><div class="sourceButtonText_monK">&lt;/&gt;</div></a></div><div class="memberString_P8-X"><code>BitBuffer:</code><code class="green_3LnD">ReadUInt</code><code>(</code><code>bitWidth: </code><code class="blue_2Afy">number</code><code>) → </code><code class="blue_2Afy">number</code></div><div>
+<p>
+  Reads <code>bitWidth</code> bits from the buffer as an unsigned integer.
+  <code>bitWidth</code> must be an integer between 1 and 32.
+</p>
+<pre class="language-lua"><code class="language-lua">buffer<span class="token punctuation">:</span><span class="token function">WriteUInt</span><span class="token punctuation">(</span><span class="token number">12</span><span class="token punctuation">,</span> <span class="token number">89</span><span class="token punctuation">)</span>
+buffer<span class="token punctuation">:</span><span class="token function">ResetCursor</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token function">print</span><span class="token punctuation">(</span>buffer<span class="token punctuation">:</span><span class="token function">ReadUInt</span><span class="token punctuation">(</span><span class="token number">12</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token comment">--> 89</span>
+</code></pre>
+</div><div class="divider_3z1R"></div><h3><a aria-hidden="true" tabindex="-1" class="anchor anchor__h3 anchorWithStickyNavbar_31ik" id="ResetBuffer"></a><code style="text-decoration:none">ResetBuffer</code><a class="hash-link" href="#ResetBuffer" title="Direct link to heading">#</a></h3><span class="docTag_3qMS" style="border-color:#dc0073;color:#dc0073">General</span><div class="repositoryDetailsContainer_1UH0"><a class="sourceButton_2aE5" href="https://github.com/rstk/BitBuffer//blob/master/src/init.lua#L550"><div class="sourceButtonText_monK">&lt;/&gt;</div></a></div><div class="memberString_P8-X"><code>BitBuffer:</code><code class="green_3LnD">ResetBuffer</code><code>(</code><code>) → </code><code>(</code><code>)</code></div><div>
+<p>Clears the buffer, setting its size to zero, and sets its position to 0.</p>
+<pre class="language-lua"><code class="language-lua"><span class="token keyword">local</span> buffer <span class="token operator">=</span> BitBuffer<span class="token punctuation">.</span><span class="token function">new</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+buffer<span class="token punctuation">:</span><span class="token function">WriteUInt</span><span class="token punctuation">(</span><span class="token number">32</span><span class="token punctuation">,</span> math<span class="token punctuation">.</span><span class="token function">pow</span><span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">32</span><span class="token punctuation">)</span> <span class="token operator">-</span> <span class="token number">1</span><span class="token punctuation">)</span>
+
+buffer<span class="token punctuation">:</span><span class="token function">ResetBuffer</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token function">print</span><span class="token punctuation">(</span>buffer<span class="token punctuation">:</span><span class="token function">GetCursor</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token comment">--> 0</span>
+<span class="token function">print</span><span class="token punctuation">(</span>buffer<span class="token punctuation">:</span><span class="token function">ReadUInt</span><span class="token punctuation">(</span><span class="token number">32</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token comment">--> 0</span>
+</code></pre>
+</div><div class="divider_3z1R"></div><h3><a aria-hidden="true" tabindex="-1" class="anchor anchor__h3 anchorWithStickyNavbar_31ik" id="ResetCursor"></a><code style="text-decoration:none">ResetCursor</code><a class="hash-link" href="#ResetCursor" title="Direct link to heading">#</a></h3><span class="docTag_3qMS" style="border-color:#dc0073;color:#dc0073">General</span><div class="repositoryDetailsContainer_1UH0"><a class="sourceButton_2aE5" href="https://github.com/rstk/BitBuffer//blob/master/src/init.lua#L493"><div class="sourceButtonText_monK">&lt;/&gt;</div></a></div><div class="memberString_P8-X"><code>BitBuffer:</code><code class="green_3LnD">ResetCursor</code><code>(</code><code>) → </code><code>(</code><code>)</code></div><div>
+<p>Resets the position of the cursor.</p>
+<pre class="language-lua"><code class="language-lua"><span class="token keyword">local</span> buffer <span class="token operator">=</span> BitBuffer<span class="token punctuation">.</span><span class="token function">new</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+buffer<span class="token punctuation">:</span><span class="token function">WriteUInt</span><span class="token punctuation">(</span><span class="token number">32</span><span class="token punctuation">,</span> <span class="token number">890</span><span class="token punctuation">)</span>
+buffer<span class="token punctuation">:</span><span class="token function">ResetCursor</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+
+<span class="token function">print</span><span class="token punctuation">(</span>buffer<span class="token punctuation">:</span><span class="token function">GetCursor</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token comment">--> 0</span>
+</code></pre>
+</div><div class="divider_3z1R"></div><h3><a aria-hidden="true" tabindex="-1" class="anchor anchor__h3 anchorWithStickyNavbar_31ik" id="SetCursor"></a><code style="text-decoration:none">SetCursor</code><a class="hash-link" href="#SetCursor" title="Direct link to heading">#</a></h3><span class="docTag_3qMS" style="border-color:#dc0073;color:#dc0073">General</span><div class="repositoryDetailsContainer_1UH0"><a class="sourceButton_2aE5" href="https://github.com/rstk/BitBuffer//blob/master/src/init.lua#L512"><div class="sourceButtonText_monK">&lt;/&gt;</div></a></div><div class="memberString_P8-X"><code>BitBuffer:</code><code class="green_3LnD">SetCursor</code><code>(</code><code>position: </code><code class="blue_2Afy">number</code><code>) → </code><code>(</code><code>)</code></div><div>
+<p>Sets the position of the cursor to the given position.</p>
+<pre class="language-lua"><code class="language-lua"><span class="token keyword">local</span> buffer <span class="token operator">=</span> BitBuffer<span class="token punctuation">.</span><span class="token function">new</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+buffer<span class="token punctuation">:</span><span class="token function">WriteUInt</span><span class="token punctuation">(</span><span class="token number">32</span><span class="token punctuation">,</span> <span class="token number">67</span><span class="token punctuation">)</span>
+buffer<span class="token punctuation">:</span><span class="token function">WriteUInt</span><span class="token punctuation">(</span><span class="token number">32</span><span class="token punctuation">,</span> <span class="token number">44</span><span class="token punctuation">)</span>
+
+buffer<span class="token punctuation">:</span><span class="token function">SetCursor</span><span class="token punctuation">(</span><span class="token number">32</span><span class="token punctuation">)</span>
+<span class="token function">print</span><span class="token punctuation">(</span>buffer<span class="token punctuation">:</span><span class="token function">ReadUInt</span><span class="token punctuation">(</span><span class="token number">32</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token comment">--> 44</span>
+</code></pre>
+</div><div class="divider_3z1R"></div><h3><a aria-hidden="true" tabindex="-1" class="anchor anchor__h3 anchorWithStickyNavbar_31ik" id="ToBase128"></a><code style="text-decoration:none">ToBase128</code><a class="hash-link" href="#ToBase128" title="Direct link to heading">#</a></h3><span class="docTag_3qMS" style="border-color:#79b473;color:#79b473">Serialization</span><div class="repositoryDetailsContainer_1UH0"><a class="sourceButton_2aE5" href="https://github.com/rstk/BitBuffer//blob/master/src/init.lua#L738"><div class="sourceButtonText_monK">&lt;/&gt;</div></a></div><div class="memberString_P8-X"><code>BitBuffer:</code><code class="green_3LnD">ToBase128</code><code>(</code><code>) → </code><code>(</code><code>)</code></div><div>
+<p>
+  Serializes the buffer into a Base128 string.
+  You can retrieve the buffer from this string using <a href="#FromBase128">BitBuffer.FromBase128</a>.
+</p>
+<p>return string</p>
+</div><div class="divider_3z1R"></div><h3><a aria-hidden="true" tabindex="-1" class="anchor anchor__h3 anchorWithStickyNavbar_31ik" id="ToBase64"></a><code style="text-decoration:none">ToBase64</code><a class="hash-link" href="#ToBase64" title="Direct link to heading">#</a></h3><span class="docTag_3qMS" style="border-color:#79b473;color:#79b473">Serialization</span><div class="repositoryDetailsContainer_1UH0"><a class="sourceButton_2aE5" href="https://github.com/rstk/BitBuffer//blob/master/src/init.lua#L621"><div class="sourceButtonText_monK">&lt;/&gt;</div></a></div><div class="memberString_P8-X"><code>BitBuffer:</code><code class="green_3LnD">ToBase64</code><code>(</code><code>) → </code><code class="blue_2Afy">string</code></div><div>
+<p>
+  Serializes the buffer into a Base64 string.
+  You can retrieve the buffer from this string using <a href="#FromBase64">BitBuffer.FromBase64</a>.
+</p>
+<pre class="language-lua"><code class="language-lua"><span class="token keyword">local</span> initialBuffer <span class="token operator">=</span> BitBuffer<span class="token punctuation">.</span><span class="token function">new</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+initialBuffer<span class="token punctuation">:</span><span class="token function">WriteUInt</span><span class="token punctuation">(</span><span class="token number">15</span><span class="token punctuation">,</span> <span class="token number">919</span><span class="token punctuation">)</span>
+initialBuffer<span class="token punctuation">:</span><span class="token function">WriteString</span><span class="token punctuation">(</span><span class="token string">"Hello!"</span><span class="token punctuation">)</span>
+
+<span class="token keyword">local</span> b64 <span class="token operator">=</span> initialBuffer<span class="token punctuation">:</span><span class="token function">ToBase64</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token keyword">local</span> newBuffer <span class="token operator">=</span> BitBuffer<span class="token punctuation">.</span><span class="token function">FromBase64</span><span class="token punctuation">(</span>b64<span class="token punctuation">)</span>
+<span class="token function">print</span><span class="token punctuation">(</span>newBuffer<span class="token punctuation">:</span><span class="token function">ReadUInt</span><span class="token punctuation">(</span><span class="token number">15</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token comment">--> 919</span>
+<span class="token function">print</span><span class="token punctuation">(</span>newBuffer<span class="token punctuation">:</span><span class="token function">ReadString</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token comment">--> Hello!</span>
+</code></pre>
+<p>See <a href="#FromBase64">BitBuffer.FromBase64</a></p>
+</div><div class="divider_3z1R"></div><h3><a aria-hidden="true" tabindex="-1" class="anchor anchor__h3 anchorWithStickyNavbar_31ik" id="ToBase91"></a><code style="text-decoration:none">ToBase91</code><a class="hash-link" href="#ToBase91" title="Direct link to heading">#</a></h3><span class="docTag_3qMS" style="border-color:#79b473;color:#79b473">Serialization</span><div class="repositoryDetailsContainer_1UH0"><a class="sourceButton_2aE5" href="https://github.com/rstk/BitBuffer//blob/master/src/init.lua#L683"><div class="sourceButtonText_monK">&lt;/&gt;</div></a></div><div class="memberString_P8-X"><code>BitBuffer:</code><code class="green_3LnD">ToBase91</code><code>(</code><code>) → </code><code class="blue_2Afy">string</code></div><div>
+<p>
+  Serializes the buffer into a Base91 string.
+  You can retrieve the buffer from this string using <a href="#FromBase91">BitBuffer.FromBase91</a>.
+  <strong>This is the recommended function to use for DataStores.</strong>
+</p>
+<pre class="language-lua"><code class="language-lua"><span class="token keyword">local</span> buffer <span class="token operator">=</span> BitBuffer<span class="token punctuation">.</span><span class="token function">new</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+buffer<span class="token punctuation">:</span><span class="token function">WriteString</span><span class="token punctuation">(</span>playerData<span class="token punctuation">.</span>CustomName<span class="token punctuation">)</span>
+buffer<span class="token punctuation">:</span><span class="token function">WriteUInt</span><span class="token punctuation">(</span><span class="token number">8</span><span class="token punctuation">,</span> playerData<span class="token punctuation">.</span>Level<span class="token punctuation">)</span>
+buffer<span class="token punctuation">:</span><span class="token function">WriteUInt</span><span class="token punctuation">(</span><span class="token number">16</span><span class="token punctuation">,</span> playerData<span class="token punctuation">.</span>Money<span class="token punctuation">)</span>
+
+<span class="token function">SaveToDataStore</span><span class="token punctuation">(</span>buffer<span class="token punctuation">:</span><span class="token function">ToBase91</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+</code></pre>
+<pre class="language-lua"><code class="language-lua"><span class="token keyword">local</span> b91 <span class="token operator">=</span> <span class="token function">RetrieveFromDataStore</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token keyword">local</span> buffer <span class="token operator">=</span> BitBuffer<span class="token punctuation">.</span><span class="token function">FromBase91</span><span class="token punctuation">(</span>b91<span class="token punctuation">)</span>
+
+<span class="token keyword">local</span> playerData <span class="token operator">=</span> <span class="token punctuation">{</span>
+	CustomName <span class="token operator">=</span> buffer<span class="token punctuation">:</span><span class="token function">ReadString</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+	Level <span class="token operator">=</span> buffer<span class="token punctuation">:</span><span class="token function">ReadUInt</span><span class="token punctuation">(</span><span class="token number">8</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+	Money <span class="token operator">=</span> buffer<span class="token punctuation">:</span><span class="token function">ReadUInt</span><span class="token punctuation">(</span><span class="token number">16</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<p>See <a href="#FromBase91">BitBuffer.FromBase91</a></p>
+</div><div class="divider_3z1R"></div><h3><a aria-hidden="true" tabindex="-1" class="anchor anchor__h3 anchorWithStickyNavbar_31ik" id="ToString"></a><code style="text-decoration:none">ToString</code><a class="hash-link" href="#ToString" title="Direct link to heading">#</a></h3><span class="docTag_3qMS" style="border-color:#79b473;color:#79b473">Serialization</span><div class="repositoryDetailsContainer_1UH0"><a class="sourceButton_2aE5" href="https://github.com/rstk/BitBuffer//blob/master/src/init.lua#L590"><div class="sourceButtonText_monK">&lt;/&gt;</div></a></div><div class="memberString_P8-X"><code>BitBuffer:</code><code class="green_3LnD">ToString</code><code>(</code><code>) → </code><code class="blue_2Afy">string</code></div><div>
+<p>
+  Serializes the buffer into a binary string.
+  You can retrieve the buffer from this string using <a href="#FromString">BitBuffer.FromString</a>.
+</p>
+<pre class="language-lua"><code class="language-lua"><span class="token keyword">local</span> buffer <span class="token operator">=</span> BitBuffer<span class="token punctuation">.</span><span class="token function">new</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+buffer<span class="token punctuation">:</span><span class="token function">WriteUInt</span><span class="token punctuation">(</span><span class="token number">8</span><span class="token punctuation">,</span> <span class="token number">65</span><span class="token punctuation">)</span>
+buffer<span class="token punctuation">:</span><span class="token function">WriteUInt</span><span class="token punctuation">(</span><span class="token number">8</span><span class="token punctuation">,</span> <span class="token number">66</span><span class="token punctuation">)</span>
+buffer<span class="token punctuation">:</span><span class="token function">WriteUInt</span><span class="token punctuation">(</span><span class="token number">8</span><span class="token punctuation">,</span> <span class="token number">67</span><span class="token punctuation">)</span>
+
+<span class="token function">print</span><span class="token punctuation">(</span>buffer<span class="token punctuation">:</span><span class="token function">ToString</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token comment">--> ABC</span>
+</code></pre>
+<p>See <a href="#FromString">BitBuffer.FromString</a></p>
+</div><div class="divider_3z1R"></div><h3><a aria-hidden="true" tabindex="-1" class="anchor anchor__h3 anchorWithStickyNavbar_31ik" id="WriteBool"></a><code style="text-decoration:none">WriteBool</code><a class="hash-link" href="#WriteBool" title="Direct link to heading">#</a></h3><span class="docTag_3qMS" style="border-color:#ff5252;color:#ff5252">Write</span><div class="repositoryDetailsContainer_1UH0"><a class="sourceButton_2aE5" href="https://github.com/rstk/BitBuffer//blob/master/src/init.lua#L880"><div class="sourceButtonText_monK">&lt;/&gt;</div></a></div><div class="memberString_P8-X"><code>BitBuffer:</code><code class="green_3LnD">WriteBool</code><code>(</code><code>value: </code><code class="blue_2Afy">any</code><code>) → </code><code>(</code><code>)</code></div><div>
+<p>Writes one bit the buffer: 1 if <code>value</code> is truthy, 0 otherwise.</p>
+<pre class="language-lua"><code class="language-lua"><span class="token keyword">local</span> buffer <span class="token operator">=</span> BitBuffer<span class="token punctuation">.</span><span class="token function">new</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+buffer<span class="token punctuation">:</span><span class="token function">WriteBool</span><span class="token punctuation">(</span><span class="token keyword">true</span><span class="token punctuation">)</span> <span class="token comment">--> Writes 1</span>
+buffer<span class="token punctuation">:</span><span class="token function">WriteBool</span><span class="token punctuation">(</span><span class="token string">"A"</span><span class="token punctuation">)</span> <span class="token comment">--> Also writes 1</span>
+buffer<span class="token punctuation">:</span><span class="token function">WriteBool</span><span class="token punctuation">(</span><span class="token keyword">nil</span><span class="token punctuation">)</span> <span class="token comment">--> Writes 0</span>
+</code></pre>
+</div><div class="divider_3z1R"></div><h3><a aria-hidden="true" tabindex="-1" class="anchor anchor__h3 anchorWithStickyNavbar_31ik" id="WriteBytes"></a><code style="text-decoration:none">WriteBytes</code><a class="hash-link" href="#WriteBytes" title="Direct link to heading">#</a></h3><span class="docTag_3qMS" style="border-color:#ff5252;color:#ff5252">Write</span><div class="repositoryDetailsContainer_1UH0"><a class="sourceButton_2aE5" href="https://github.com/rstk/BitBuffer//blob/master/src/init.lua#L965"><div class="sourceButtonText_monK">&lt;/&gt;</div></a></div><div class="memberString_P8-X"><code>BitBuffer:</code><code class="green_3LnD">WriteBytes</code><code>(</code><code>bytes: </code><code class="blue_2Afy">string</code><code>) → </code><code>(</code><code>)</code></div><div>
+<p>
+  Writes a stream of bytes to the buffer.
+  if <code>bytes</code> is an empty string, nothing will be written.
+</p>
+<pre class="language-lua"><code class="language-lua"><span class="token keyword">local</span> buffer <span class="token operator">=</span> BitBuffer<span class="token punctuation">.</span><span class="token function">new</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+buffer<span class="token punctuation">:</span><span class="token function">WriteBytes</span><span class="token punctuation">(</span><span class="token string">"AD"</span><span class="token punctuation">)</span>
+buffer<span class="token punctuation">:</span><span class="token function">ResetCursor</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token function">print</span><span class="token punctuation">(</span>buffer<span class="token punctuation">:</span><span class="token function">ReadUInt</span><span class="token punctuation">(</span><span class="token number">8</span><span class="token punctuation">)</span><span class="token punctuation">,</span> buffer<span class="token punctuation">:</span><span class="token function">ReadUInt</span><span class="token punctuation">(</span><span class="token number">8</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token comment">--> 65 68</span>
+</code></pre>
+<p>See <a href="#WriteString">BitBuffer::WriteString</a></p>
+</div><div class="divider_3z1R"></div><h3><a aria-hidden="true" tabindex="-1" class="anchor anchor__h3 anchorWithStickyNavbar_31ik" id="WriteChar"></a><code style="text-decoration:none">WriteChar</code><a class="hash-link" href="#WriteChar" title="Direct link to heading">#</a></h3><span class="docTag_3qMS" style="border-color:#ff5252;color:#ff5252">Write</span><div class="repositoryDetailsContainer_1UH0"><a class="sourceButton_2aE5" href="https://github.com/rstk/BitBuffer//blob/master/src/init.lua#L923"><div class="sourceButtonText_monK">&lt;/&gt;</div></a></div><div class="memberString_P8-X"><code>BitBuffer:</code><code class="green_3LnD">WriteChar</code><code>(</code><code>char: </code><code class="blue_2Afy">string</code><code>) → </code><code>(</code><code>)</code></div><div>
+<p>
+  Writes one ASCII character (one byte) to the buffer.
+  <code>char</code> cannot be an empty string.
+</p>
+<pre class="language-lua"><code class="language-lua"><span class="token keyword">local</span> buffer <span class="token operator">=</span> BitBuffer<span class="token punctuation">.</span><span class="token function">new</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+buffer<span class="token punctuation">:</span><span class="token function">WriteChar</span><span class="token punctuation">(</span><span class="token string">"k"</span><span class="token punctuation">)</span>
+buffer<span class="token punctuation">:</span><span class="token function">ResetCursor</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token function">print</span><span class="token punctuation">(</span>buffer<span class="token punctuation">:</span><span class="token function">ReadChar</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token comment">--> k</span>
+</code></pre>
+</div><div class="divider_3z1R"></div><h3><a aria-hidden="true" tabindex="-1" class="anchor anchor__h3 anchorWithStickyNavbar_31ik" id="WriteFloat32"></a><code style="text-decoration:none">WriteFloat32</code><a class="hash-link" href="#WriteFloat32" title="Direct link to heading">#</a></h3><span class="docTag_3qMS" style="border-color:#ff5252;color:#ff5252">Write</span><div class="repositoryDetailsContainer_1UH0"><a class="sourceButton_2aE5" href="https://github.com/rstk/BitBuffer//blob/master/src/init.lua#L1100"><div class="sourceButtonText_monK">&lt;/&gt;</div></a></div><div class="memberString_P8-X"><code>BitBuffer:</code><code class="green_3LnD">WriteFloat32</code><code>(</code><code>float: </code><code class="blue_2Afy">number</code><code>) → </code><code>(</code><code>)</code></div><div>
+<p>Writes a single-precision floating point number to the buffer.</p>
+<pre class="language-lua"><code class="language-lua"><span class="token keyword">local</span> buffer <span class="token operator">=</span> BitBuffer<span class="token punctuation">.</span><span class="token function">new</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+buffer<span class="token punctuation">:</span><span class="token function">WriteFloat32</span><span class="token punctuation">(</span><span class="token number">892.738</span><span class="token punctuation">)</span>
+buffer<span class="token punctuation">:</span><span class="token function">ResetCursor</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token function">print</span><span class="token punctuation">(</span>buffer<span class="token punctuation">:</span><span class="token function">ReadFloat32</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token comment">--> 892.73797607421875</span>
+</code></pre>
+</div><div class="divider_3z1R"></div><h3><a aria-hidden="true" tabindex="-1" class="anchor anchor__h3 anchorWithStickyNavbar_31ik" id="WriteFloat64"></a><code style="text-decoration:none">WriteFloat64</code><a class="hash-link" href="#WriteFloat64" title="Direct link to heading">#</a></h3><span class="docTag_3qMS" style="border-color:#ff5252;color:#ff5252">Write</span><div class="repositoryDetailsContainer_1UH0"><a class="sourceButton_2aE5" href="https://github.com/rstk/BitBuffer//blob/master/src/init.lua#L1166"><div class="sourceButtonText_monK">&lt;/&gt;</div></a></div><div class="memberString_P8-X"><code>BitBuffer:</code><code class="green_3LnD">WriteFloat64</code><code>(</code><code>double: </code><code class="blue_2Afy">number</code><code>) → </code><code>(</code><code>)</code></div><div>
+<p>Writes a double-precision floating point number to the buffer.</p>
+<pre class="language-lua"><code class="language-lua"><span class="token keyword">local</span> buffer <span class="token operator">=</span> BitBuffer<span class="token punctuation">.</span><span class="token function">new</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+buffer<span class="token punctuation">:</span><span class="token function">WriteFloat64</span><span class="token punctuation">(</span><span class="token operator">-</span><span class="token number">76358128.888202341</span><span class="token punctuation">)</span>
+buffer<span class="token punctuation">:</span><span class="token function">ResetCursor</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token function">print</span><span class="token punctuation">(</span>buffer<span class="token punctuation">:</span><span class="token function">ReadFloat64</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token comment">--> -76358128.888202</span>
+</code></pre>
+</div><div class="divider_3z1R"></div><h3><a aria-hidden="true" tabindex="-1" class="anchor anchor__h3 anchorWithStickyNavbar_31ik" id="WriteInt"></a><code style="text-decoration:none">WriteInt</code><a class="hash-link" href="#WriteInt" title="Direct link to heading">#</a></h3><span class="docTag_3qMS" style="border-color:#ff5252;color:#ff5252">Write</span><div class="repositoryDetailsContainer_1UH0"><a class="sourceButton_2aE5" href="https://github.com/rstk/BitBuffer//blob/master/src/init.lua#L828"><div class="sourceButtonText_monK">&lt;/&gt;</div></a></div><div class="memberString_P8-X"><code>BitBuffer:</code><code class="green_3LnD">WriteInt</code><code>(</code><div class="inset_2cJr"><div><code>bitWidth: </code><code class="blue_2Afy">number</code><code>,</code></div><div><code>int: </code><code class="blue_2Afy">number</code></div></div><code>) → </code><code>(</code><code>)</code></div><div>
+<p>
+  Writes a signed integer of <code>bitWidth</code> bits using <a href="https://en.wikipedia.org/wiki/Two%27s_complement" target="_blank">two's complement</a>.
+  <code>bitWidth</code> must be an integer between 1 and 32.
+  Overflow is <strong>untested</strong>, use at your own risk.
+</p>
+<pre class="language-lua"><code class="language-lua"><span class="token keyword">local</span> buffer <span class="token operator">=</span> BitBuffer<span class="token punctuation">.</span><span class="token function">new</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+buffer<span class="token punctuation">:</span><span class="token function">WriteInt</span><span class="token punctuation">(</span><span class="token number">22</span><span class="token punctuation">,</span> <span class="token operator">-</span><span class="token number">901</span><span class="token punctuation">)</span> <span class="token comment">--> Writes -901 to the buffer</span>
+</code></pre>
+</div><div class="divider_3z1R"></div><h3><a aria-hidden="true" tabindex="-1" class="anchor anchor__h3 anchorWithStickyNavbar_31ik" id="WriteString"></a><code style="text-decoration:none">WriteString</code><a class="hash-link" href="#WriteString" title="Direct link to heading">#</a></h3><span class="docTag_3qMS" style="border-color:#ff5252;color:#ff5252">Write</span><div class="repositoryDetailsContainer_1UH0"><a class="sourceButton_2aE5" href="https://github.com/rstk/BitBuffer//blob/master/src/init.lua#L1048"><div class="sourceButtonText_monK">&lt;/&gt;</div></a></div><div class="memberString_P8-X"><code>BitBuffer:</code><code class="green_3LnD">WriteString</code><code>(</code><code>str: </code><code class="blue_2Afy">string</code><code>) → </code><code>(</code><code>)</code></div><div>
+<p>Writes a string to the buffer.</p>
+<p>
+  WriteString will write the length of the string as a 24-bit unsigned integer first, then write the bytes in the string.
+  The length of the string cannot be greater than <code>2^24 - 1 (16777215)</code>.
+</p>
+<pre class="language-lua"><code class="language-lua"><span class="token keyword">local</span> buffer <span class="token operator">=</span> BitBuffer<span class="token punctuation">.</span><span class="token function">new</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+buffer<span class="token punctuation">:</span><span class="token function">WriteString</span><span class="token punctuation">(</span><span class="token string">"AB"</span><span class="token punctuation">)</span>
+buffer<span class="token punctuation">:</span><span class="token function">ResetCursor</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token function">print</span><span class="token punctuation">(</span>buffer<span class="token punctuation">:</span><span class="token function">ReadUInt</span><span class="token punctuation">(</span><span class="token number">24</span><span class="token punctuation">)</span><span class="token punctuation">,</span> buffer<span class="token punctuation">:</span><span class="token function">ReadBytes</span><span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token comment">--> 2 AB</span>
+</code></pre>
+<p>See <a href="#WriteBytes">BitBuffer::WriteBytes</a></p>
+</div><div class="divider_3z1R"></div><h3><a aria-hidden="true" tabindex="-1" class="anchor anchor__h3 anchorWithStickyNavbar_31ik" id="WriteUInt"></a><code style="text-decoration:none">WriteUInt</code><a class="hash-link" href="#WriteUInt" title="Direct link to heading">#</a></h3><span class="docTag_3qMS" style="border-color:#ff5252;color:#ff5252">Write</span><div class="repositoryDetailsContainer_1UH0"><a class="sourceButton_2aE5" href="https://github.com/rstk/BitBuffer//blob/master/src/init.lua#L778"><div class="sourceButtonText_monK">&lt;/&gt;</div></a></div><div class="memberString_P8-X"><code>BitBuffer:</code><code class="green_3LnD">WriteUInt</code><code>(</code><div class="inset_2cJr"><div><code>bitWidth: </code><code class="blue_2Afy">number</code><code>,</code></div><div><code>uint: </code><code class="blue_2Afy">number</code></div></div><code>) → </code><code>(</code><code>)</code></div><div>
+<p>
+  Writes an unsigned integer of <code>bitWidth</code> bits to the buffer.
+  <code>bitWidth</code> must be an integer between 1 and 32.
+  If the input integer uses more bits than <code>bitWidth</code>, it will overflow as expected.
+</p>
+<pre class="language-lua"><code class="language-lua">buffer<span class="token punctuation">:</span><span class="token function">WriteUInt</span><span class="token punctuation">(</span><span class="token number">32</span><span class="token punctuation">,</span> <span class="token number">560</span><span class="token punctuation">)</span> <span class="token comment">-- Writes 560 to the buffer</span>
+buffer<span class="token punctuation">:</span><span class="token function">WriteUInt</span><span class="token punctuation">(</span><span class="token number">3</span><span class="token punctuation">,</span> <span class="token number">9</span><span class="token punctuation">)</span> <span class="token comment">-- Writes 0b101 (5) because 9 is 0b1101, but `bitWidth` is only 3!</span>
+</code></pre>
+</div></div></article></div><details><summary>Show raw api</summary><pre style="max-width:100%;white-space:pre-wrap">{
+    &quot;functions&quot;: [
+        {
+            &quot;name&quot;: &quot;is&quot;,
+            &quot;desc&quot;: &quot;Returns whether the passed object is a BitBuffer.\n\n```lua\nprint(BitBuffer.is(BitBuffer.new())) --&gt; true\nprint(BitBuffer.is(true)) --&gt; false\n```&quot;,
+            &quot;params&quot;: [
+                {
+                    &quot;name&quot;: &quot;obj&quot;,
+                    &quot;desc&quot;: &quot;&quot;,
+                    &quot;lua_type&quot;: &quot;any&quot;
+                }
+            ],
+            &quot;returns&quot;: [
+                {
+                    &quot;desc&quot;: &quot;&quot;,
+                    &quot;lua_type&quot;: &quot;boolean&quot;
+                }
+            ],
+            &quot;function_type&quot;: &quot;static&quot;,
+            &quot;tags&quot;: [
+                &quot;General&quot;
+            ],
+            &quot;source&quot;: {
+                &quot;line&quot;: 194,
+                &quot;path&quot;: &quot;src/init.lua&quot;
+            }
+        },
+        {
+            &quot;name&quot;: &quot;new&quot;,
+            &quot;desc&quot;: &quot;Creates a new BitBuffer with an initial size of `sizeInBits`.\n\n```lua\nlocal buffer = BitBuffer.new(128)\nprint(buffer:GetSize()) --&gt; 128\n```&quot;,
+            &quot;params&quot;: [
+                {
+                    &quot;name&quot;: &quot;sizeInBits&quot;,
+                    &quot;desc&quot;: &quot;Initial size of the buffer in bits (defaults to 0)&quot;,
+                    &quot;lua_type&quot;: &quot;number?&quot;
+                }
+            ],
+            &quot;returns&quot;: [
+                {
+                    &quot;desc&quot;: &quot;&quot;,
+                    &quot;lua_type&quot;: &quot;BitBuffer&quot;
+                }
+            ],
+            &quot;function_type&quot;: &quot;static&quot;,
+            &quot;tags&quot;: [
+                &quot;Constructor&quot;
+            ],
+            &quot;source&quot;: {
+                &quot;line&quot;: 210,
+                &quot;path&quot;: &quot;src/init.lua&quot;
+            }
+        },
+        {
+            &quot;name&quot;: &quot;FromString&quot;,
+            &quot;desc&quot;: &quot;Creates a new BitBuffer from a binary string, starting with a size corresponding to number of bits in the input string (8 bits per character), and it&#x27;s cursor positioned at 0.\n\n```lua\nlocal buffer = BitBuffer.FromString(\&quot;\\89\&quot;)\nprint(buffer:ReadUInt(8)) --&gt; 89\nprint(buffer:GetSize()) --&gt; 8\n```\n\nSee [BitBuffer::ToString](#ToString)&quot;,
+            &quot;params&quot;: [
+                {
+                    &quot;name&quot;: &quot;inputStr&quot;,
+                    &quot;desc&quot;: &quot;&quot;,
+                    &quot;lua_type&quot;: &quot;string&quot;
+                }
+            ],
+            &quot;returns&quot;: [
+                {
+                    &quot;desc&quot;: &quot;&quot;,
+                    &quot;lua_type&quot;: &quot;BitBuffer&quot;
+                }
+            ],
+            &quot;function_type&quot;: &quot;static&quot;,
+            &quot;tags&quot;: [
+                &quot;Constructor&quot;
+            ],
+            &quot;source&quot;: {
+                &quot;line&quot;: 234,
+                &quot;path&quot;: &quot;src/init.lua&quot;
+            }
+        },
+        {
+            &quot;name&quot;: &quot;FromBase64&quot;,
+            &quot;desc&quot;: &quot;Creates a new BitBuffer from a Base64 string, starting with a size corresponding to the number of bits stored in the input string (6 bits per character), and it&#x27;s cursor positioned at 0.\n\n```lua\nlocal str = base64(\&quot;\\45\\180\&quot;)\nlocal buffer = BitBuffer.FromBase64(str)\n\nprint(buffer:ReadUInt(8)) --&gt; 45\nprint(buffer:ReadUInt(8)) --&gt; 180\n```\n\nSee [BitBuffer::ToBase64](#ToBase64)&quot;,
+            &quot;params&quot;: [
+                {
+                    &quot;name&quot;: &quot;inputStr&quot;,
+                    &quot;desc&quot;: &quot;&quot;,
+                    &quot;lua_type&quot;: &quot;string&quot;
+                }
+            ],
+            &quot;returns&quot;: [
+                {
+                    &quot;desc&quot;: &quot;&quot;,
+                    &quot;lua_type&quot;: &quot;BitBuffer&quot;
+                }
+            ],
+            &quot;function_type&quot;: &quot;static&quot;,
+            &quot;tags&quot;: [
+                &quot;Constructor&quot;
+            ],
+            &quot;source&quot;: {
+                &quot;line&quot;: 274,
+                &quot;path&quot;: &quot;src/init.lua&quot;
+            }
+        },
+        {
+            &quot;name&quot;: &quot;FromBase91&quot;,
+            &quot;desc&quot;: &quot;Creates a new BitBuffer from a Base91 string, starting with a size corresponding to the number of bits stored in the input string, and it&#x27;s cursor positioned at 0.\n**This is the recommended function to use for DataStores.**\n\n```lua\nlocal initialBuffer = BitBuffer.new()\ninitialBuffer:WriteUInt(32, 78)\ninitialBuffer:WriteString(\&quot;Hi\&quot;)\n\nlocal b91 = initialBuffer:ToBase91()\nlocal newBuffer = BitBuffer.FromBase91(b91)\nprint(newBuffer:ReadUInt(32)) --&gt; 78\nprint(newBuffer:ReadString()) --&gt; Hi\n```\n\nSee [BitBuffer::ToBase91](#ToBase91)\n\n:::info What is Base91?\nBase91 is a way to pack binary data into text, similar to Base64. It is, on average, about 10% more efficient than Base64. Check [this page](http://base91.sourceforge.net) to learn more.\n:::&quot;,
+            &quot;params&quot;: [
+                {
+                    &quot;name&quot;: &quot;inputStr&quot;,
+                    &quot;desc&quot;: &quot;&quot;,
+                    &quot;lua_type&quot;: &quot;string&quot;
+                }
+            ],
+            &quot;returns&quot;: [
+                {
+                    &quot;desc&quot;: &quot;&quot;,
+                    &quot;lua_type&quot;: &quot;BitBuffer&quot;
+                }
+            ],
+            &quot;function_type&quot;: &quot;static&quot;,
+            &quot;tags&quot;: [
+                &quot;Constructor&quot;
+            ],
+            &quot;source&quot;: {
+                &quot;line&quot;: 367,
+                &quot;path&quot;: &quot;src/init.lua&quot;
+            }
+        },
+        {
+            &quot;name&quot;: &quot;FromBase128&quot;,
+            &quot;desc&quot;: &quot;Creates a new BitBuffer from a Base128 string, starting with a size corresponding to the number of bits stored in the input string (7 bits per character), and it&#x27;s cursor positioned at 0.\n\n```lua\nlocal str = base128(\&quot;\\255\\12\&quot;)\nlocal buffer = BitBuffer.FromBase128(str)\nprint(buffer:ReadUInt(8)) --&gt; 255\nprint(buffer:ReadUInt(8)) --&gt; 12\n```\n\nSee [BitBuffer::ToBase128](#ToBase128)&quot;,
+            &quot;params&quot;: [
+                {
+                    &quot;name&quot;: &quot;inputStr&quot;,
+                    &quot;desc&quot;: &quot;&quot;,
+                    &quot;lua_type&quot;: &quot;string&quot;
+                }
+            ],
+            &quot;returns&quot;: [
+                {
+                    &quot;desc&quot;: &quot;&quot;,
+                    &quot;lua_type&quot;: &quot;BitBuffer&quot;
+                }
+            ],
+            &quot;function_type&quot;: &quot;static&quot;,
+            &quot;tags&quot;: [
+                &quot;Constructor&quot;
+            ],
+            &quot;source&quot;: {
+                &quot;line&quot;: 434,
+                &quot;path&quot;: &quot;src/init.lua&quot;
+            }
+        },
+        {
+            &quot;name&quot;: &quot;ResetCursor&quot;,
+            &quot;desc&quot;: &quot;Resets the position of the cursor.\n\n```lua\nlocal buffer = BitBuffer.new()\nbuffer:WriteUInt(32, 890)\nbuffer:ResetCursor()\n\nprint(buffer:GetCursor()) --&gt; 0\n```&quot;,
+            &quot;params&quot;: [],
+            &quot;returns&quot;: [],
+            &quot;function_type&quot;: &quot;method&quot;,
+            &quot;tags&quot;: [
+                &quot;General&quot;
+            ],
+            &quot;source&quot;: {
+                &quot;line&quot;: 493,
+                &quot;path&quot;: &quot;src/init.lua&quot;
+            }
+        },
+        {
+            &quot;name&quot;: &quot;SetCursor&quot;,
+            &quot;desc&quot;: &quot;Sets the position of the cursor to the given position.\n\n```lua\nlocal buffer = BitBuffer.new()\nbuffer:WriteUInt(32, 67)\nbuffer:WriteUInt(32, 44)\n\nbuffer:SetCursor(32)\nprint(buffer:ReadUInt(32)) --&gt; 44\n```&quot;,
+            &quot;params&quot;: [
+                {
+                    &quot;name&quot;: &quot;position&quot;,
+                    &quot;desc&quot;: &quot;&quot;,
+                    &quot;lua_type&quot;: &quot;number&quot;
+                }
+            ],
+            &quot;returns&quot;: [],
+            &quot;function_type&quot;: &quot;method&quot;,
+            &quot;tags&quot;: [
+                &quot;General&quot;
+            ],
+            &quot;source&quot;: {
+                &quot;line&quot;: 512,
+                &quot;path&quot;: &quot;src/init.lua&quot;
+            }
+        },
+        {
+            &quot;name&quot;: &quot;GetCursor&quot;,
+            &quot;desc&quot;: &quot;Returns the position of the cursor.\n\n```lua\nlocal buffer = BitBuffer.new()\nbuffer:WriteUInt(17, 901)\nbuffer:WriteUInt(4, 2)\nprint(buffer:GetCursor()) --&gt; 21\n```&quot;,
+            &quot;params&quot;: [],
+            &quot;returns&quot;: [
+                {
+                    &quot;desc&quot;: &quot;&quot;,
+                    &quot;lua_type&quot;: &quot;number&quot;
+                }
+            ],
+            &quot;function_type&quot;: &quot;method&quot;,
+            &quot;tags&quot;: [
+                &quot;General&quot;
+            ],
+            &quot;source&quot;: {
+                &quot;line&quot;: 533,
+                &quot;path&quot;: &quot;src/init.lua&quot;
+            }
+        },
+        {
+            &quot;name&quot;: &quot;ResetBuffer&quot;,
+            &quot;desc&quot;: &quot;Clears the buffer, setting its size to zero, and sets its position to 0.\n\n```lua\nlocal buffer = BitBuffer.new()\nbuffer:WriteUInt(32, math.pow(2, 32) - 1)\n\nbuffer:ResetBuffer()\nprint(buffer:GetCursor()) --&gt; 0\nprint(buffer:ReadUInt(32)) --&gt; 0\n```&quot;,
+            &quot;params&quot;: [],
+            &quot;returns&quot;: [],
+            &quot;function_type&quot;: &quot;method&quot;,
+            &quot;tags&quot;: [
+                &quot;General&quot;
+            ],
+            &quot;source&quot;: {
+                &quot;line&quot;: 550,
+                &quot;path&quot;: &quot;src/init.lua&quot;
+            }
+        },
+        {
+            &quot;name&quot;: &quot;GetSize&quot;,
+            &quot;desc&quot;: &quot;Returns the size of the buffer.\n\n```lua\nlocal buffer = BitBuffer.new()\nbuffer:WriteUInt(18, 618)\n\nprint(buffer:GetSize()) --&gt; 18\n```&quot;,
+            &quot;params&quot;: [],
+            &quot;returns&quot;: [
+                {
+                    &quot;desc&quot;: &quot;&quot;,
+                    &quot;lua_type&quot;: &quot;number&quot;
+                }
+            ],
+            &quot;function_type&quot;: &quot;method&quot;,
+            &quot;tags&quot;: [
+                &quot;General&quot;
+            ],
+            &quot;source&quot;: {
+                &quot;line&quot;: 569,
+                &quot;path&quot;: &quot;src/init.lua&quot;
+            }
+        },
+        {
+            &quot;name&quot;: &quot;ToString&quot;,
+            &quot;desc&quot;: &quot;Serializes the buffer into a binary string.\nYou can retrieve the buffer from this string using [BitBuffer.FromString](#FromString).\n\n```lua\nlocal buffer = BitBuffer.new()\nbuffer:WriteUInt(8, 65)\nbuffer:WriteUInt(8, 66)\nbuffer:WriteUInt(8, 67)\n\nprint(buffer:ToString()) --&gt; ABC\n```\n\nSee [BitBuffer.FromString](#FromString)&quot;,
+            &quot;params&quot;: [],
+            &quot;returns&quot;: [
+                {
+                    &quot;desc&quot;: &quot;&quot;,
+                    &quot;lua_type&quot;: &quot;string&quot;
+                }
+            ],
+            &quot;function_type&quot;: &quot;method&quot;,
+            &quot;tags&quot;: [
+                &quot;Serialization&quot;
+            ],
+            &quot;source&quot;: {
+                &quot;line&quot;: 590,
+                &quot;path&quot;: &quot;src/init.lua&quot;
+            }
+        },
+        {
+            &quot;name&quot;: &quot;ToBase64&quot;,
+            &quot;desc&quot;: &quot;Serializes the buffer into a Base64 string.\nYou can retrieve the buffer from this string using [BitBuffer.FromBase64](#FromBase64).\n\n```lua\nlocal initialBuffer = BitBuffer.new()\ninitialBuffer:WriteUInt(15, 919)\ninitialBuffer:WriteString(\&quot;Hello!\&quot;)\n\nlocal b64 = initialBuffer:ToBase64()\nlocal newBuffer = BitBuffer.FromBase64(b64)\nprint(newBuffer:ReadUInt(15)) --&gt; 919\nprint(newBuffer:ReadString()) --&gt; Hello!\n```\nSee [BitBuffer.FromBase64](#FromBase64)&quot;,
+            &quot;params&quot;: [],
+            &quot;returns&quot;: [
+                {
+                    &quot;desc&quot;: &quot;&quot;,
+                    &quot;lua_type&quot;: &quot;string&quot;
+                }
+            ],
+            &quot;function_type&quot;: &quot;method&quot;,
+            &quot;tags&quot;: [
+                &quot;Serialization&quot;
+            ],
+            &quot;source&quot;: {
+                &quot;line&quot;: 621,
+                &quot;path&quot;: &quot;src/init.lua&quot;
+            }
+        },
+        {
+            &quot;name&quot;: &quot;ToBase91&quot;,
+            &quot;desc&quot;: &quot;Serializes the buffer into a Base91 string.\nYou can retrieve the buffer from this string using [BitBuffer.FromBase91](#FromBase91).\n**This is the recommended function to use for DataStores.**\n\n```lua\nlocal buffer = BitBuffer.new()\nbuffer:WriteString(playerData.CustomName)\nbuffer:WriteUInt(8, playerData.Level)\nbuffer:WriteUInt(16, playerData.Money)\n\nSaveToDataStore(buffer:ToBase91())\n```\n```lua\nlocal b91 = RetrieveFromDataStore()\nlocal buffer = BitBuffer.FromBase91(b91)\n\nlocal playerData = {\n\tCustomName = buffer:ReadString();\n\tLevel = buffer:ReadUInt(8);\n\tMoney = buffer:ReadUInt(16);\n}\n```\n\nSee [BitBuffer.FromBase91](#FromBase91)&quot;,
+            &quot;params&quot;: [],
+            &quot;returns&quot;: [
+                {
+                    &quot;desc&quot;: &quot;&quot;,
+                    &quot;lua_type&quot;: &quot;string&quot;
+                }
+            ],
+            &quot;function_type&quot;: &quot;method&quot;,
+            &quot;tags&quot;: [
+                &quot;Serialization&quot;
+            ],
+            &quot;source&quot;: {
+                &quot;line&quot;: 683,
+                &quot;path&quot;: &quot;src/init.lua&quot;
+            }
+        },
+        {
+            &quot;name&quot;: &quot;ToBase128&quot;,
+            &quot;desc&quot;: &quot;Serializes the buffer into a Base128 string.\nYou can retrieve the buffer from this string using [BitBuffer.FromBase128](#FromBase128).\n\nreturn string&quot;,
+            &quot;params&quot;: [],
+            &quot;returns&quot;: [],
+            &quot;function_type&quot;: &quot;method&quot;,
+            &quot;tags&quot;: [
+                &quot;Serialization&quot;
+            ],
+            &quot;source&quot;: {
+                &quot;line&quot;: 738,
+                &quot;path&quot;: &quot;src/init.lua&quot;
+            }
+        },
+        {
+            &quot;name&quot;: &quot;WriteUInt&quot;,
+            &quot;desc&quot;: &quot;Writes an unsigned integer of `bitWidth` bits to the buffer.\n`bitWidth` must be an integer between 1 and 32.\nIf the input integer uses more bits than `bitWidth`, it will overflow as expected.\n\n```lua\nbuffer:WriteUInt(32, 560) -- Writes 560 to the buffer\nbuffer:WriteUInt(3, 9) -- Writes 0b101 (5) because 9 is 0b1101, but `bitWidth` is only 3!\n```&quot;,
+            &quot;params&quot;: [
+                {
+                    &quot;name&quot;: &quot;bitWidth&quot;,
+                    &quot;desc&quot;: &quot;&quot;,
+                    &quot;lua_type&quot;: &quot;number&quot;
+                },
+                {
+                    &quot;name&quot;: &quot;uint&quot;,
+                    &quot;desc&quot;: &quot;&quot;,
+                    &quot;lua_type&quot;: &quot;number&quot;
+                }
+            ],
+            &quot;returns&quot;: [],
+            &quot;function_type&quot;: &quot;method&quot;,
+            &quot;tags&quot;: [
+                &quot;Write&quot;
+            ],
+            &quot;source&quot;: {
+                &quot;line&quot;: 778,
+                &quot;path&quot;: &quot;src/init.lua&quot;
+            }
+        },
+        {
+            &quot;name&quot;: &quot;ReadUInt&quot;,
+            &quot;desc&quot;: &quot;Reads `bitWidth` bits from the buffer as an unsigned integer.\n`bitWidth` must be an integer between 1 and 32.\n\n```lua\nbuffer:WriteUInt(12, 89)\nbuffer:ResetCursor()\nprint(buffer:ReadUInt(12)) --&gt; 89\n```&quot;,
+            &quot;params&quot;: [
+                {
+                    &quot;name&quot;: &quot;bitWidth&quot;,
+                    &quot;desc&quot;: &quot;&quot;,
+                    &quot;lua_type&quot;: &quot;number&quot;
+                }
+            ],
+            &quot;returns&quot;: [
+                {
+                    &quot;desc&quot;: &quot;&quot;,
+                    &quot;lua_type&quot;: &quot;number&quot;
+                }
+            ],
+            &quot;function_type&quot;: &quot;method&quot;,
+            &quot;tags&quot;: [
+                &quot;Read&quot;
+            ],
+            &quot;source&quot;: {
+                &quot;line&quot;: 804,
+                &quot;path&quot;: &quot;src/init.lua&quot;
+            }
+        },
+        {
+            &quot;name&quot;: &quot;WriteInt&quot;,
+            &quot;desc&quot;: &quot;Writes a signed integer of `bitWidth` bits using [two&#x27;s complement](https://en.wikipedia.org/wiki/Two%27s_complement).\n`bitWidth` must be an integer between 1 and 32.\nOverflow is **untested**, use at your own risk.\n\n```lua\nlocal buffer = BitBuffer.new()\nbuffer:WriteInt(22, -901) --&gt; Writes -901 to the buffer\n```&quot;,
+            &quot;params&quot;: [
+                {
+                    &quot;name&quot;: &quot;bitWidth&quot;,
+                    &quot;desc&quot;: &quot;&quot;,
+                    &quot;lua_type&quot;: &quot;number&quot;
+                },
+                {
+                    &quot;name&quot;: &quot;int&quot;,
+                    &quot;desc&quot;: &quot;&quot;,
+                    &quot;lua_type&quot;: &quot;number&quot;
+                }
+            ],
+            &quot;returns&quot;: [],
+            &quot;function_type&quot;: &quot;method&quot;,
+            &quot;tags&quot;: [
+                &quot;Write&quot;
+            ],
+            &quot;source&quot;: {
+                &quot;line&quot;: 828,
+                &quot;path&quot;: &quot;src/init.lua&quot;
+            }
+        },
+        {
+            &quot;name&quot;: &quot;ReadInt&quot;,
+            &quot;desc&quot;: &quot;Reads `bitWidth` bits as a signed integer stored using [two&#x27;s complement](https://en.wikipedia.org/wiki/Two%27s_complement).\n`bitWidth` must be an integer between 1 and 32.\n\n```lua\nlocal buffer = BitBuffer.new()\nbuffer:WriteInt(15, -78)\nbuffer:ResetCursor()\nprint(buffer:ReadInt(15)) --&gt; -78\n```&quot;,
+            &quot;params&quot;: [
+                {
+                    &quot;name&quot;: &quot;bitWidth&quot;,
+                    &quot;desc&quot;: &quot;&quot;,
+                    &quot;lua_type&quot;: &quot;number&quot;
+                }
+            ],
+            &quot;returns&quot;: [
+                {
+                    &quot;desc&quot;: &quot;&quot;,
+                    &quot;lua_type&quot;: &quot;number&quot;
+                }
+            ],
+            &quot;function_type&quot;: &quot;method&quot;,
+            &quot;tags&quot;: [
+                &quot;Read&quot;
+            ],
+            &quot;source&quot;: {
+                &quot;line&quot;: 855,
+                &quot;path&quot;: &quot;src/init.lua&quot;
+            }
+        },
+        {
+            &quot;name&quot;: &quot;WriteBool&quot;,
+            &quot;desc&quot;: &quot;Writes one bit the buffer: 1 if `value` is truthy, 0 otherwise.\n\n```lua\nlocal buffer = BitBuffer.new()\nbuffer:WriteBool(true) --&gt; Writes 1\nbuffer:WriteBool(\&quot;A\&quot;) --&gt; Also writes 1\nbuffer:WriteBool(nil) --&gt; Writes 0\n```&quot;,
+            &quot;params&quot;: [
+                {
+                    &quot;name&quot;: &quot;value&quot;,
+                    &quot;desc&quot;: &quot;&quot;,
+                    &quot;lua_type&quot;: &quot;any&quot;
+                }
+            ],
+            &quot;returns&quot;: [],
+            &quot;function_type&quot;: &quot;method&quot;,
+            &quot;tags&quot;: [
+                &quot;Write&quot;
+            ],
+            &quot;source&quot;: {
+                &quot;line&quot;: 880,
+                &quot;path&quot;: &quot;src/init.lua&quot;
+            }
+        },
+        {
+            &quot;name&quot;: &quot;ReadBool&quot;,
+            &quot;desc&quot;: &quot;Reads one bit from the buffer and returns a boolean: true if the bit is 1, false if the bit is 0.\n\n```lua\nlocal buffer = BitBuffer.new()\nbuffer:WriteUInt(4, 0b1011)\nbuffer:ResetCursor()\n\nprint(buffer:ReadBool()) --&gt; true\nprint(buffer:ReadBool()) --&gt; true\nprint(buffer:ReadBool()) --&gt; false\nprint(buffer:ReadBool()) --&gt; true\n```&quot;,
+            &quot;params&quot;: [],
+            &quot;returns&quot;: [
+                {
+                    &quot;desc&quot;: &quot;&quot;,
+                    &quot;lua_type&quot;: &quot;boolean&quot;
+                }
+            ],
+            &quot;function_type&quot;: &quot;method&quot;,
+            &quot;tags&quot;: [
+                &quot;Read&quot;
+            ],
+            &quot;source&quot;: {
+                &quot;line&quot;: 905,
+                &quot;path&quot;: &quot;src/init.lua&quot;
+            }
+        },
+        {
+            &quot;name&quot;: &quot;WriteChar&quot;,
+            &quot;desc&quot;: &quot;Writes one ASCII character (one byte) to the buffer.\n`char` cannot be an empty string.\n\n```lua\nlocal buffer = BitBuffer.new()\nbuffer:WriteChar(\&quot;k\&quot;)\nbuffer:ResetCursor()\nprint(buffer:ReadChar()) --&gt; k\n```&quot;,
+            &quot;params&quot;: [
+                {
+                    &quot;name&quot;: &quot;char&quot;,
+                    &quot;desc&quot;: &quot;&quot;,
+                    &quot;lua_type&quot;: &quot;string&quot;
+                }
+            ],
+            &quot;returns&quot;: [],
+            &quot;function_type&quot;: &quot;method&quot;,
+            &quot;tags&quot;: [
+                &quot;Write&quot;
+            ],
+            &quot;source&quot;: {
+                &quot;line&quot;: 923,
+                &quot;path&quot;: &quot;src/init.lua&quot;
+            }
+        },
+        {
+            &quot;name&quot;: &quot;ReadChar&quot;,
+            &quot;desc&quot;: &quot;Reads one byte as an ASCII character from the buffer.\n\n```lua\nlocal buffer = BitBuffer.new()\nbuffer:WriteUInt(8, 65)\nbuffer:ResetCursor()\nprint(buffer:ReadChar()) --&gt; A\n```&quot;,
+            &quot;params&quot;: [],
+            &quot;returns&quot;: [
+                {
+                    &quot;desc&quot;: &quot;&quot;,
+                    &quot;lua_type&quot;: &quot;string&quot;
+                }
+            ],
+            &quot;function_type&quot;: &quot;method&quot;,
+            &quot;tags&quot;: [
+                &quot;Read&quot;
+            ],
+            &quot;source&quot;: {
+                &quot;line&quot;: 946,
+                &quot;path&quot;: &quot;src/init.lua&quot;
+            }
+        },
+        {
+            &quot;name&quot;: &quot;WriteBytes&quot;,
+            &quot;desc&quot;: &quot;Writes a stream of bytes to the buffer.\nif `bytes` is an empty string, nothing will be written.\n\n```lua\nlocal buffer = BitBuffer.new()\nbuffer:WriteBytes(\&quot;AD\&quot;)\nbuffer:ResetCursor()\nprint(buffer:ReadUInt(8), buffer:ReadUInt(8)) --&gt; 65 68\n```\n\nSee [BitBuffer::WriteString](#WriteString)&quot;,
+            &quot;params&quot;: [
+                {
+                    &quot;name&quot;: &quot;bytes&quot;,
+                    &quot;desc&quot;: &quot;&quot;,
+                    &quot;lua_type&quot;: &quot;string&quot;
+                }
+            ],
+            &quot;returns&quot;: [],
+            &quot;function_type&quot;: &quot;method&quot;,
+            &quot;tags&quot;: [
+                &quot;Write&quot;
+            ],
+            &quot;source&quot;: {
+                &quot;line&quot;: 965,
+                &quot;path&quot;: &quot;src/init.lua&quot;
+            }
+        },
+        {
+            &quot;name&quot;: &quot;ReadBytes&quot;,
+            &quot;desc&quot;: &quot;Reads `length` bytes as a string from the buffer.\nif `length` is 0, nothing will be read and an empty string will be returned.\n\n```lua\nlocal buffer = BitBuffer.new()\nbuffer:WriteUInt(8, 65)\nbuffer:WriteUInt(8, 67)\nprint(buffer:ReadBytes(2)) --&gt; AC\n```\n\nSee [BitBuffer::ReadString](#ReadString)&quot;,
+            &quot;params&quot;: [
+                {
+                    &quot;name&quot;: &quot;length&quot;,
+                    &quot;desc&quot;: &quot;&quot;,
+                    &quot;lua_type&quot;: &quot;number&quot;
+                }
+            ],
+            &quot;returns&quot;: [
+                {
+                    &quot;desc&quot;: &quot;&quot;,
+                    &quot;lua_type&quot;: &quot;string&quot;
+                }
+            ],
+            &quot;function_type&quot;: &quot;method&quot;,
+            &quot;tags&quot;: [
+                &quot;Read&quot;
+            ],
+            &quot;source&quot;: {
+                &quot;line&quot;: 1005,
+                &quot;path&quot;: &quot;src/init.lua&quot;
+            }
+        },
+        {
+            &quot;name&quot;: &quot;WriteString&quot;,
+            &quot;desc&quot;: &quot;Writes a string to the buffer.\n\nWriteString will write the length of the string as a 24-bit unsigned integer first, then write the bytes in the string.\nThe length of the string cannot be greater than `2^24 - 1 (16777215)`.\n\n```lua\nlocal buffer = BitBuffer.new()\nbuffer:WriteString(\&quot;AB\&quot;)\nbuffer:ResetCursor()\nprint(buffer:ReadUInt(24), buffer:ReadBytes(2)) --&gt; 2 AB\n```\n\nSee [BitBuffer::WriteBytes](#WriteBytes)&quot;,
+            &quot;params&quot;: [
+                {
+                    &quot;name&quot;: &quot;str&quot;,
+                    &quot;desc&quot;: &quot;&quot;,
+                    &quot;lua_type&quot;: &quot;string&quot;
+                }
+            ],
+            &quot;returns&quot;: [],
+            &quot;function_type&quot;: &quot;method&quot;,
+            &quot;tags&quot;: [
+                &quot;Write&quot;
+            ],
+            &quot;source&quot;: {
+                &quot;line&quot;: 1048,
+                &quot;path&quot;: &quot;src/init.lua&quot;
+            }
+        },
+        {
+            &quot;name&quot;: &quot;ReadString&quot;,
+            &quot;desc&quot;: &quot;Reads a string from the buffer (see [BitBuffer::WriteString](#WriteString)).\n\n```lua\nlocal buffer = BitBuffer.new()\nbuffer:WriteString(\&quot;Hello!\&quot;)\nbuffer:ResetCursor()\nprint(buffer:ReadString()) --&gt; Hello!\n```\n\nSee [BitBuffer:ReadBytes](#ReadBytes)&quot;,
+            &quot;params&quot;: [],
+            &quot;returns&quot;: [
+                {
+                    &quot;desc&quot;: &quot;&quot;,
+                    &quot;lua_type&quot;: &quot;string&quot;
+                }
+            ],
+            &quot;function_type&quot;: &quot;method&quot;,
+            &quot;tags&quot;: [
+                &quot;Read&quot;
+            ],
+            &quot;source&quot;: {
+                &quot;line&quot;: 1076,
+                &quot;path&quot;: &quot;src/init.lua&quot;
+            }
+        },
+        {
+            &quot;name&quot;: &quot;WriteFloat32&quot;,
+            &quot;desc&quot;: &quot;Writes a single-precision floating point number to the buffer.\n\n```lua\nlocal buffer = BitBuffer.new()\nbuffer:WriteFloat32(892.738)\nbuffer:ResetCursor()\nprint(buffer:ReadFloat32()) --&gt; 892.73797607421875\n```&quot;,
+            &quot;params&quot;: [
+                {
+                    &quot;name&quot;: &quot;float&quot;,
+                    &quot;desc&quot;: &quot;&quot;,
+                    &quot;lua_type&quot;: &quot;number&quot;
+                }
+            ],
+            &quot;returns&quot;: [],
+            &quot;function_type&quot;: &quot;method&quot;,
+            &quot;tags&quot;: [
+                &quot;Write&quot;
+            ],
+            &quot;source&quot;: {
+                &quot;line&quot;: 1100,
+                &quot;path&quot;: &quot;src/init.lua&quot;
+            }
+        },
+        {
+            &quot;name&quot;: &quot;ReadFloat32&quot;,
+            &quot;desc&quot;: &quot;Reads a single-precision floating point number from the buffer.\n\n```lua\nlocal buffer = BitBuffer.new()\nbuffer:WriteFloat32(892.738)\nbuffer:ResetCursor()\nprint(buffer:ReadFloat32()) --&gt; 892.73797607421875\n```&quot;,
+            &quot;params&quot;: [],
+            &quot;returns&quot;: [
+                {
+                    &quot;desc&quot;: &quot;&quot;,
+                    &quot;lua_type&quot;: &quot;number&quot;
+                }
+            ],
+            &quot;function_type&quot;: &quot;method&quot;,
+            &quot;tags&quot;: [
+                &quot;Read&quot;
+            ],
+            &quot;source&quot;: {
+                &quot;line&quot;: 1134,
+                &quot;path&quot;: &quot;src/init.lua&quot;
+            }
+        },
+        {
+            &quot;name&quot;: &quot;WriteFloat64&quot;,
+            &quot;desc&quot;: &quot;Writes a double-precision floating point number to the buffer.\n\n```lua\nlocal buffer = BitBuffer.new()\nbuffer:WriteFloat64(-76358128.888202341)\nbuffer:ResetCursor()\nprint(buffer:ReadFloat64()) --&gt; -76358128.888202\n```&quot;,
+            &quot;params&quot;: [
+                {
+                    &quot;name&quot;: &quot;double&quot;,
+                    &quot;desc&quot;: &quot;&quot;,
+                    &quot;lua_type&quot;: &quot;number&quot;
+                }
+            ],
+            &quot;returns&quot;: [],
+            &quot;function_type&quot;: &quot;method&quot;,
+            &quot;tags&quot;: [
+                &quot;Write&quot;
+            ],
+            &quot;source&quot;: {
+                &quot;line&quot;: 1166,
+                &quot;path&quot;: &quot;src/init.lua&quot;
+            }
+        },
+        {
+            &quot;name&quot;: &quot;ReadFloat64&quot;,
+            &quot;desc&quot;: &quot;Reads a double-precision floating point number from the buffer.\n\n```lua\nlocal buffer = BitBuffer.new()\nbuffer:WriteFloat64(-76358128.888202341)\nbuffer:ResetCursor()\nprint(buffer:ReadFloat64()) --&gt; -76358128.888202\n```&quot;,
+            &quot;params&quot;: [],
+            &quot;returns&quot;: [
+                {
+                    &quot;desc&quot;: &quot;&quot;,
+                    &quot;lua_type&quot;: &quot;number&quot;
+                }
+            ],
+            &quot;function_type&quot;: &quot;method&quot;,
+            &quot;tags&quot;: [
+                &quot;Read&quot;
+            ],
+            &quot;source&quot;: {
+                &quot;line&quot;: 1189,
+                &quot;path&quot;: &quot;src/init.lua&quot;
+            }
+        }
+    ],
+    &quot;properties&quot;: [],
+    &quot;types&quot;: [],
+    &quot;name&quot;: &quot;BitBuffer&quot;,
+    &quot;desc&quot;: &quot;BitBuffer object.&quot;,
+    &quot;source&quot;: {
+        &quot;line&quot;: 175,
+        &quot;path&quot;: &quot;src/init.lua&quot;
+    }
+}</pre></details></div><div class="col col--3"><div class="tableOfContents_35-E thin-scrollbar"><ul class="table-of-contents table-of-contents__left-border"><li><a href="#types" class="table-of-contents__link">Types</a></li><li><a href="#properties" class="table-of-contents__link">Properties</a></li><li><a href="#functions" class="table-of-contents__link">Functions</a><ul><li><a href="#FromBase128" class="table-of-contents__link">.FromBase128</a></li><li><a href="#FromBase64" class="table-of-contents__link">.FromBase64</a></li><li><a href="#FromBase91" class="table-of-contents__link">.FromBase91</a></li><li><a href="#FromString" class="table-of-contents__link">.FromString</a></li><li><a href="#is" class="table-of-contents__link">.is</a></li><li><a href="#new" class="table-of-contents__link">.new</a></li><li><a href="#GetCursor" class="table-of-contents__link">:GetCursor</a></li><li><a href="#GetSize" class="table-of-contents__link">:GetSize</a></li><li><a href="#ReadBool" class="table-of-contents__link">:ReadBool</a></li><li><a href="#ReadBytes" class="table-of-contents__link">:ReadBytes</a></li><li><a href="#ReadChar" class="table-of-contents__link">:ReadChar</a></li><li><a href="#ReadFloat32" class="table-of-contents__link">:ReadFloat32</a></li><li><a href="#ReadFloat64" class="table-of-contents__link">:ReadFloat64</a></li><li><a href="#ReadInt" class="table-of-contents__link">:ReadInt</a></li><li><a href="#ReadString" class="table-of-contents__link">:ReadString</a></li><li><a href="#ReadUInt" class="table-of-contents__link">:ReadUInt</a></li><li><a href="#ResetBuffer" class="table-of-contents__link">:ResetBuffer</a></li><li><a href="#ResetCursor" class="table-of-contents__link">:ResetCursor</a></li><li><a href="#SetCursor" class="table-of-contents__link">:SetCursor</a></li><li><a href="#ToBase128" class="table-of-contents__link">:ToBase128</a></li><li><a href="#ToBase64" class="table-of-contents__link">:ToBase64</a></li><li><a href="#ToBase91" class="table-of-contents__link">:ToBase91</a></li><li><a href="#ToString" class="table-of-contents__link">:ToString</a></li><li><a href="#WriteBool" class="table-of-contents__link">:WriteBool</a></li><li><a href="#WriteBytes" class="table-of-contents__link">:WriteBytes</a></li><li><a href="#WriteChar" class="table-of-contents__link">:WriteChar</a></li><li><a href="#WriteFloat32" class="table-of-contents__link">:WriteFloat32</a></li><li><a href="#WriteFloat64" class="table-of-contents__link">:WriteFloat64</a></li><li><a href="#WriteInt" class="table-of-contents__link">:WriteInt</a></li><li><a href="#WriteString" class="table-of-contents__link">:WriteString</a></li><li><a href="#WriteUInt" class="table-of-contents__link">:WriteUInt</a></li></ul></li></ul></div></div></div></div></main></div></div><footer class="footer footer--dark"><div class="container"><div class="footer__bottom text--center"><div class="footer__copyright">Copyright © 2021 rstk. Built with Moonwave and Docusaurus.</div></div></div></footer></div>
+<script src="/assets/js/runtime~main.4f7abdf0.js"></script>
+<script src="/assets/js/main.90c27988.js"></script>
+</body>
+</html>
