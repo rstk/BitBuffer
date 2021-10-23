@@ -38,7 +38,7 @@ return PlayerData
 
 ## Docs
 
-Documentation can be found [here](rstk.github.io/BitBuffer). Keep in mind this is work in progress.
+Documentation can be found [here](https://rstk.github.io/BitBuffer). Keep in mind this is work in progress.
 
 ## Minimal tutorial
 
