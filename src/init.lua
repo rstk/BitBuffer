@@ -179,10 +179,34 @@ function BitBuffer:__tostring()
 	return "BitBuffer"
 end
 
-function BitBuffer.is(obj: any?): boolean
+--[=[
+	@tag General
+	Returns whether the passed object is a BitBuffer.
+
+	```lua
+	print(BitBuffer.is(BitBuffer.new())) --> true
+	print(BitBuffer.is(true)) --> false
+	```
+
+	@param obj any
+	@return boolean
+]=]
+function BitBuffer.is(obj: any): boolean
 	return getmetatable(obj :: {}) == BitBuffer
 end
 
+--[=[
+	@tag Constructor
+	Creates a new BitBuffer with an initial size of `sizeInBits`.
+
+	```lua
+	local buffer = BitBuffer.new(128)
+	print(buffer:GetSize()) --> 128
+	```
+
+	@param sizeInBits number? -- Initial size of the buffer in bits (defaults to 0)
+	@return BitBuffer
+]=]
 function BitBuffer.new(sizeInBits: number?)
 	sizeInBits = sizeInBits or 0
 
@@ -193,35 +217,66 @@ function BitBuffer.new(sizeInBits: number?)
 	}, BitBuffer)
 end
 
-function BitBuffer.FromString(str: string): BitBuffer
-	if type(str) ~= "string" then
-		Error("invalid argument #1 to 'FromString' (string expected, got %s)", typeof(str))
+--[=[
+	@tag Constructor
+	Creates a new BitBuffer from a binary string, starting with a size corresponding to number of bits in the input string (8 bits per character), and it's cursor positioned at 0.
+
+	```lua
+	local buffer = BitBuffer.FromString("\89")
+	print(buffer:ReadUInt(8)) --> 89
+	print(buffer:GetSize()) --> 8
+	```
+
+	See [BitBuffer::ToString](#ToString)
+	@param inputStr string
+	@return BitBuffer
+]=]
+function BitBuffer.FromString(inputStr: string): BitBuffer
+	if type(inputStr) ~= "string" then
+		Error("invalid argument #1 to 'FromString' (string expected, got %s)", typeof(inputStr))
 	end
 
-	local length = #str
+	local length = #inputStr
 	local buffer = table.create(math.ceil(length / 4))
 	for i = 1, length / 4 do
-		local a, b, c, d = string.byte(str, i * 4 - 3, i * 4)
+		local a, b, c, d = string.byte(inputStr, i * 4 - 3, i * 4)
 		buffer[i] = a + b * 256 + c * 65536 + d * 16777216
 	end
 
 	local rem = length % 4
 	if rem ~= 0 then
-		buffer[math.ceil(length / 4)] = string.unpack("<I" .. rem, str, length - rem)
+		buffer[math.ceil(length / 4)] = string.unpack("<I" .. rem, inputStr, length - rem)
 	end
 
 	return setmetatable({
 		_buffer = buffer;
 		_index = 0;
+		_size = #inputStr * 8;
 	}, BitBuffer)
 end
 
-function BitBuffer.FromBase64(stream: string): BitBuffer
-	if type(stream) ~= "string" then
-		Error("invalid argument #1 to 'FromBase64' (string expected, got %s)", typeof(stream))
+--[=[
+	@tag Constructor
+	Creates a new BitBuffer from a Base64 string, starting with a size corresponding to the number of bits stored in the input string (6 bits per character), and it's cursor positioned at 0.
+
+	```lua
+	local str = base64("\45\180")
+	local buffer = BitBuffer.FromBase64(str)
+
+	print(buffer:ReadUInt(8)) --> 45
+	print(buffer:ReadUInt(8)) --> 180
+	```
+
+	See [BitBuffer::ToBase64](#ToBase64)
+	@param inputStr string
+	@return BitBuffer
+]=]
+function BitBuffer.FromBase64(inputStr: string): BitBuffer
+	if type(inputStr) ~= "string" then
+		Error("invalid argument #1 to 'FromBase64' (string expected, got %s)", typeof(inputStr))
 	end
 
-	local length = #stream
+	local length = #inputStr
 	local fromBase64 = Base64.From
 
 	-- decode 4 base64 characters to 24 bits
@@ -233,7 +288,7 @@ function BitBuffer.FromBase64(stream: string): BitBuffer
 	local bufIndex = 1
 
 	for i = 1, chunks do
-		local c0, c1, c2, c3 = string.byte(stream, i * 4 - 3, i * 4)
+		local c0, c1, c2, c3 = string.byte(inputStr, i * 4 - 3, i * 4)
 		local v0, v1, v2, v3 = fromBase64[c0 + 1], fromBase64[c1 + 1], fromBase64[c2 + 1], fromBase64[c3 + 1]
 
 		-- pardon me for this horror
@@ -261,7 +316,7 @@ function BitBuffer.FromBase64(stream: string): BitBuffer
 	end
 
 	for i = chunks * 4 + 1, length do
-		local value = fromBase64[string.byte(stream, i, i) + 1]
+		local value = fromBase64[string.byte(inputStr, i, i) + 1]
 
 		if accIndex + 6 <= 32 then
 			accumulator = bit32.replace(accumulator, value, accIndex, 6)
@@ -281,25 +336,51 @@ function BitBuffer.FromBase64(stream: string): BitBuffer
 	return setmetatable({
 		_buffer = buffer;
 		_index = 0;
+		_size = #inputStr * 6;
 	}, BitBuffer)
 end
 
-function BitBuffer.FromBase91(stream: string): BitBuffer
-	if type(stream) ~= "string" then
-		Error("invalid argument #1 to 'FromBase91' (string expected, got %s)", typeof(stream))
-	elseif #stream % 2 ~= 0 then
-		Error("invalid argument #1 to 'FromBase91' (invalid Base91 string; string length must be an even number)")
+--[=[
+	@tag Constructor
+	Creates a new BitBuffer from a Base91 string, starting with a size corresponding to the number of bits stored in the input string, and it's cursor positioned at 0.
+	**This is the recommended function to use for DataStores.**
+
+	```lua
+	local initialBuffer = BitBuffer.new()
+	initialBuffer:WriteUInt(32, 78)
+	initialBuffer:WriteString("Hi")
+
+	local b91 = initialBuffer:ToBase91()
+	local newBuffer = BitBuffer.FromBase91(b91)
+	print(newBuffer:ReadUInt(32)) --> 78
+	print(newBuffer:ReadString()) --> Hi
+	```
+
+	See [BitBuffer::ToBase91](#ToBase91)
+	@param inputStr string
+	@return BitBuffer
+
+	:::info What is Base91?
+	Base91 is a way to pack binary data into text, similar to Base64. It is, on average, about 10% more efficient than Base64. Check [this page](http://base91.sourceforge.net) to learn more.
+	:::
+]=]
+function BitBuffer.FromBase91(inputStr: string): BitBuffer
+	if type(inputStr) ~= "string" then
+		Error("invalid argument #1 to 'FromBase91' (string expected, got %s)", typeof(inputStr))
+	elseif #inputStr % 2 ~= 0 then
+		Error("invalid argument #1 to 'FromBase91' (invalid Base91 string: string length must be an even number)")
 	end
 
 	local accumulator = 0
 	local accIndex = 0
-	local buffer = table.create(#stream / 2 * 13 / 32 + 1)
+	local buffer = table.create(#inputStr / 2 * 13 / 32 + 1)
 	local bufIndex = 1
+	local totalBits = 0
 
 	local fromBase91 = Base91.From
 
-	for i = 1, #stream, 2 do
-		local i0, i1 = string.byte(stream, i, i + 1)
+	for i = 1, #inputStr, 2 do
+		local i0, i1 = string.byte(inputStr, i, i + 1)
 		local v0, v1 = fromBase91[i0 + 1], fromBase91[i1 + 1]
 
 		if v0 == nil then
@@ -310,6 +391,7 @@ function BitBuffer.FromBase91(stream: string): BitBuffer
 
 		local value = v1 * 91 + v0
 		local nBits = value % 8192 > 88 and 13 or 14
+		totalBits += nBits
 
 		if accIndex + nBits <= 32 then
 			accumulator = bit32.replace(accumulator, value, accIndex, nBits)
@@ -330,22 +412,38 @@ function BitBuffer.FromBase91(stream: string): BitBuffer
 	return setmetatable({
 		_buffer = buffer;
 		_index = 0;
+		_size = totalBits;
 	}, BitBuffer)
 end
 
-function BitBuffer.FromBase128(stream: string): BitBuffer
-	if type(stream) ~= "string" then
-		Error("invalid argument #1 to 'FromBase128' (string expected, got %s)", typeof(stream))
+--[=[
+	@tag Constructor
+	Creates a new BitBuffer from a Base128 string, starting with a size corresponding to the number of bits stored in the input string (7 bits per character), and it's cursor positioned at 0.
+
+	```lua
+	local str = base128("\255\12")
+	local buffer = BitBuffer.FromBase128(str)
+	print(buffer:ReadUInt(8)) --> 255
+	print(buffer:ReadUInt(8)) --> 12
+	```
+
+	See [BitBuffer::ToBase128](#ToBase128)
+	@param inputStr string
+	@return BitBuffer
+]=]
+function BitBuffer.FromBase128(inputStr: string): BitBuffer
+	if type(inputStr) ~= "string" then
+		Error("invalid argument #1 to 'FromBase128' (string expected, got %s)", typeof(inputStr))
 	end
 
-	local length = #stream
+	local length = #inputStr
 	local buffer = table.create(math.ceil(length / 7) * 7)
 	local accumulator = 0
 	local bit = 0
 	local n = 1
 
 	for i = 1, length do
-		local val = string.byte(stream, i)
+		local val = string.byte(inputStr, i)
 		if val > 127 then
 			Error("invalid argument #1 to 'FromBase128' (invalid Base128 character at position %d: got %d, expected lower than 128)", i, val)
 		end
@@ -376,13 +474,41 @@ function BitBuffer.FromBase128(stream: string): BitBuffer
 	return setmetatable({
 		_buffer = buffer;
 		_index = 0;
+		_size = #inputStr * 7;
 	}, BitBuffer)
 end
 
+--[=[
+	@tag General
+	Resets the position of the cursor.
+
+	```lua
+	local buffer = BitBuffer.new()
+	buffer:WriteUInt(32, 890)
+	buffer:ResetCursor()
+
+	print(buffer:GetCursor()) --> 0
+	```
+]=]
 function BitBuffer:ResetCursor(): ()
 	self._index = 0
 end
 
+--[=[
+	@tag General
+	Sets the position of the cursor to the given position.
+
+	```lua
+	local buffer = BitBuffer.new()
+	buffer:WriteUInt(32, 67)
+	buffer:WriteUInt(32, 44)
+
+	buffer:SetCursor(32)
+	print(buffer:ReadUInt(32)) --> 44
+	```
+
+	@param position number
+]=]
 function BitBuffer:SetCursor(position: number): ()
 	if type(position) ~= "number" then
 		Error("invalid argument #1 to 'SetCursor' (number expected, got %s)", typeof(position))
@@ -391,23 +517,76 @@ function BitBuffer:SetCursor(position: number): ()
 	self._index = math.max(math.floor(position), 0)
 end
 
+--[=[
+	@tag General
+	Returns the position of the cursor.
+
+	```lua
+	local buffer = BitBuffer.new()
+	buffer:WriteUInt(17, 901)
+	buffer:WriteUInt(4, 2)
+	print(buffer:GetCursor()) --> 21
+	```
+
+	@return number
+]=]
 function BitBuffer:GetCursor(): number
 	return self._index
 end
 
+--[=[
+	@tag General
+	Clears the buffer, setting its size to zero, and sets its position to 0.
+
+	```lua
+	local buffer = BitBuffer.new()
+	buffer:WriteUInt(32, math.pow(2, 32) - 1)
+
+	buffer:ResetBuffer()
+	print(buffer:GetCursor()) --> 0
+	print(buffer:ReadUInt(32)) --> 0
+	```
+]=]
 function BitBuffer:ResetBuffer(): ()
 	table.clear(self._buffer)
+	self._size = 0
 	self._index = 0
 end
 
+--[=[
+	@tag General
+	Returns the size of the buffer.
+
+	```lua
+	local buffer = BitBuffer.new()
+	buffer:WriteUInt(18, 618)
+
+	print(buffer:GetSize()) --> 18
+	```
+
+	@return number
+]=]
 function BitBuffer:GetSize(): number
 	return self._size
 end
 
-function BitBuffer:Fits(length: number): boolean
-	return self._size - self._index >= length
-end
+--[=[
+	@tag Serialization
+	Serializes the buffer into a binary string.
+	You can retrieve the buffer from this string using [BitBuffer.FromString](#FromString).
 
+	```lua
+	local buffer = BitBuffer.new()
+	buffer:WriteUInt(8, 65)
+	buffer:WriteUInt(8, 66)
+	buffer:WriteUInt(8, 67)
+
+	print(buffer:ToString()) --> ABC
+	```
+
+	See [BitBuffer.FromString](#FromString)
+	@return string
+]=]
 function BitBuffer:ToString(): string
 	local bufSize = #self._buffer
 	if bufSize == 0 then
@@ -421,6 +600,24 @@ function BitBuffer:ToString(): string
 	return str
 end
 
+--[=[
+	@tag Serialization
+	Serializes the buffer into a Base64 string.
+	You can retrieve the buffer from this string using [BitBuffer.FromBase64](#FromBase64).
+
+	```lua
+	local initialBuffer = BitBuffer.new()
+	initialBuffer:WriteUInt(15, 919)
+	initialBuffer:WriteString("Hello!")
+
+	local b64 = initialBuffer:ToBase64()
+	local newBuffer = BitBuffer.FromBase64(b64)
+	print(newBuffer:ReadUInt(15)) --> 919
+	print(newBuffer:ReadString()) --> Hello!
+	```
+	See [BitBuffer.FromBase64](#FromBase64)
+	@return string
+]=]
 function BitBuffer:ToBase64(): string
 	local buffer = self._buffer
 	local bufIndex = 2
@@ -455,6 +652,34 @@ function BitBuffer:ToBase64(): string
 	return table.concat(output)
 end
 
+--[=[
+	@tag Serialization
+	Serializes the buffer into a Base91 string.
+	You can retrieve the buffer from this string using [BitBuffer.FromBase91](#FromBase91).
+	**This is the recommended function to use for DataStores.**
+
+	```lua
+	local buffer = BitBuffer.new()
+	buffer:WriteString(playerData.CustomName)
+	buffer:WriteUInt(8, playerData.Level)
+	buffer:WriteUInt(16, playerData.Money)
+
+	SaveToDataStore(buffer:ToBase91())
+	```
+	```lua
+	local b91 = RetrieveFromDataStore()
+	local buffer = BitBuffer.FromBase91(b91)
+
+	local playerData = {
+		CustomName = buffer:ReadString();
+		Level = buffer:ReadUInt(8);
+		Money = buffer:ReadUInt(16);
+	}
+	```
+
+	See [BitBuffer.FromBase91](#FromBase91)
+	@return string
+]=]
 function BitBuffer:ToBase91(): string
 	local buffer = self._buffer
 
@@ -503,6 +728,13 @@ function BitBuffer:ToBase91(): string
 	return table.concat(output)
 end
 
+--[=[
+	@tag Serialization
+	Serializes the buffer into a Base128 string.
+	You can retrieve the buffer from this string using [BitBuffer.FromBase128](#FromBase128).
+
+	return string
+]=]
 function BitBuffer:ToBase128(): string
 	local buffer = self._buffer
 	local b128 = table.create(#buffer)
@@ -529,6 +761,20 @@ function BitBuffer:ToBase128(): string
 	return table.concat(b128)
 end
 
+--[=[
+	@tag Write
+	Writes an unsigned integer of `bitWidth` bits to the buffer.
+	`bitWidth` must be an integer between 1 and 32.
+	If the input integer uses more bits than `bitWidth`, it will overflow as expected.
+
+	```lua
+	buffer:WriteUInt(32, 560) -- Writes 560 to the buffer
+	buffer:WriteUInt(3, 9) -- Writes 0b101 (5) because 9 is 0b1101, but `bitWidth` is only 3!
+	```
+
+	@param bitWidth number
+	@param uint number
+]=]
 function BitBuffer:WriteUInt(bitWidth: number, uint: number): ()
 	if type(bitWidth) ~= "number" then
 		Error("invalid argument #1 to 'WriteUInt' (number expected, got %s)", typeof(bitWidth))
@@ -541,6 +787,20 @@ function BitBuffer:WriteUInt(bitWidth: number, uint: number): ()
 	WriteToBuffer(self, bitWidth, uint)
 end
 
+--[=[
+	@tag Read
+	Reads `bitWidth` bits from the buffer as an unsigned integer.
+	`bitWidth` must be an integer between 1 and 32.
+
+	```lua
+	buffer:WriteUInt(12, 89)
+	buffer:ResetCursor()
+	print(buffer:ReadUInt(12)) --> 89
+	```
+
+	@param bitWidth number
+	@return number
+]=]
 function BitBuffer:ReadUInt(bitWidth: number): number
 	if type(bitWidth) ~= "number" then
 		Error("invalid argument #1 to 'ReadUInt' (number expected, got %s)", typeof(bitWidth))
@@ -551,6 +811,20 @@ function BitBuffer:ReadUInt(bitWidth: number): number
 	return ReadFromBuffer(self, bitWidth)
 end
 
+--[=[
+	@tag Write
+	Writes a signed integer of `bitWidth` bits using [two's complement](https://en.wikipedia.org/wiki/Two%27s_complement).
+	`bitWidth` must be an integer between 1 and 32.
+	Overflow is **untested**, use at your own risk.
+
+	```lua
+	local buffer = BitBuffer.new()
+	buffer:WriteInt(22, -901) --> Writes -901 to the buffer
+	```
+
+	@param bitWidth number
+	@param int number
+]=]
 function BitBuffer:WriteInt(bitWidth: number, int: number): ()
 	if type(bitWidth) ~= "number" then
 		Error("invalid argument #1 to 'WriteInt' (number expected, got %s)", typeof(bitWidth))
@@ -563,6 +837,21 @@ function BitBuffer:WriteInt(bitWidth: number, int: number): ()
 	WriteToBuffer(self, bitWidth, int % (bitWidth == 32 and 4294967296 or bit32.lshift(1, bitWidth)))
 end
 
+--[=[
+	@tag Read
+	Reads `bitWidth` bits as a signed integer stored using [two's complement](https://en.wikipedia.org/wiki/Two%27s_complement).
+	`bitWidth` must be an integer between 1 and 32.
+
+	```lua
+	local buffer = BitBuffer.new()
+	buffer:WriteInt(15, -78)
+	buffer:ResetCursor()
+	print(buffer:ReadInt(15)) --> -78
+	```
+
+	@param bitWidth number
+	@return number
+]=]
 function BitBuffer:ReadInt(bitWidth: number): number
 	if type(bitWidth) ~= "number" then
 		Error("invalid argument #1 to 'ReadInt' (number expected, got %s)", typeof(bitWidth))
@@ -575,6 +864,19 @@ function BitBuffer:ReadInt(bitWidth: number): number
 	return value >= max / 2 and value - max or value
 end
 
+--[=[
+	@tag Write
+	Writes one bit the buffer: 1 if `value` is truthy, 0 otherwise.
+
+	```lua
+	local buffer = BitBuffer.new()
+	buffer:WriteBool(true) --> Writes 1
+	buffer:WriteBool("A") --> Also writes 1
+	buffer:WriteBool(nil) --> Writes 0
+	```
+
+	@param value any
+]=]
 function BitBuffer:WriteBool(value: any): ()
 	if value then
 		WriteToBuffer(self, 1, 1)
@@ -583,10 +885,41 @@ function BitBuffer:WriteBool(value: any): ()
 	end
 end
 
+--[=[
+	@tag Read
+	Reads one bit from the buffer and returns a boolean: true if the bit is 1, false if the bit is 0.
+
+	```lua
+	local buffer = BitBuffer.new()
+	buffer:WriteUInt(4, 0b1011)
+	buffer:ResetCursor()
+
+	print(buffer:ReadBool()) --> true
+	print(buffer:ReadBool()) --> true
+	print(buffer:ReadBool()) --> false
+	print(buffer:ReadBool()) --> true
+	```
+
+	@return boolean
+]=]
 function BitBuffer:ReadBool(): boolean
 	return ReadFromBuffer(self, 1) == 1
 end
 
+--[=[
+	@tag Write
+	Writes one ASCII character (one byte) to the buffer.
+	`char` cannot be an empty string.
+
+	```lua
+	local buffer = BitBuffer.new()
+	buffer:WriteChar("k")
+	buffer:ResetCursor()
+	print(buffer:ReadChar()) --> k
+	```
+
+	@param char string
+]=]
 function BitBuffer:WriteChar(char: string): ()
 	if type(char) ~= "string" then
 		Error("invalid argument #1 to 'WriteChar' (string expected, got %s)", typeof(char))
@@ -597,10 +930,38 @@ function BitBuffer:WriteChar(char: string): ()
 	WriteToBuffer(self, 8, string.byte(char, 1, 1))
 end
 
+--[=[
+	@tag Read
+	Reads one byte as an ASCII character from the buffer.
+
+	```lua
+	local buffer = BitBuffer.new()
+	buffer:WriteUInt(8, 65)
+	buffer:ResetCursor()
+	print(buffer:ReadChar()) --> A
+	```
+
+	@return string
+]=]
 function BitBuffer:ReadChar(): string
 	return Character[ReadFromBuffer(self, 8) + 1]
 end
 
+--[=[
+	@tag Write
+	Writes a stream of bytes to the buffer.
+	if `bytes` is an empty string, nothing will be written.
+
+	```lua
+	local buffer = BitBuffer.new()
+	buffer:WriteBytes("AD")
+	buffer:ResetCursor()
+	print(buffer:ReadUInt(8), buffer:ReadUInt(8)) --> 65 68
+	```
+
+	See [BitBuffer::WriteString](#WriteString)
+	@param bytes string
+]=]
 function BitBuffer:WriteBytes(bytes: string): ()
 	if type(bytes) ~= "string" then
 		Error("invalid argument #1 to 'WriteBytes' (string expected, got %s)", typeof(bytes))
@@ -625,6 +986,22 @@ function BitBuffer:WriteBytes(bytes: string): ()
 	end
 end
 
+--[=[
+	@tag Read
+	Reads `length` bytes as a string from the buffer.
+	if `length` is 0, nothing will be read and an empty string will be returned.
+
+	```lua
+	local buffer = BitBuffer.new()
+	buffer:WriteUInt(8, 65)
+	buffer:WriteUInt(8, 67)
+	print(buffer:ReadBytes(2)) --> AC
+	```
+
+	See [BitBuffer::ReadString](#ReadString)
+	@param length number
+	@return string
+]=]
 function BitBuffer:ReadBytes(length: number): string
 	if type(length) ~= "number" then
 		Error("invalid argument #1 to 'ReadBytes' (number expected, got %s)", typeof(length))
@@ -651,6 +1028,23 @@ function BitBuffer:ReadBytes(length: number): string
 	end
 end
 
+--[=[
+	@tag Write
+	Writes a string to the buffer.
+
+	WriteString will write the length of the string as a 24-bit unsigned integer first, then write the bytes in the string.
+	The length of the string cannot be greater than `2^24 - 1 (16777215)`.
+
+	```lua
+	local buffer = BitBuffer.new()
+	buffer:WriteString("AB")
+	buffer:ResetCursor()
+	print(buffer:ReadUInt(24), buffer:ReadBytes(2)) --> 2 AB
+	```
+
+	See [BitBuffer::WriteBytes](#WriteBytes)
+	@param str string
+]=]
 function BitBuffer:WriteString(str: string): ()
 	if type(str) ~= "string" then
 		Error("invalid argument #1 to 'WriteString' (string expected, got %s)", typeof(str))
@@ -665,6 +1059,20 @@ function BitBuffer:WriteString(str: string): ()
 	self:WriteBytes(str)
 end
 
+--[=[
+	@tag Read
+	Reads a string from the buffer (see [BitBuffer::WriteString](#WriteString)).
+
+	```lua
+	local buffer = BitBuffer.new()
+	buffer:WriteString("Hello!")
+	buffer:ResetCursor()
+	print(buffer:ReadString()) --> Hello!
+	```
+
+	See [BitBuffer:ReadBytes](#ReadBytes)
+	@return string
+]=]
 function BitBuffer:ReadString(): string
 	return self:ReadBytes(ReadFromBuffer(self, 24))
 end
@@ -676,6 +1084,19 @@ local BINARY_POS_INF = 0b01111111100000000000000000000000
 local BINARY_NEG_INF = 0b11111111100000000000000000000000
 local BINARY_NAN = 0b01111111111111111111111111111111
 
+--[=[
+	@tag Write
+	Writes a single-precision floating point number to the buffer.
+
+	```lua
+	local buffer = BitBuffer.new()
+	buffer:WriteFloat32(892.738)
+	buffer:ResetCursor()
+	print(buffer:ReadFloat32()) --> 892.73797607421875
+	```
+
+	@param float number
+]=]
 function BitBuffer:WriteFloat32(float: number): ()
 	if type(float) ~= "number" then
 		Error("invalid argument #1 to 'WriteFloat32' (number expected, got %s)", typeof(float))
@@ -697,6 +1118,19 @@ function BitBuffer:WriteFloat32(float: number): ()
 	end
 end
 
+--[=[
+	@tag Read
+	Reads a single-precision floating point number from the buffer.
+
+	```lua
+	local buffer = BitBuffer.new()
+	buffer:WriteFloat32(892.738)
+	buffer:ResetCursor()
+	print(buffer:ReadFloat32()) --> 892.73797607421875
+	```
+
+	@return number
+]=]
 function BitBuffer:ReadFloat32(): number
 	local value = ReadFromBuffer(self, 32)
 
@@ -716,6 +1150,19 @@ function BitBuffer:ReadFloat32(): number
 	return sign * (mantissa / 8388608 * 0.5 + 0.5) * math.pow(2, exponent)
 end
 
+--[=[
+	@tag Write
+	Writes a double-precision floating point number to the buffer.
+
+	```lua
+	local buffer = BitBuffer.new()
+	buffer:WriteFloat64(-76358128.888202341)
+	buffer:ResetCursor()
+	print(buffer:ReadFloat64()) --> -76358128.888202
+	```
+
+	@param double number
+]=]
 function BitBuffer:WriteFloat64(double: number): ()
 	if type(double) ~= "number" then
 		Error("invalid argument #1 to 'WriteFloat64' (number expected, got %s)", typeof(double))
@@ -726,6 +1173,19 @@ function BitBuffer:WriteFloat64(double: number): ()
 	WriteToBuffer(self, 32, e + f * 256 + g * 65536 + h * 16777216)
 end
 
+--[=[
+	@tag Read
+	Reads a double-precision floating point number from the buffer.
+
+	```lua
+	local buffer = BitBuffer.new()
+	buffer:WriteFloat64(-76358128.888202341)
+	buffer:ResetCursor()
+	print(buffer:ReadFloat64()) --> -76358128.888202
+	```
+
+	@return number
+]=]
 function BitBuffer:ReadFloat64(): number
 	local a = ReadFromBuffer(self, 32)
 	local b = ReadFromBuffer(self, 32)

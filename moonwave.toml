@@ -1,0 +1,11 @@
+title = "BitBuffer"  # From Git
+gitRepoUrl = "https://github.com/rstk/BitBuffer/" # From Git
+
+gitSourceBranch = "master"
+changelog = false
+
+[docusaurus]
+organizationName = "rstk"
+projectName = "BitBuffer"
+url = "https://rstk.github.io"
+tagline = "Blazing-fast BitBuffer for Roblox"
