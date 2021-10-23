@@ -2,6 +2,15 @@
 
 Blazing-fast BitBuffer for Roblox.
 
+### Wally
+
+BitBuffer is available on wally. Add this to your `wally.toml` and run `wally install`
+
+```toml
+[dependencies]
+BitBuffer = "rstk/bitbuffer@1.0.0"
+```
+
 ## Usage
 
 ```lua
