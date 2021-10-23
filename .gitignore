@@ -8,3 +8,6 @@
 
 # Wally Packages
 Packages/
+
+# Docusaurus
+build/
