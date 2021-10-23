@@ -57,6 +57,7 @@ You can serialize the buffer into:
 - Base64
 - Base91 (recommended for DataStores)
 - Base128
+
 Using the methods `BitBuffer::ToString()`, `BitBuffer::ToBase64()`, `BitBuffer::ToBase91()` and `BitBuffer::ToBase128()`.  
 
 Create a new BitBuffer with one of the following constructors:
