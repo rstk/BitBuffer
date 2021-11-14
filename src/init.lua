@@ -308,7 +308,7 @@ function BitBuffer.FromBase64(inputStr: string): BitBuffer
 			accumulator = bit32.replace(accumulator, value, accIndex, 24)
 			accIndex += 24
 		else
-			buffer[bufIndex] = accIndex < 32 and bit32.replace(accumulator, value, accIndex, 32 - accIndex) or accumulator
+			buffer[bufIndex] = if accIndex < 32 then bit32.replace(accumulator, value, accIndex, 32 - accIndex) else accumulator
 			accumulator = bit32.rshift(value, 32 - accIndex)
 			accIndex -= 8
 			bufIndex += 1
@@ -390,7 +390,7 @@ function BitBuffer.FromBase91(inputStr: string): BitBuffer
 		end
 
 		local value = v1 * 91 + v0
-		local nBits = value % 8192 > 88 and 13 or 14
+		local nBits = if value % 8192 > 88 then 13 else 14
 		totalBits += nBits
 
 		if accIndex + nBits <= 32 then
@@ -398,7 +398,7 @@ function BitBuffer.FromBase91(inputStr: string): BitBuffer
 			accIndex += nBits
 		else
 			local w = 32 - accIndex
-			buffer[bufIndex] = w > 0 and bit32.replace(accumulator, value, accIndex, w) or accumulator
+			buffer[bufIndex] = if w > 0 then bit32.replace(accumulator, value, accIndex, w) else accumulator
 			bufIndex += 1
 			accumulator = bit32.extract(value, w, nBits - w)
 			accIndex = (accIndex + nBits) % 32
@@ -636,7 +636,7 @@ function BitBuffer:ToBase64(): string
 			accIndex += 24
 		else
 			local b = 32 - accIndex
-			v = b > 0 and bit32.extract(accumulator, accIndex, b) or 0
+			v = if b > 0 then bit32.extract(accumulator, accIndex, b) else 0
 			accumulator = buffer[bufIndex] or 0
 			bufIndex += 1
 			accIndex = 24 - b
@@ -699,7 +699,7 @@ function BitBuffer:ToBase91(): string
 		else
 			local b = 32 - accIndex
 			local r = accIndex - 19
-			v = b > 0 and bit32.extract(accumulator, accIndex, b) or 0
+			v = if b > 0 then bit32.extract(accumulator, accIndex, b) else 0
 			accumulator = buffer[bufIndex] or 0
 			bufIndex += 1
 			v = bit32.replace(v, accumulator, b, r)
@@ -834,7 +834,7 @@ function BitBuffer:WriteInt(bitWidth: number, int: number): ()
 		Error("invalid argument #2 to 'WriteInt' (number expected, got %s)", typeof(int))
 	end
 
-	WriteToBuffer(self, bitWidth, int % (bitWidth == 32 and 4294967296 or bit32.lshift(1, bitWidth)))
+	WriteToBuffer(self, bitWidth, int % (bit32.lshift(1, bitWidth - 1) * 2))
 end
 
 --[=[
@@ -860,8 +860,8 @@ function BitBuffer:ReadInt(bitWidth: number): number
 	end
 
 	local value = ReadFromBuffer(self, bitWidth)
-	local max = bitWidth == 32 and 4294967296 or bit32.lshift(1, bitWidth)
-	return value >= max / 2 and value - max or value
+	local max = if bitWidth == 32 then 4294967296 else bit32.lshift(1, bitWidth)
+	return if value >= max / 2 then value - max else value
 end
 
 --[=[
@@ -1114,7 +1114,7 @@ function BitBuffer:WriteFloat32(float: number): ()
 		local mantissa, exponent = math.frexp(math.abs(float))
 		mantissa = math.round((mantissa - 0.5) * 16777216)
 		exponent = math.clamp(exponent, -127, 128) + 127
-		WriteToBuffer(self, 32, (float >= 0 and 0 or 2147483648) + exponent * 8388608 + mantissa)
+		WriteToBuffer(self, 32, (if float >= 0 then 0 else 2147483648) + exponent * 8388608 + mantissa)
 	end
 end
 
@@ -1144,7 +1144,7 @@ function BitBuffer:ReadFloat32(): number
 		return 0 / 0
 	end
 
-	local sign = bit32.band(value, 2147483648) == 0 and 1 or -1
+	local sign = if bit32.band(value, 2147483648) == 0 then 1 else -1
 	local exponent = bit32.extract(value, 23, 8) - 127
 	local mantissa = value % 8388608
 	return sign * (mantissa / 8388608 * 0.5 + 0.5) * math.pow(2, exponent)
