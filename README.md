@@ -4,7 +4,7 @@ Blazing-fast BitBuffer for Roblox.
 
 ### Wally
 
-BitBuffer is available on wally. Add this to your `wally.toml` and run `wally install`
+BitBuffer is available on [wally](https://github.com/upliftgames/wally/). Add this to your `wally.toml` and run `wally install`
 
 ```toml
 [dependencies]
