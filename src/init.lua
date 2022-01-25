@@ -138,7 +138,7 @@ local function ReadBytesAligned(this: BitBuffer, length: number): string
 		return string.pack("<I" .. length, ReadFromBuffer(this, length * 8))
 	elseif length == 4 then
 		local value = ReadFromBuffer(this, 32)
-		return string.char(value % 256, bit32.rshift(value, 8) % 256, bit32.rshift(value, 16) % 256, bit32.rshift(value, 24))
+		return string.char(bit32.extract(value, 0, 8), bit32.extract(value, 8, 8), bit32.extract(value, 16, 8), bit32.extract(value, 24, 8))
 	end
 
 	local prefix = 3 - (this._index / 8 - 1) % 4
@@ -156,7 +156,7 @@ local function ReadBytesAligned(this: BitBuffer, length: number): string
 	local n = bit32.rshift(this._index, 5) + 1
 	for i = 1, t do
 		local value = buffer[n + i - 1] or 0
-		str[o + i] = string.char(value % 256, bit32.rshift(value, 8) % 256, bit32.rshift(value, 16) % 256, bit32.rshift(value, 24))
+		str[o + i] = string.char(bit32.extract(value, 0, 8), bit32.extract(value, 8, 8), bit32.extract(value, 16, 8), bit32.extract(value, 24, 8))
 	end
 
 	if suffix > 0 then
@@ -643,10 +643,10 @@ function BitBuffer:ToBase64(): string
 			v = bit32.replace(v, accumulator, b, accIndex)
 		end
 
-		output[i] = toBase64[v % 64 + 1]
-			.. toBase64[bit32.rshift(v, 6) % 64 + 1]
-			.. toBase64[bit32.rshift(v, 12) % 64 + 1]
-			.. toBase64[bit32.rshift(v, 18) + 1]
+		output[i] = toBase64[bit32.extract(v, 0, 6) + 1]
+			.. toBase64[bit32.extract(v, 6, 6) + 1]
+			.. toBase64[bit32.extract(v, 12, 6) + 1]
+			.. toBase64[bit32.extract(v, 18, 6) + 1]
 	end
 
 	return table.concat(output)
@@ -1016,8 +1016,7 @@ function BitBuffer:ReadBytes(length: number): string
 		local str = table.create(size + length % 4)
 		for i = 1, size do
 			local value = ReadFromBuffer(self, 32)
-
-			str[i] = string.char(value % 256, bit32.rshift(value, 8) % 256, bit32.rshift(value, 16) % 256, bit32.rshift(value, 24))
+			str[i] = string.char(bit32.extract(value, 0, 8), bit32.extract(value, 8, 8), bit32.extract(value, 16, 8), bit32.extract(value, 24, 8))
 		end
 
 		for i = 1, length % 4 do
@@ -1114,7 +1113,8 @@ function BitBuffer:WriteFloat32(float: number): ()
 		local mantissa, exponent = math.frexp(math.abs(float))
 		mantissa = math.round((mantissa - 0.5) * 16777216)
 		exponent = math.clamp(exponent, -127, 128) + 127
-		WriteToBuffer(self, 32, (if float >= 0 then 0 else 2147483648) + exponent * 8388608 + mantissa)
+		local sign = if float >= 0 then 0 else 2147483648
+		WriteToBuffer(self, 32, sign + exponent * 8388608 + mantissa)
 	end
 end
 
