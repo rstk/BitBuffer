@@ -1,6 +1,5 @@
 {
-	"name": "BitBuffer",
-
+	"name": "bitbuffer",
 	"tree": {
 		"$path": "src"
 	}
