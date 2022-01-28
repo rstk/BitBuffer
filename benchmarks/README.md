@@ -21,7 +21,7 @@ To run the benchmarks yourself:
 | Anaminus | 0.4068 | 0.4324 | 7.44x |
 | Dekkonot | 3.0286 | 3.1503 | 1.00x |
 
----
+<br />
 
 ### ReadInt32
 | Author &nbsp; &nbsp; &nbsp; &nbsp; | &nbsp; &nbsp; 50th % | Average | Delta |
@@ -36,7 +36,7 @@ To run the benchmarks yourself:
 | Anaminus | 0.3210 | 0.3478 | 11.99x |
 | Dekkonot | 3.8498 | 4.0185 | 1.00x |
 
----
+<br />
 
 ### ReadUInt16
 | Author &nbsp; &nbsp; &nbsp; &nbsp; | &nbsp; &nbsp; 50th % | Average | Delta |
@@ -51,7 +51,7 @@ To run the benchmarks yourself:
 | Anaminus | 0.3102 | 0.3538 | 2.09x |
 | Dekkonot | 0.6476 | 0.6421 | 1.00x |
 
----
+<br />
 
 ### ReadUInt32
 | Author &nbsp; &nbsp; &nbsp; &nbsp; | &nbsp; &nbsp; 50th % | Average | Delta |
@@ -66,7 +66,7 @@ To run the benchmarks yourself:
 | Anaminus | 0.3205 | 0.3566 | 2.77x |
 | Dekkonot | 0.8866 | 1.0616 | 1.00x |
 
----
+<br />
 
 ### ReadFloat32
 | Author &nbsp; &nbsp; &nbsp; &nbsp; | &nbsp; &nbsp; 50th % | Average | Delta |
@@ -81,7 +81,7 @@ To run the benchmarks yourself:
 | Dekkonot | 0.7166 | 0.7729 | 1.36x |
 | Anaminus | 0.9733 | 1.1549 | 1.00x |
 
----
+<br />
 
 ### ReadFloat64
 | Author &nbsp; &nbsp; &nbsp; &nbsp; | &nbsp; &nbsp; 50th % | Average | Delta |
@@ -96,7 +96,7 @@ To run the benchmarks yourself:
 | Anaminus | 1.1139 | 1.3207 | 1.08x |
 | Dekkonot | 1.1984 | 1.3076 | 1.00x |
 
----
+<br />
 
 ### ReadStringL10
 | Author &nbsp; &nbsp; &nbsp; &nbsp; | &nbsp; &nbsp; 50th % | Average | Delta |
@@ -109,7 +109,7 @@ To run the benchmarks yourself:
 | **rstk** | **0.1687** | **0.1733** | **3.56x** |
 | Dekkonot | 0.6011 | 0.6366 | 1.00x |
 
----
+<br />
 
 ### ReadStringL100
 | Author &nbsp; &nbsp; &nbsp; &nbsp; | &nbsp; &nbsp; 50th % | Average | Delta |
@@ -122,7 +122,7 @@ To run the benchmarks yourself:
 | **rstk** | **0.5274** | **0.5506** | **9.33x** |
 | Dekkonot | 4.9183 | 7.5154 | 1.00x |
 
----
+<br />
 
 ### ReadStringL1000
 | Author &nbsp; &nbsp; &nbsp; &nbsp; | &nbsp; &nbsp; 50th % | Average | Delta |
@@ -135,7 +135,7 @@ To run the benchmarks yourself:
 | **rstk** | **4.5967** | **5.7674** | **9.98x** |
 | Dekkonot | 45.8587 | 71.1120 | 1.00x |
 
----
+<br />
 
 ### ReadBytesL10
 | Author &nbsp; &nbsp; &nbsp; &nbsp; | &nbsp; &nbsp; 50th % | Average | Delta |
@@ -148,7 +148,7 @@ To run the benchmarks yourself:
 | **rstk** | **0.0867** | **0.0932** | **1.80x** |
 | Anaminus | 0.1558 | 0.1622 | 1.00x |
 
----
+<br />
 
 ### ReadBytesL100
 | Author &nbsp; &nbsp; &nbsp; &nbsp; | &nbsp; &nbsp; 50th % | Average | Delta |
@@ -161,7 +161,7 @@ To run the benchmarks yourself:
 | **rstk** | **0.5481** | **0.6393** | **1.57x** |
 | Anaminus | 0.8585 | 0.9379 | 1.00x |
 
----
+<br />
 
 ### ReadBytesL1000
 | Author &nbsp; &nbsp; &nbsp; &nbsp; | &nbsp; &nbsp; 50th % | Average | Delta |
@@ -174,7 +174,7 @@ To run the benchmarks yourself:
 | **rstk** | **4.4358** | **4.4320** | **1.82x** |
 | Anaminus | 8.0603 | 8.2977 | 1.00x |
 
----
+<br />
 
 ### ReadBool
 | Author &nbsp; &nbsp; &nbsp; &nbsp; | &nbsp; &nbsp; 50th % | Average | Delta |
@@ -189,7 +189,7 @@ To run the benchmarks yourself:
 | Anaminus | 0.2485 | 0.3247 | 1.71x |
 | Dekkonot | 0.4244 | 0.4955 | 1.00x |
 
----
+<br />
 
 ### ReadChar
 | Author &nbsp; &nbsp; &nbsp; &nbsp; | &nbsp; &nbsp; 50th % | Average | Delta |
