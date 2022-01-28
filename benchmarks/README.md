@@ -10,7 +10,7 @@ Comparing [Dekkonot's bitbuffer](https://github.com/Dekkonot/bitbuffer), [Anamin
 
 ## Results
 
-TODO: Unaligned benchmarks, Serialization
+### Aligned
 
 #### ReadInt16
 | Author &nbsp; &nbsp; &nbsp; &nbsp; | &nbsp; &nbsp; 50th % | Average | Delta |
@@ -207,3 +207,20 @@ TODO: Unaligned benchmarks, Serialization
 | **rstk** | **0.1540** | **0.1651** | **1.76x** |
 | Dekkonot | 0.1732 | 0.2026 | 1.57x |
 | Anaminus | 0.2714 | 0.3191 | 1.00x |
+
+### Unaligned
+
+TODO
+
+---
+
+## Notes
+
+- Dekkonot's BitBuffer stores bits using 8-bit integers, while Anaminus's and rstk's BitBuffers use 32-bit integers.
+- Dekkonot's BitBuffer supports more (including roblox-specific) data types out of the box.
+
+#### TODO
+
+- [ ] Serialization
+- [ ] Unaligned
+
