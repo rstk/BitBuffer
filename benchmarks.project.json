@@ -1,0 +1,22 @@
+{
+	"name": "BitBuffer: Benchmarks",
+	"tree": {
+		"$className": "DataModel",
+		"ReplicatedStorage": {
+			"BitBuffers": {
+				"$path": "benchmarks/generated/bitbuffers"
+			},
+			"Benchmarks": {
+				"$path": "benchmarks/generated/benchmarks"
+			},
+			"Utils": {
+				"$path": "benchmarks/utils"
+			}
+		},
+		"ServerScriptService": {
+			"runtime": {
+				"$path": "benchmarks/runtime.server.lua"
+			}
+		}
+	}
+}

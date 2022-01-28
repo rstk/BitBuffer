@@ -11,3 +11,6 @@ Packages/
 
 # Docusaurus
 build/
+
+# Benchmarks
+benchmarks/generated/

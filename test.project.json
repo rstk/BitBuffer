@@ -12,11 +12,6 @@
 			"Tests": {
 				"$path": "tests"
 			}
-		},
-		"ServerScriptService": {
-			"Benchmarks": {
-				"$path": "benchmarks"
-			}
 		}
 	}
 }
