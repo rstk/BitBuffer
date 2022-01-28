@@ -1,5 +1,3 @@
-local BASE_PATH = "Benchmarks"
-
 local function trim(str)
 	local lowerBound = 1
 	local upperBound = #str
@@ -142,7 +140,7 @@ local function GenerateFile(benchmarkFile, target)
 
 	-- selene: allow(global_usage)
 	local io = _G.io -- silence robloxLsp/selene warnings
-	local file = assert(io.open(string.format("%s/%s/%s", target, BASE_PATH:lower(), filename), "w"))
+	local file = assert(io.open(string.format("%s/benchmarks/%s", target, filename), "w"))
 	file:write(fileContent)
 	file:close()
 end
