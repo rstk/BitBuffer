@@ -167,8 +167,8 @@ local function GenerateFile(benchmarkFile, target)
 	file:close()
 end
 
-local ITERATION_COUNT_INTS = 4096
-local ITERATION_COUNT_STRINGS = 512
+local ITERATION_COUNT_INTS = 1024
+local ITERATION_COUNT_STRINGS = 128
 
 local Anaminus = BenchmarkFile("Anaminus")
 Anaminus.ConstructorSyntax = ".new()"
@@ -181,6 +181,15 @@ Anaminus.WriteTypeTemplates = {
 	UInt16 = "Uint(16, @)";
 	UInt32 = "Uint(32, @)";
 	StringL10 = nil;
+	StringL100 = nil;
+	StringL1000 = nil;
+	BytesL10 = "Bytes(@)";
+	BytesL100 = "Bytes(@)";
+	BytesL1000 = "Bytes(@)";
+	Bool = "Bool(@)";
+	Float32 = "Float(32, @)";
+	Float64 = "Float(64, @)";
+	Char = "Byte(string.byte(@))";
 }
 Anaminus.ReadTypeTemplates = {
 	Int16 = "Int(16)";
@@ -188,6 +197,15 @@ Anaminus.ReadTypeTemplates = {
 	UInt16 = "Uint(32)";
 	UInt32 = "Uint(32)";
 	StringL10 = nil;
+	StringL100 = nil;
+	StringL1000 = nil;
+	BytesL10 = "Bytes(10)";
+	BytesL100 = "Bytes(100)";
+	BytesL1000 = "Bytes(1000)";
+	Bool = "Bool()";
+	Float32 = "Float(32)";
+	Float64 = "Float(64)";
+	Char = "Byte()";
 }
 Anaminus.RandomInputKinds = {
 	Int16 = "Int16";
@@ -195,6 +213,15 @@ Anaminus.RandomInputKinds = {
 	UInt16 = "UInt16";
 	UInt32 = "UInt32";
 	StringL10 = nil;
+	StringL100 = nil;
+	StringL1000 = nil;
+	BytesL10 = "Bytes10";
+	BytesL100 = "Bytes100";
+	BytesL1000 = "Bytes1000";
+	Bool = "Bool";
+	Float32 = "Float";
+	Float64 = "Float";
+	Char = "Char";
 }
 Anaminus.IterationCounts = {
 	Int16 = ITERATION_COUNT_INTS;
@@ -202,6 +229,15 @@ Anaminus.IterationCounts = {
 	UInt16 = ITERATION_COUNT_INTS;
 	UInt32 = ITERATION_COUNT_INTS;
 	StringL10 = nil;
+	StringL100 = nil;
+	StringL1000 = nil;
+	BytesL10 = ITERATION_COUNT_STRINGS;
+	BytesL100 = ITERATION_COUNT_STRINGS;
+	BytesL1000 = ITERATION_COUNT_STRINGS;
+	Bool = ITERATION_COUNT_INTS;
+	Float32 = ITERATION_COUNT_INTS;
+	Float64 = ITERATION_COUNT_INTS;
+	Char = ITERATION_COUNT_INTS;
 }
 
 local rstk = BenchmarkFile("rstk")
@@ -215,6 +251,15 @@ rstk.WriteTypeTemplates = {
 	UInt16 = "UInt(16, @)";
 	UInt32 = "UInt(32, @)";
 	StringL10 = "String(@)";
+	StringL100 = "String(@)";
+	StringL1000 = "String(@)";
+	BytesL10 = "Bytes(@)";
+	BytesL100 = "Bytes(@)";
+	BytesL1000 = "Bytes(@)";
+	Bool = "Bool(@)";
+	Float32 = "Float32(@)";
+	Float64 = "Float64(@)";
+	Char = "Char(@)";
 }
 rstk.ReadTypeTemplates = {
 	Int16 = "Int(16)";
@@ -222,6 +267,15 @@ rstk.ReadTypeTemplates = {
 	UInt16 = "UInt(32)";
 	UInt32 = "UInt(32)";
 	StringL10 = "String()";
+	StringL100 = "String()";
+	StringL1000 = "String()";
+	BytesL10 = "Bytes(10)";
+	BytesL100 = "Bytes(100)";
+	BytesL1000 = "Bytes(1000)";
+	Bool = "Bool()";
+	Float32 = "Float32()";
+	Float64 = "Float64()";
+	Char = "Char()";
 }
 rstk.RandomInputKinds = {
 	Int16 = "Int16";
@@ -229,6 +283,15 @@ rstk.RandomInputKinds = {
 	UInt16 = "UInt16";
 	UInt32 = "UInt32";
 	StringL10 = "Bytes10";
+	StringL100 = "Bytes100";
+	StringL1000 = "Bytes1000";
+	BytesL10 = "Bytes10";
+	BytesL100 = "Bytes100";
+	BytesL1000 = "Bytes1000";
+	Bool = "Bool";
+	Float32 = "Float";
+	Float64 = "Float";
+	Char = "Char";
 }
 rstk.IterationCounts = {
 	Int16 = ITERATION_COUNT_INTS;
@@ -236,6 +299,15 @@ rstk.IterationCounts = {
 	UInt16 = ITERATION_COUNT_INTS;
 	UInt32 = ITERATION_COUNT_INTS;
 	StringL10 = ITERATION_COUNT_STRINGS;
+	StringL100 = ITERATION_COUNT_STRINGS;
+	StringL1000 = ITERATION_COUNT_STRINGS;
+	BytesL10 = ITERATION_COUNT_STRINGS;
+	BytesL100 = ITERATION_COUNT_STRINGS;
+	BytesL1000 = ITERATION_COUNT_STRINGS;
+	Bool = ITERATION_COUNT_INTS;
+	Float32 = ITERATION_COUNT_INTS;
+	Float64 = ITERATION_COUNT_INTS;
+	Char = ITERATION_COUNT_INTS;
 }
 
 local Dekkonot = BenchmarkFile("Dekkonot")
@@ -249,6 +321,15 @@ Dekkonot.WriteTypeTemplates = {
 	UInt16 = "Unsigned(16, @)";
 	UInt32 = "Unsigned(32, @)";
 	StringL10 = "String(@)";
+	StringL100 = "String(@)";
+	StringL1000 = "String(@)";
+	BytesL10 = nil;
+	BytesL100 = nil;
+	BytesL1000 = nil;
+	Bool = "Bits(if @ == true then 1 else 0)";
+	Float32 = "Float32(@)";
+	Float64 = "Float64(@)";
+	Char = "Byte(string.byte(@))";
 }
 Dekkonot.ReadTypeTemplates = {
 	Int16 = "Signed(16)";
@@ -256,6 +337,15 @@ Dekkonot.ReadTypeTemplates = {
 	UInt16 = "Unsigned(16)";
 	UInt32 = "Unsigned(32)";
 	StringL10 = "String()";
+	StringL100 = "String()";
+	StringL1000 = "String()";
+	BytesL10 = nil;
+	BytesL100 = nil;
+	BytesL1000 = nil;
+	Bool = "Bits(1)";
+	Float32 = "Float32()";
+	Float64 = "Float64()";
+	Char = "Byte()";
 }
 Dekkonot.RandomInputKinds = {
 	Int16 = "Int16";
@@ -263,6 +353,15 @@ Dekkonot.RandomInputKinds = {
 	UInt16 = "UInt16";
 	UInt32 = "UInt32";
 	StringL10 = "Bytes10";
+	StringL100 = "Bytes100";
+	StringL1000 = "Bytes1000";
+	BytesL10 = nil;
+	BytesL100 = nil;
+	BytesL1000 = nil;
+	Bool = "Bool";
+	Float32 = "Float";
+	Float64 = "Float";
+	Char = "Char";
 }
 Dekkonot.IterationCounts = {
 	Int16 = ITERATION_COUNT_INTS;
@@ -270,6 +369,15 @@ Dekkonot.IterationCounts = {
 	UInt16 = ITERATION_COUNT_INTS;
 	UInt32 = ITERATION_COUNT_INTS;
 	StringL10 = ITERATION_COUNT_STRINGS;
+	StringL100 = ITERATION_COUNT_STRINGS;
+	StringL1000 = ITERATION_COUNT_STRINGS;
+	BytesL10 = nil;
+	BytesL100 = nil;
+	BytesL1000 = nil;
+	Bool = ITERATION_COUNT_INTS;
+	Float32 = ITERATION_COUNT_INTS;
+	Float64 = ITERATION_COUNT_INTS;
+	Char = ITERATION_COUNT_INTS;
 }
 
 -- selene: allow(global_usage)

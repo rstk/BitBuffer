@@ -33,6 +33,26 @@ local function Bytes(byteCount: number)
 	end
 end
 
+local function Bool(seed: number, listLength: number)
+	local r = Random.new(seed)
+	local list = table.create(listLength)
+	for i = 1, listLength do
+		list[i] = r:NextNumber() > 0.5
+	end
+
+	return list
+end
+
+local function Float(seed: number, listLength: number)
+	local r = Random.new(seed)
+	local list = table.create(listLength)
+	for i = 1, listLength do
+		list[i] = r:NextNumber() * (2 ^ 20)
+	end
+
+	return list
+end
+
 local Int = Integer(true)
 local UInt = Integer(false)
 
@@ -42,4 +62,9 @@ return {
 	UInt16 = UInt(16);
 	UInt32 = UInt(32);
 	Bytes10 = Bytes(10);
+	Bytes100 = Bytes(100);
+	Bytes1000 = Bytes(1000);
+	Bool = Bool;
+	Float = Float;
+	Char = Bytes(1);
 }
