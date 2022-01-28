@@ -65,13 +65,13 @@ function Benchmarker.formatResults(results)
 	local formattedTables = {}
 	for tabName, entries in next, tables do
 		local title = "#### " .. tabName
-		local top = "| Author | Alignment | | 50th % | Average | Delta |"
-		local mid = "| :----- | --------- | | :----: | :-----: | ----: |"
+		local top = "| Author | Alignment | 50th % | Average | Delta |"
+		local mid = "| :----- | --------- | :----: | :-----: | ----: |"
 
 		local rows = table.create(#entries)
 		for index, entry in ipairs(entries) do
 			rows[index] = string.format(
-				"| %s | %s | | %.4f | %.4f | %s |",
+				"| %s | %s | %.4f | %.4f | %s |",
 				entry.author,
 				entry.alignment,
 				entry.fiftiethPercentile,
