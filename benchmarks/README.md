@@ -12,212 +12,198 @@ Comparing [Dekkonot's bitbuffer](https://github.com/Dekkonot/bitbuffer), [Anamin
 
 TODO: Unaligned benchmarks, Serialization
 
-#### WriteInt16
-| Author | Alignment | 50th % | Average | Delta |
-| :----- | --------- | :----: | :-----: | ----: |
-| rstk | Aligned | 0.2880 | 0.3211 | 12.17x |
-| Anaminus | Aligned | 0.3661 | 0.3970 | 9.57x |
-| Dekkonot | Aligned | 3.5039 | 3.5090 | 1.00x |
-
 #### ReadInt16
-| Author | Alignment | 50th % | Average | Delta |
-| :----- | --------- | :----: | :-----: | ----: |
-| rstk | Aligned | 0.1736 | 0.1945 | 9.76x |
-| Anaminus | Aligned | 0.3172 | 0.3328 | 5.34x |
-| Dekkonot | Aligned | 1.6949 | 1.7624 | 1.00x |
+| Author &nbsp; &nbsp; &nbsp; &nbsp; | &nbsp; &nbsp; 50th % | Average | Delta |
+| :----- | -----: | ------: | ----: |
+| **rstk** | **0.1783** | **0.1833** | **10.25x** |
+| Anaminus | 0.3951 | 0.4558 | 4.63x |
+| Dekkonot | 1.8282 | 2.0249 | 1.00x |
+#### WriteInt16
+| Author &nbsp; &nbsp; &nbsp; &nbsp; | &nbsp; &nbsp; 50th % | Average | Delta |
+| :----- | -----: | ------: | ----: |
+| **rstk** | **0.2282** | **0.2295** | **13.27x** |
+| Anaminus | 0.4068 | 0.4324 | 7.44x |
+| Dekkonot | 3.0286 | 3.1503 | 1.00x |
 
 ---
-
-#### WriteInt32
-| Author | Alignment | 50th % | Average | Delta |
-| :----- | --------- | :----: | :-----: | ----: |
-| rstk | Aligned | 0.1826 | 0.2132 | 20.00x |
-| Anaminus | Aligned | 0.3415 | 0.3410 | 10.70x |
-| Dekkonot | Aligned | 3.6524 | 3.6550 | 1.00x |
 
 #### ReadInt32
-| Author | Alignment | 50th % | Average | Delta |
-| :----- | --------- | :----: | :-----: | ----: |
-| rstk | Aligned | 0.1200 | 0.1206 | 14.64x |
-| Anaminus | Aligned | 0.2995 | 0.3257 | 5.87x |
-| Dekkonot | Aligned | 1.7568 | 1.8839 | 1.00x |
+| Author &nbsp; &nbsp; &nbsp; &nbsp; | &nbsp; &nbsp; 50th % | Average | Delta |
+| :----- | -----: | ------: | ----: |
+| **rstk** | **0.1444** | **0.1556** | **13.06x** |
+| Anaminus | 0.3092 | 0.3235 | 6.10x |
+| Dekkonot | 1.8861 | 2.0288 | 1.00x |
+#### WriteInt32
+| Author &nbsp; &nbsp; &nbsp; &nbsp; | &nbsp; &nbsp; 50th % | Average | Delta |
+| :----- | -----: | ------: | ----: |
+| **rstk** | **0.2196** | **0.2370** | **17.53x** |
+| Anaminus | 0.3210 | 0.3478 | 11.99x |
+| Dekkonot | 3.8498 | 4.0185 | 1.00x |
 
 ---
-
-#### WriteUInt16
-| Author | Alignment | 50th % | Average | Delta |
-| :----- | --------- | :----: | :-----: | ----: |
-| rstk | Aligned | 0.2186 | 0.2266 | 2.86x |
-| Anaminus | Aligned | 0.2745 | 0.2900 | 2.28x |
-| Dekkonot | Aligned | 0.6252 | 0.6474 | 1.00x |
 
 #### ReadUInt16
-| Author | Alignment | 50th % | Average | Delta |
-| :----- | --------- | :----: | :-----: | ----: |
-| rstk | Aligned | 0.1605 | 0.2257 | 1.85x |
-| Anaminus | Aligned | 0.2011 | 0.2178 | 1.47x |
-| Dekkonot | Aligned | 0.2962 | 0.2840 | 1.00x |
+| Author &nbsp; &nbsp; &nbsp; &nbsp; | &nbsp; &nbsp; 50th % | Average | Delta |
+| :----- | -----: | ------: | ----: |
+| **rstk** | **0.1154** | **0.1284** | **2.38x** |
+| Anaminus | 0.2557 | 0.2780 | 1.08x |
+| Dekkonot | 0.2750 | 0.2990 | 1.00x |
+#### WriteUInt16
+| Author &nbsp; &nbsp; &nbsp; &nbsp; | &nbsp; &nbsp; 50th % | Average | Delta |
+| :----- | -----: | ------: | ----: |
+| **rstk** | **0.1585** | **0.1719** | **4.09x** |
+| Anaminus | 0.3102 | 0.3538 | 2.09x |
+| Dekkonot | 0.6476 | 0.6421 | 1.00x |
 
 ---
-
-#### WriteUInt32
-| Author | Alignment | 50th % | Average | Delta |
-| :----- | --------- | :----: | :-----: | ----: |
-| rstk | Aligned | 0.1301 | 0.1400 | 8.02x |
-| Anaminus | Aligned | 0.3381 | 0.3582 | 3.09x |
-| Dekkonot | Aligned | 1.0440 | 1.0606 | 1.00x |
 
 #### ReadUInt32
-| Author | Alignment | 50th % | Average | Delta |
-| :----- | --------- | :----: | :-----: | ----: |
-| rstk | Aligned | 0.1134 | 0.1338 | 3.83x |
-| Anaminus | Aligned | 0.2172 | 0.2396 | 2.00x |
-| Dekkonot | Aligned | 0.4343 | 0.4573 | 1.00x |
+| Author &nbsp; &nbsp; &nbsp; &nbsp; | &nbsp; &nbsp; 50th % | Average | Delta |
+| :----- | -----: | ------: | ----: |
+| **rstk** | **0.1379** | **0.1580** | **2.59x** |
+| Anaminus | 0.2530 | 0.2827 | 1.41x |
+| Dekkonot | 0.3567 | 0.3921 | 1.00x |
+#### WriteUInt32
+| Author &nbsp; &nbsp; &nbsp; &nbsp; | &nbsp; &nbsp; 50th % | Average | Delta |
+| :----- | -----: | ------: | ----: |
+| **rstk** | **0.1607** | **0.1827** | **5.52x** |
+| Anaminus | 0.3205 | 0.3566 | 2.77x |
+| Dekkonot | 0.8866 | 1.0616 | 1.00x |
 
 ---
-
-#### WriteFloat32
-| Author | Alignment | 50th % | Average | Delta |
-| :----- | --------- | :----: | :-----: | ----: |
-| rstk | Aligned | 0.2340 | 0.2442 | 4.79x |
-| Anaminus | Aligned | 1.1199 | 1.3312 | 1.00x |
-| Dekkonot | Aligned | 0.5783 | 0.6004 | 1.94x |
 
 #### ReadFloat32
-| Author | Alignment | 50th % | Average | Delta |
-| :----- | --------- | :----: | :-----: | ----: |
-| rstk | Aligned | 0.2013 | 0.2203 | 4.99x |
-| Anaminus | Aligned | 1.0047 | 1.1486 | 1.00x |
-| Dekkonot | Aligned | 0.3844 | 0.4067 | 2.61x |
+| Author &nbsp; &nbsp; &nbsp; &nbsp; | &nbsp; &nbsp; 50th % | Average | Delta |
+| :----- | -----: | ------: | ----: |
+| **rstk** | **0.2454** | **0.2518** | **4.47x** |
+| Dekkonot | 0.3949 | 0.4395 | 2.78x |
+| Anaminus | 1.0980 | 1.4336 | 1.00x |
+#### WriteFloat32
+| Author &nbsp; &nbsp; &nbsp; &nbsp; | &nbsp; &nbsp; 50th % | Average | Delta |
+| :----- | -----: | ------: | ----: |
+| **rstk** | **0.2347** | **0.2591** | **4.15x** |
+| Dekkonot | 0.7166 | 0.7729 | 1.36x |
+| Anaminus | 0.9733 | 1.1549 | 1.00x |
 
 ---
-
-#### WriteFloat64
-| Author | Alignment | 50th % | Average | Delta |
-| :----- | --------- | :----: | :-----: | ----: |
-| rstk | Aligned | 0.7021 | 0.8278 | 1.69x |
-| Anaminus | Aligned | 1.1259 | 1.4201 | 1.05x |
-| Dekkonot | Aligned | 1.1871 | 1.1850 | 1.00x |
 
 #### ReadFloat64
-| Author | Alignment | 50th % | Average | Delta |
-| :----- | --------- | :----: | :-----: | ----: |
-| rstk | Aligned | 0.5786 | 0.6058 | 3.19x |
-| Anaminus | Aligned | 1.8480 | 2.1159 | 1.00x |
-| Dekkonot | Aligned | 0.7013 | 0.7978 | 2.64x |
+| Author &nbsp; &nbsp; &nbsp; &nbsp; | &nbsp; &nbsp; 50th % | Average | Delta |
+| :----- | -----: | ------: | ----: |
+| **Dekkonot** | **0.9273** | **1.0172** | **2.09x** |
+| rstk | 0.9955 | 1.2550 | 1.95x |
+| Anaminus | 1.9391 | 2.5082 | 1.00x |
+#### WriteFloat64
+| Author &nbsp; &nbsp; &nbsp; &nbsp; | &nbsp; &nbsp; 50th % | Average | Delta |
+| :----- | -----: | ------: | ----: |
+| **rstk** | **0.9983** | **1.1696** | **1.20x** |
+| Anaminus | 1.1139 | 1.3207 | 1.08x |
+| Dekkonot | 1.1984 | 1.3076 | 1.00x |
 
 ---
-
-#### WriteStringL10
-| Author | Alignment | 50th % | Average | Delta |
-| :----- | --------- | :----: | :-----: | ----: |
-| rstk | Aligned | 0.2565 | 0.2936 | 1.71x |
-| Dekkonot | Aligned | 0.4390 | 0.4787 | 1.00x |
 
 #### ReadStringL10
-| Author | Alignment | 50th % | Average | Delta |
-| :----- | --------- | :----: | :-----: | ----: |
-| rstk | Aligned | 0.5820 | 0.7527 | 1.00x |
-| Dekkonot | Aligned | 0.4396 | 0.4701 | 1.32x |
+| Author &nbsp; &nbsp; &nbsp; &nbsp; | &nbsp; &nbsp; 50th % | Average | Delta |
+| :----- | -----: | ------: | ----: |
+| **rstk** | **0.2844** | **0.2922** | **1.63x** |
+| Dekkonot | 0.4630 | 0.5032 | 1.00x |
+#### WriteStringL10
+| Author &nbsp; &nbsp; &nbsp; &nbsp; | &nbsp; &nbsp; 50th % | Average | Delta |
+| :----- | -----: | ------: | ----: |
+| **rstk** | **0.1687** | **0.1733** | **3.56x** |
+| Dekkonot | 0.6011 | 0.6366 | 1.00x |
 
 ---
-
-#### WriteStringL100
-| Author | Alignment | 50th % | Average | Delta |
-| :----- | --------- | :----: | :-----: | ----: |
-| rstk | Aligned | 0.6576 | 0.8280 | 6.76x |
-| Dekkonot | Aligned | 4.4478 | 4.6720 | 1.00x |
 
 #### ReadStringL100
-| Author | Alignment | 50th % | Average | Delta |
-| :----- | --------- | :----: | :-----: | ----: |
-| rstk | Aligned | 1.0369 | 1.1755 | 2.76x |
-| Dekkonot | Aligned | 2.8577 | 3.1126 | 1.00x |
+| Author &nbsp; &nbsp; &nbsp; &nbsp; | &nbsp; &nbsp; 50th % | Average | Delta |
+| :----- | -----: | ------: | ----: |
+| **rstk** | **1.2113** | **1.5511** | **2.34x** |
+| Dekkonot | 2.8326 | 3.2811 | 1.00x |
+#### WriteStringL100
+| Author &nbsp; &nbsp; &nbsp; &nbsp; | &nbsp; &nbsp; 50th % | Average | Delta |
+| :----- | -----: | ------: | ----: |
+| **rstk** | **0.5274** | **0.5506** | **9.33x** |
+| Dekkonot | 4.9183 | 7.5154 | 1.00x |
 
 ---
-
-#### WriteStringL1000
-| Author | Alignment | 50th % | Average | Delta |
-| :----- | --------- | :----: | :-----: | ----: |
-| rstk | Aligned | 3.9900 | 4.8608 | 10.36x |
-| Dekkonot | Aligned | 41.3373 | 44.2775 | 1.00x |
 
 #### ReadStringL1000
-| Author | Alignment | 50th % | Average | Delta |
-| :----- | --------- | :----: | :-----: | ----: |
-| rstk | Aligned | 9.3274 | 10.6644 | 2.88x |
-| Dekkonot | Aligned | 26.8966 | 31.6431 | 1.00x |
+| Author &nbsp; &nbsp; &nbsp; &nbsp; | &nbsp; &nbsp; 50th % | Average | Delta |
+| :----- | -----: | ------: | ----: |
+| **rstk** | **11.3303** | **13.2465** | **2.69x** |
+| Dekkonot | 30.5080 | 91.9403 | 1.00x |
+#### WriteStringL1000
+| Author &nbsp; &nbsp; &nbsp; &nbsp; | &nbsp; &nbsp; 50th % | Average | Delta |
+| :----- | -----: | ------: | ----: |
+| **rstk** | **4.5967** | **5.7674** | **9.98x** |
+| Dekkonot | 45.8587 | 71.1120 | 1.00x |
 
 ---
-
-#### WriteBytesL10
-| Author | Alignment | 50th % | Average | Delta |
-| :----- | --------- | :----: | :-----: | ----: |
-| rstk | Aligned | 0.1369 | 0.1441 | 1.29x |
-| Anaminus | Aligned | 0.1762 | 0.1847 | 1.00x |
 
 #### ReadBytesL10
-| Author | Alignment | 50th % | Average | Delta |
-| :----- | --------- | :----: | :-----: | ----: |
-| rstk | Aligned | 0.1883 | 0.1968 | 1.00x |
-| Anaminus | Aligned | 0.1544 | 0.1741 | 1.22x |
+| Author &nbsp; &nbsp; &nbsp; &nbsp; | &nbsp; &nbsp; 50th % | Average | Delta |
+| :----- | -----: | ------: | ----: |
+| **rstk** | **0.1290** | **0.1348** | **1.28x** |
+| Anaminus | 0.1653 | 0.2054 | 1.00x |
+#### WriteBytesL10
+| Author &nbsp; &nbsp; &nbsp; &nbsp; | &nbsp; &nbsp; 50th % | Average | Delta |
+| :----- | -----: | ------: | ----: |
+| **rstk** | **0.0867** | **0.0932** | **1.80x** |
+| Anaminus | 0.1558 | 0.1622 | 1.00x |
 
 ---
-
-#### WriteBytesL100
-| Author | Alignment | 50th % | Average | Delta |
-| :----- | --------- | :----: | :-----: | ----: |
-| rstk | Aligned | 0.3619 | 0.3748 | 2.17x |
-| Anaminus | Aligned | 0.7840 | 0.8163 | 1.00x |
 
 #### ReadBytesL100
-| Author | Alignment | 50th % | Average | Delta |
-| :----- | --------- | :----: | :-----: | ----: |
-| rstk | Aligned | 0.3888 | 0.6210 | 1.13x |
-| Anaminus | Aligned | 0.4404 | 0.5228 | 1.00x |
+| Author &nbsp; &nbsp; &nbsp; &nbsp; | &nbsp; &nbsp; 50th % | Average | Delta |
+| :----- | -----: | ------: | ----: |
+| **rstk** | **0.3912** | **0.5272** | **2.64x** |
+| Anaminus | 1.0323 | 1.3461 | 1.00x |
+#### WriteBytesL100
+| Author &nbsp; &nbsp; &nbsp; &nbsp; | &nbsp; &nbsp; 50th % | Average | Delta |
+| :----- | -----: | ------: | ----: |
+| **rstk** | **0.5481** | **0.6393** | **1.57x** |
+| Anaminus | 0.8585 | 0.9379 | 1.00x |
 
 ---
-
-#### WriteBytesL1000
-| Author | Alignment | 50th % | Average | Delta |
-| :----- | --------- | :----: | :-----: | ----: |
-| rstk | Aligned | 5.2299 | 5.2866 | 1.68x |
-| Anaminus | Aligned | 8.7893 | 8.9761 | 1.00x |
 
 #### ReadBytesL1000
-| Author | Alignment | 50th % | Average | Delta |
-| :----- | --------- | :----: | :-----: | ----: |
-| rstk | Aligned | 4.4946 | 5.5968 | 1.06x |
-| Anaminus | Aligned | 4.7514 | 5.9678 | 1.00x |
+| Author &nbsp; &nbsp; &nbsp; &nbsp; | &nbsp; &nbsp; 50th % | Average | Delta |
+| :----- | -----: | ------: | ----: |
+| **rstk** | **4.2222** | **4.9854** | **1.12x** |
+| Anaminus | 4.7375 | 5.4956 | 1.00x |
+#### WriteBytesL1000
+| Author &nbsp; &nbsp; &nbsp; &nbsp; | &nbsp; &nbsp; 50th % | Average | Delta |
+| :----- | -----: | ------: | ----: |
+| **rstk** | **4.4358** | **4.4320** | **1.82x** |
+| Anaminus | 8.0603 | 8.2977 | 1.00x |
 
 ---
-
-#### WriteBool
-| Author | Alignment | 50th % | Average | Delta |
-| :----- | --------- | :----: | :-----: | ----: |
-| rstk | Aligned | 0.1412 | 0.1634 | 2.92x |
-| Anaminus | Aligned | 0.2183 | 0.2293 | 1.89x |
-| Dekkonot | Aligned | 0.4117 | 0.4350 | 1.00x |
 
 #### ReadBool
-| Author | Alignment | 50th % | Average | Delta |
-| :----- | --------- | :----: | :-----: | ----: |
-| rstk | Aligned | 0.1035 | 0.1298 | 2.65x |
-| Anaminus | Aligned | 0.2000 | 0.2081 | 1.37x |
-| Dekkonot | Aligned | 0.2745 | 0.2864 | 1.00x |
+| Author &nbsp; &nbsp; &nbsp; &nbsp; | &nbsp; &nbsp; 50th % | Average | Delta |
+| :----- | -----: | ------: | ----: |
+| **rstk** | **0.1154** | **0.1131** | **2.65x** |
+| Anaminus | 0.1833 | 0.1997 | 1.67x |
+| Dekkonot | 0.3056 | 0.4233 | 1.00x |
+#### WriteBool
+| Author &nbsp; &nbsp; &nbsp; &nbsp; | &nbsp; &nbsp; 50th % | Average | Delta |
+| :----- | -----: | ------: | ----: |
+| **rstk** | **0.1318** | **0.1511** | **3.22x** |
+| Anaminus | 0.2485 | 0.3247 | 1.71x |
+| Dekkonot | 0.4244 | 0.4955 | 1.00x |
 
 ---
 
-#### WriteChar
-| Author | Alignment | 50th % | Average | Delta |
-| :----- | --------- | :----: | :-----: | ----: |
-| rstk | Aligned | 0.1752 | 0.1878 | 1.39x |
-| Anaminus | Aligned | 0.2434 | 0.2599 | 1.00x |
-| Dekkonot | Aligned | 0.1652 | 0.1776 | 1.47x |
-
 #### ReadChar
-| Author | Alignment | 50th % | Average | Delta |
-| :----- | --------- | :----: | :-----: | ----: |
-| rstk | Aligned | 0.1026 | 0.1199 | 1.66x |
-| Anaminus | Aligned | 0.1701 | 0.1950 | 1.00x |
-| Dekkonot | Aligned | 0.0709 | 0.0715 | 2.40x |
+| Author &nbsp; &nbsp; &nbsp; &nbsp; | &nbsp; &nbsp; 50th % | Average | Delta |
+| :----- | -----: | ------: | ----: |
+| **Dekkonot** | **0.0790** | **0.0798** | **2.68x** |
+| rstk | 0.0980 | 0.1101 | 2.16x |
+| Anaminus | 0.2118 | 0.2449 | 1.00x |
+#### WriteChar
+| Author &nbsp; &nbsp; &nbsp; &nbsp; | &nbsp; &nbsp; 50th % | Average | Delta |
+| :----- | -----: | ------: | ----: |
+| **rstk** | **0.1540** | **0.1651** | **1.76x** |
+| Dekkonot | 0.1732 | 0.2026 | 1.57x |
+| Anaminus | 0.2714 | 0.3191 | 1.00x |

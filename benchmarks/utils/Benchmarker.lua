@@ -1,4 +1,4 @@
-local RUN_N = 256
+local RUN_N = 1024
 
 local function ExtractBenchmarks(modules: {Instance}): {[string]: {}}
 	local benchmarks = {}
@@ -11,6 +11,37 @@ local function ExtractBenchmarks(modules: {Instance}): {[string]: {}}
 end
 
 local Benchmarker = {}
+
+local RowOrder = {
+	WriteInt16 = 1;
+	ReadInt16 = 2;
+	WriteInt32 = 3;
+	ReadInt32 = 4;
+	WriteUInt16 = 5;
+	ReadUInt16 = 6;
+	WriteUInt32 = 7;
+	ReadUInt32 = 8;
+	WriteFloat32 = 9;
+	ReadFloat32 = 10;
+	WriteFloat64 = 11;
+	ReadFloat64 = 12;
+	WriteStringL10 = 13;
+	ReadStringL10 = 14;
+	WriteStringL100 = 15;
+	ReadStringL100 = 16;
+	WriteStringL1000 = 17;
+	ReadStringL1000 = 18;
+	WriteBytesL10 = 19;
+	ReadBytesL10 = 20;
+	WriteBytesL100 = 21;
+	ReadBytesL100 = 22;
+	WriteBytesL1000 = 23;
+	ReadBytesL1000 = 24;
+	WriteBool = 25;
+	ReadBool = 26;
+	WriteChar = 27;
+	ReadChar = 28;
+}
 
 function Benchmarker.formatResults(results)
 	local tests = {}
@@ -42,48 +73,42 @@ function Benchmarker.formatResults(results)
 		end
 
 		table.sort(sorted, function(a, b)
-			-- not a typo
-			return a.fiftiethPercentile > b.fiftiethPercentile
+			return a.fiftiethPercentile < b.fiftiethPercentile
 		end)
 
-		local highest = nil
+		local highest = sorted[#sorted].fiftiethPercentile
 		for index, entry in ipairs(sorted) do
-			if highest == nil then
-				highest = entry.fiftiethPercentile
-				entry.entry.delta = "1.00x"
-			else
-				entry.entry.delta = string.format("%.2fx", highest / entry.fiftiethPercentile)
-			end
-
+			entry.entry.delta = string.format("%.2fx", highest / entry.fiftiethPercentile)
 			sorted[index] = entry.entry
 		end
 
-		tables[testName] = entries
+		tables[testName] = sorted
 	end
 
 	-- actually format it
 	local formattedTables = {}
 	for tabName, entries in next, tables do
 		local title = "#### " .. tabName
-		local top = "| Author | Alignment | 50th % | Average | Delta |"
-		local mid = "| :----- | --------- | :----: | :-----: | ----: |"
+		-- the &nbsp; things are there so that the tables render more nicely on github
+		local top = "| Author &nbsp; &nbsp; &nbsp; &nbsp; | &nbsp; &nbsp; 50th % | Average | Delta |"
+		local mid = "| :----- | -----: | ------: | ----: |"
 
 		local rows = table.create(#entries)
 		for index, entry in ipairs(entries) do
-			rows[index] = string.format(
-				"| %s | %s | %.4f | %.4f | %s |",
-				entry.author,
-				entry.alignment,
-				entry.fiftiethPercentile,
-				entry.average,
-				entry.delta
-			)
+			local baseString = if index == 1 then "| **%s** | **%.4f** | **%.4f** | **%s** |" else "| %s | %.4f | %.4f | %s |"
+			rows[index] = string.format(baseString, entry.author, entry.fiftiethPercentile, entry.average, entry.delta)
 		end
 
-		table.insert(formattedTables, table.concat({title, top, mid}, "\n") .. "\n" .. table.concat(rows, "\n"))
+		formattedTables[RowOrder[tabName]] = table.concat({title, top, mid}, "\n") .. "\n" .. table.concat(rows, "\n")
 	end
 
-	return "\n" .. table.concat(formattedTables, "\n\n") .. "\n"
+	local sections = {}
+	assert(#formattedTables % 2 == 0, "uneven number of tables")
+	for i = 2, #formattedTables, 2 do
+		table.insert(sections, formattedTables[i] .. "\n" .. formattedTables[i - 1] .. "\n\n---")
+	end
+
+	return "\n" .. table.concat(sections, "\n\n") .. "\n"
 end
 
 function Benchmarker.runAll(benchmarkModules: {Instance})
