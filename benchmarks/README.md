@@ -1,24 +1,20 @@
-# Benchmarks
+Comparing [Dekkonot's bitbuffer](https://github.com/Dekkonot/bitbuffer), [Anaminus' bitbuf](https://github.com/Anaminus/roblox-library/tree/master/modules/Bitbuf) and rstk's bitbuffer.  
 
-Comparing [Dekkonot's bitbuffer](https://github.com/Dekkonot/bitbuffer), [Anaminus' bitbuf](https://github.com/Anaminus/roblox-library/tree/master/modules/Bitbuf) and rstk's bitbuffer.
-
-## Run
+To run the benchmarks yourself:
 
 1. Generate the benchmarks using the provided lua 5.3 script [`generate.lua`](generate.lua). Requires [`curl`](https://curl.se/).
 2. Build the place file using [`benchmarks.project.json`](../benchmarks.project.json)
 3. Hit run in Roblox Studio or use [run-in-roblox](https://github.com/rojo-rbx/run-in-roblox).
 
-## Results
+## Results (Aligned)
 
-### Aligned
-
-#### ReadInt16
+### ReadInt16
 | Author &nbsp; &nbsp; &nbsp; &nbsp; | &nbsp; &nbsp; 50th % | Average | Delta |
 | :----- | -----: | ------: | ----: |
 | **rstk** | **0.1783** | **0.1833** | **10.25x** |
 | Anaminus | 0.3951 | 0.4558 | 4.63x |
 | Dekkonot | 1.8282 | 2.0249 | 1.00x |
-#### WriteInt16
+### WriteInt16
 | Author &nbsp; &nbsp; &nbsp; &nbsp; | &nbsp; &nbsp; 50th % | Average | Delta |
 | :----- | -----: | ------: | ----: |
 | **rstk** | **0.2282** | **0.2295** | **13.27x** |
@@ -27,13 +23,13 @@ Comparing [Dekkonot's bitbuffer](https://github.com/Dekkonot/bitbuffer), [Anamin
 
 ---
 
-#### ReadInt32
+### ReadInt32
 | Author &nbsp; &nbsp; &nbsp; &nbsp; | &nbsp; &nbsp; 50th % | Average | Delta |
 | :----- | -----: | ------: | ----: |
 | **rstk** | **0.1444** | **0.1556** | **13.06x** |
 | Anaminus | 0.3092 | 0.3235 | 6.10x |
 | Dekkonot | 1.8861 | 2.0288 | 1.00x |
-#### WriteInt32
+### WriteInt32
 | Author &nbsp; &nbsp; &nbsp; &nbsp; | &nbsp; &nbsp; 50th % | Average | Delta |
 | :----- | -----: | ------: | ----: |
 | **rstk** | **0.2196** | **0.2370** | **17.53x** |
@@ -42,13 +38,13 @@ Comparing [Dekkonot's bitbuffer](https://github.com/Dekkonot/bitbuffer), [Anamin
 
 ---
 
-#### ReadUInt16
+### ReadUInt16
 | Author &nbsp; &nbsp; &nbsp; &nbsp; | &nbsp; &nbsp; 50th % | Average | Delta |
 | :----- | -----: | ------: | ----: |
 | **rstk** | **0.1154** | **0.1284** | **2.38x** |
 | Anaminus | 0.2557 | 0.2780 | 1.08x |
 | Dekkonot | 0.2750 | 0.2990 | 1.00x |
-#### WriteUInt16
+### WriteUInt16
 | Author &nbsp; &nbsp; &nbsp; &nbsp; | &nbsp; &nbsp; 50th % | Average | Delta |
 | :----- | -----: | ------: | ----: |
 | **rstk** | **0.1585** | **0.1719** | **4.09x** |
@@ -57,13 +53,13 @@ Comparing [Dekkonot's bitbuffer](https://github.com/Dekkonot/bitbuffer), [Anamin
 
 ---
 
-#### ReadUInt32
+### ReadUInt32
 | Author &nbsp; &nbsp; &nbsp; &nbsp; | &nbsp; &nbsp; 50th % | Average | Delta |
 | :----- | -----: | ------: | ----: |
 | **rstk** | **0.1379** | **0.1580** | **2.59x** |
 | Anaminus | 0.2530 | 0.2827 | 1.41x |
 | Dekkonot | 0.3567 | 0.3921 | 1.00x |
-#### WriteUInt32
+### WriteUInt32
 | Author &nbsp; &nbsp; &nbsp; &nbsp; | &nbsp; &nbsp; 50th % | Average | Delta |
 | :----- | -----: | ------: | ----: |
 | **rstk** | **0.1607** | **0.1827** | **5.52x** |
@@ -72,13 +68,13 @@ Comparing [Dekkonot's bitbuffer](https://github.com/Dekkonot/bitbuffer), [Anamin
 
 ---
 
-#### ReadFloat32
+### ReadFloat32
 | Author &nbsp; &nbsp; &nbsp; &nbsp; | &nbsp; &nbsp; 50th % | Average | Delta |
 | :----- | -----: | ------: | ----: |
 | **rstk** | **0.2454** | **0.2518** | **4.47x** |
 | Dekkonot | 0.3949 | 0.4395 | 2.78x |
 | Anaminus | 1.0980 | 1.4336 | 1.00x |
-#### WriteFloat32
+### WriteFloat32
 | Author &nbsp; &nbsp; &nbsp; &nbsp; | &nbsp; &nbsp; 50th % | Average | Delta |
 | :----- | -----: | ------: | ----: |
 | **rstk** | **0.2347** | **0.2591** | **4.15x** |
@@ -87,13 +83,13 @@ Comparing [Dekkonot's bitbuffer](https://github.com/Dekkonot/bitbuffer), [Anamin
 
 ---
 
-#### ReadFloat64
+### ReadFloat64
 | Author &nbsp; &nbsp; &nbsp; &nbsp; | &nbsp; &nbsp; 50th % | Average | Delta |
 | :----- | -----: | ------: | ----: |
 | **Dekkonot** | **0.9273** | **1.0172** | **2.09x** |
 | rstk | 0.9955 | 1.2550 | 1.95x |
 | Anaminus | 1.9391 | 2.5082 | 1.00x |
-#### WriteFloat64
+### WriteFloat64
 | Author &nbsp; &nbsp; &nbsp; &nbsp; | &nbsp; &nbsp; 50th % | Average | Delta |
 | :----- | -----: | ------: | ----: |
 | **rstk** | **0.9983** | **1.1696** | **1.20x** |
@@ -102,12 +98,12 @@ Comparing [Dekkonot's bitbuffer](https://github.com/Dekkonot/bitbuffer), [Anamin
 
 ---
 
-#### ReadStringL10
+### ReadStringL10
 | Author &nbsp; &nbsp; &nbsp; &nbsp; | &nbsp; &nbsp; 50th % | Average | Delta |
 | :----- | -----: | ------: | ----: |
 | **rstk** | **0.2844** | **0.2922** | **1.63x** |
 | Dekkonot | 0.4630 | 0.5032 | 1.00x |
-#### WriteStringL10
+### WriteStringL10
 | Author &nbsp; &nbsp; &nbsp; &nbsp; | &nbsp; &nbsp; 50th % | Average | Delta |
 | :----- | -----: | ------: | ----: |
 | **rstk** | **0.1687** | **0.1733** | **3.56x** |
@@ -115,12 +111,12 @@ Comparing [Dekkonot's bitbuffer](https://github.com/Dekkonot/bitbuffer), [Anamin
 
 ---
 
-#### ReadStringL100
+### ReadStringL100
 | Author &nbsp; &nbsp; &nbsp; &nbsp; | &nbsp; &nbsp; 50th % | Average | Delta |
 | :----- | -----: | ------: | ----: |
 | **rstk** | **1.2113** | **1.5511** | **2.34x** |
 | Dekkonot | 2.8326 | 3.2811 | 1.00x |
-#### WriteStringL100
+### WriteStringL100
 | Author &nbsp; &nbsp; &nbsp; &nbsp; | &nbsp; &nbsp; 50th % | Average | Delta |
 | :----- | -----: | ------: | ----: |
 | **rstk** | **0.5274** | **0.5506** | **9.33x** |
@@ -128,12 +124,12 @@ Comparing [Dekkonot's bitbuffer](https://github.com/Dekkonot/bitbuffer), [Anamin
 
 ---
 
-#### ReadStringL1000
+### ReadStringL1000
 | Author &nbsp; &nbsp; &nbsp; &nbsp; | &nbsp; &nbsp; 50th % | Average | Delta |
 | :----- | -----: | ------: | ----: |
 | **rstk** | **11.3303** | **13.2465** | **2.69x** |
 | Dekkonot | 30.5080 | 91.9403 | 1.00x |
-#### WriteStringL1000
+### WriteStringL1000
 | Author &nbsp; &nbsp; &nbsp; &nbsp; | &nbsp; &nbsp; 50th % | Average | Delta |
 | :----- | -----: | ------: | ----: |
 | **rstk** | **4.5967** | **5.7674** | **9.98x** |
@@ -141,12 +137,12 @@ Comparing [Dekkonot's bitbuffer](https://github.com/Dekkonot/bitbuffer), [Anamin
 
 ---
 
-#### ReadBytesL10
+### ReadBytesL10
 | Author &nbsp; &nbsp; &nbsp; &nbsp; | &nbsp; &nbsp; 50th % | Average | Delta |
 | :----- | -----: | ------: | ----: |
 | **rstk** | **0.1290** | **0.1348** | **1.28x** |
 | Anaminus | 0.1653 | 0.2054 | 1.00x |
-#### WriteBytesL10
+### WriteBytesL10
 | Author &nbsp; &nbsp; &nbsp; &nbsp; | &nbsp; &nbsp; 50th % | Average | Delta |
 | :----- | -----: | ------: | ----: |
 | **rstk** | **0.0867** | **0.0932** | **1.80x** |
@@ -154,12 +150,12 @@ Comparing [Dekkonot's bitbuffer](https://github.com/Dekkonot/bitbuffer), [Anamin
 
 ---
 
-#### ReadBytesL100
+### ReadBytesL100
 | Author &nbsp; &nbsp; &nbsp; &nbsp; | &nbsp; &nbsp; 50th % | Average | Delta |
 | :----- | -----: | ------: | ----: |
 | **rstk** | **0.3912** | **0.5272** | **2.64x** |
 | Anaminus | 1.0323 | 1.3461 | 1.00x |
-#### WriteBytesL100
+### WriteBytesL100
 | Author &nbsp; &nbsp; &nbsp; &nbsp; | &nbsp; &nbsp; 50th % | Average | Delta |
 | :----- | -----: | ------: | ----: |
 | **rstk** | **0.5481** | **0.6393** | **1.57x** |
@@ -167,12 +163,12 @@ Comparing [Dekkonot's bitbuffer](https://github.com/Dekkonot/bitbuffer), [Anamin
 
 ---
 
-#### ReadBytesL1000
+### ReadBytesL1000
 | Author &nbsp; &nbsp; &nbsp; &nbsp; | &nbsp; &nbsp; 50th % | Average | Delta |
 | :----- | -----: | ------: | ----: |
 | **rstk** | **4.2222** | **4.9854** | **1.12x** |
 | Anaminus | 4.7375 | 5.4956 | 1.00x |
-#### WriteBytesL1000
+### WriteBytesL1000
 | Author &nbsp; &nbsp; &nbsp; &nbsp; | &nbsp; &nbsp; 50th % | Average | Delta |
 | :----- | -----: | ------: | ----: |
 | **rstk** | **4.4358** | **4.4320** | **1.82x** |
@@ -180,13 +176,13 @@ Comparing [Dekkonot's bitbuffer](https://github.com/Dekkonot/bitbuffer), [Anamin
 
 ---
 
-#### ReadBool
+### ReadBool
 | Author &nbsp; &nbsp; &nbsp; &nbsp; | &nbsp; &nbsp; 50th % | Average | Delta |
 | :----- | -----: | ------: | ----: |
 | **rstk** | **0.1154** | **0.1131** | **2.65x** |
 | Anaminus | 0.1833 | 0.1997 | 1.67x |
 | Dekkonot | 0.3056 | 0.4233 | 1.00x |
-#### WriteBool
+### WriteBool
 | Author &nbsp; &nbsp; &nbsp; &nbsp; | &nbsp; &nbsp; 50th % | Average | Delta |
 | :----- | -----: | ------: | ----: |
 | **rstk** | **0.1318** | **0.1511** | **3.22x** |
@@ -195,31 +191,29 @@ Comparing [Dekkonot's bitbuffer](https://github.com/Dekkonot/bitbuffer), [Anamin
 
 ---
 
-#### ReadChar
+### ReadChar
 | Author &nbsp; &nbsp; &nbsp; &nbsp; | &nbsp; &nbsp; 50th % | Average | Delta |
 | :----- | -----: | ------: | ----: |
 | **Dekkonot** | **0.0790** | **0.0798** | **2.68x** |
 | rstk | 0.0980 | 0.1101 | 2.16x |
 | Anaminus | 0.2118 | 0.2449 | 1.00x |
-#### WriteChar
+### WriteChar
 | Author &nbsp; &nbsp; &nbsp; &nbsp; | &nbsp; &nbsp; 50th % | Average | Delta |
 | :----- | -----: | ------: | ----: |
 | **rstk** | **0.1540** | **0.1651** | **1.76x** |
 | Dekkonot | 0.1732 | 0.2026 | 1.57x |
 | Anaminus | 0.2714 | 0.3191 | 1.00x |
 
-### Unaligned
+## Result (Unaligned)
 
 TODO
-
----
 
 ## Notes
 
 - Dekkonot's BitBuffer stores bits using 8-bit integers, while Anaminus's and rstk's BitBuffers use 32-bit integers.
 - Dekkonot's BitBuffer supports more (including roblox-specific) data types out of the box.
 
-#### TODO
+### TODO
 
 - [ ] Serialization
 - [ ] Unaligned
