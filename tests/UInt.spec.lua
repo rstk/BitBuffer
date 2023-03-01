@@ -7,6 +7,7 @@ end
 
 return function()
 	local N = script.Parent.TestN.Value
+	local MaxBitToTest = 53 --Doubles do not behave as expected at higher numbers. Those aren't tested.
 
 	describe("General tests", function()
 		it("Should not throw when writing", function()
@@ -37,11 +38,30 @@ return function()
 
 			expect(buffer:ReadUInt(14)).to.be.equal(0)
 		end)
+
+		it("Should write and read 64-bit numbers", function()
+			local rand = Random.new()
+
+			local numbers = {}
+			local buffer = BitBuffer.new()
+			for bw = 1, MaxBitToTest do
+				expect(function()
+					local randomNumber = rand:NextInteger(math.pow(2, bw) - 2, math.pow(2, bw) - 1)
+					buffer:WriteUInt(bw, randomNumber)
+					table.insert(numbers, randomNumber)
+				end).never.to.throw()
+			end
+			buffer:ResetCursor()
+
+			for bw = 1, MaxBitToTest do
+				expect(buffer:ReadUInt(bw)).to.equal(numbers[bw])
+			end
+		end)
 	end)
 
 	describe("De/Serialization", function()
 		it("Should write and read integers with a fixed bit width correctly", function()
-			for bw = 1, 32 do
+			for bw = 1, MaxBitToTest do
 				local buffer = BitBuffer.new(bw * N / 2)
 				local rand = Random.new()
 				local values = table.create(N / 2)
@@ -65,7 +85,7 @@ return function()
 			local values = table.create(N)
 
 			for i = 1, N do
-				local bw = rand:NextInteger(1, 32)
+				local bw = rand:NextInteger(1, MaxBitToTest)
 				local int = rand:NextInteger(0, math.pow(2, bw) - 1)
 				buffer:WriteUInt(bw, int)
 				values[i] = {bw, int}
@@ -78,31 +98,31 @@ return function()
 		end)
 
 		it("Should write and read zero correctly", function()
-			local buffer = BitBuffer.new(sums(32))
-			for bw = 1, 32 do
+			local buffer = BitBuffer.new(sums(MaxBitToTest))
+			for bw = 1, MaxBitToTest do
 				buffer:WriteUInt(bw, 0)
 			end
 
 			buffer:ResetCursor()
-			for bw = 1, 32 do
+			for bw = 1, MaxBitToTest do
 				expect(buffer:ReadUInt(bw)).to.be.equal(0)
 			end
 		end)
 
 		it("Should write and read the maximum value correctly", function()
-			local buffer = BitBuffer.new(sums(32))
-			for bw = 1, 32 do
+			local buffer = BitBuffer.new(sums(MaxBitToTest))
+			for bw = 1, MaxBitToTest do
 				buffer:WriteUInt(bw, math.pow(2, bw) - 1)
 			end
 
 			buffer:ResetCursor()
-			for bw = 1, 32 do
+			for bw = 1, MaxBitToTest do
 				expect(buffer:ReadUInt(bw)).to.be.equal(math.pow(2, bw) - 1)
 			end
 		end)
 
 		it("Should overflow correctly", function()
-			for bw = 1, 32 do
+			for bw = 1, MaxBitToTest do
 				local buffer = BitBuffer.new()
 				local values = table.create(N)
 				local max = math.pow(2, bw)
