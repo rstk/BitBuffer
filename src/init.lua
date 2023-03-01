@@ -192,7 +192,7 @@ end
 	@return boolean
 ]=]
 function BitBuffer.is(obj: any): boolean
-	return getmetatable(obj :: {}) == BitBuffer
+	return getmetatable(obj :: any) == BitBuffer
 end
 
 --[=[
