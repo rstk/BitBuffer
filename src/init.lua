@@ -192,7 +192,7 @@ end
 	@return boolean
 ]=]
 function BitBuffer.is(obj: any): boolean
-	return getmetatable(obj :: {}) == BitBuffer
+	return getmetatable(obj :: any) == BitBuffer
 end
 
 --[=[
@@ -764,7 +764,7 @@ end
 --[=[
 	@tag Write
 	Writes an unsigned integer of `bitWidth` bits to the buffer.
-	`bitWidth` must be an integer between 1 and 32.
+	`bitWidth` must be an integer between 1 and 64.
 	If the input integer uses more bits than `bitWidth`, it will overflow as expected.
 
 	```lua
@@ -778,19 +778,24 @@ end
 function BitBuffer:WriteUInt(bitWidth: number, uint: number): ()
 	if type(bitWidth) ~= "number" then
 		Error("invalid argument #1 to 'WriteUInt' (number expected, got %s)", typeof(bitWidth))
-	elseif bitWidth < 1 or bitWidth > 32 then
-		Error("invalid argument #1 to 'WriteUInt' (number must be in range [1,32])")
+	elseif bitWidth < 1 or bitWidth > 64 then
+		Error("invalid argument #1 to 'WriteUInt' (number must be in range [1,64])")
 	elseif type(uint) ~= "number" then
 		Error("invalid argument #2 to 'WriteUInt' (number expected, got %s)", typeof(uint))
 	end
 
-	WriteToBuffer(self, bitWidth, uint)
+	if bitWidth > 32 then
+		WriteToBuffer(self, bitWidth - 32, math.floor(uint / (2 ^ 32)))
+		WriteToBuffer(self, 32, bit32.band(uint, (2 ^ 32) - 1))
+	else
+		WriteToBuffer(self, bitWidth, uint)
+	end
 end
 
 --[=[
 	@tag Read
 	Reads `bitWidth` bits from the buffer as an unsigned integer.
-	`bitWidth` must be an integer between 1 and 32.
+	`bitWidth` must be an integer between 1 and 64.
 
 	```lua
 	buffer:WriteUInt(12, 89)
@@ -804,11 +809,15 @@ end
 function BitBuffer:ReadUInt(bitWidth: number): number
 	if type(bitWidth) ~= "number" then
 		Error("invalid argument #1 to 'ReadUInt' (number expected, got %s)", typeof(bitWidth))
-	elseif bitWidth < 1 or bitWidth > 32 then
-		Error("invalid argument #1 to 'ReadUInt' (number must be in range [1,32])")
+	elseif bitWidth < 1 or bitWidth > 64 then
+		Error("invalid argument #1 to 'ReadUInt' (number must be in range [1,64])")
 	end
 
-	return ReadFromBuffer(self, bitWidth)
+	if bitWidth > 32 then
+		return (ReadFromBuffer(self, bitWidth - 32) * (2 ^ 32)) + ReadFromBuffer(self, 32)
+	else
+		return ReadFromBuffer(self, bitWidth)
+	end
 end
 
 --[=[
